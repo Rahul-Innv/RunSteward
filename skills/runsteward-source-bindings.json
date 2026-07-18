@@ -26,14 +26,14 @@
     {
       "id": "rw.atomic-write",
       "path": "packages/runsteward-core/src/atomic-write.mjs",
-      "sha256": "de3163d7ee8c4eeea2e5e73a3c1140392d7658658a7b29eafa2dcbacc28dcb9c",
+      "sha256": "7f5faaf21fe4e7d6e94d06aa257a769bcf123e42adfe15b5d284b268803c7a55",
       "state": "frozen",
       "verify_local": true
     },
     {
       "id": "rw.canonical-json",
       "path": "packages/runsteward-core/src/canonical-json.mjs",
-      "sha256": "ec61be941d8fa4dac31c3e62f4b4d131db829fac0ed6b4440466a9c8144c68e4",
+      "sha256": "6944ac6e6de187124f309502d0e656e62135a48bf6ceff4070c0862f4f120d73",
       "state": "frozen",
       "verify_local": true
     },
@@ -47,28 +47,28 @@
     {
       "id": "rw.child-join",
       "path": "packages/runsteward-core/src/child-join.mjs",
-      "sha256": "ef4bcd105accfe5bd61c375789d2802c2b9ae2562c384432d8c3128d04e9d74e",
+      "sha256": "d77937f9f03a5c788f11daddd7484f2ebe8213598714213b2da1ce15c642fbda",
       "state": "accepted-rw2-clean-main",
       "verify_local": true
     },
     {
       "id": "rw.contract-loader",
       "path": "packages/runsteward-core/src/contract-loader.mjs",
-      "sha256": "765d59429d637ad04ff8bc598d238f29c18539dd3987a2f783ba05eb82b37a07",
+      "sha256": "cbe729dc932e076564b77a4f1616a80a2dd49db4354fb3091d7d382d2216b390",
       "state": "frozen",
       "verify_local": true
     },
     {
       "id": "rw.event-fold",
       "path": "packages/runsteward-core/src/event-fold.mjs",
-      "sha256": "23569edb8d9852d2fc98356338a39c3a2e74cb308202e99e13b6a9f78aec605c",
+      "sha256": "fc73c3ff0d9eaa34c4d92082d8a877d45a28a32fdd67fc1496d4b1445382b26b",
       "state": "frozen",
       "verify_local": true
     },
     {
       "id": "rw.invariants",
       "path": "packages/runsteward-core/src/invariants.mjs",
-      "sha256": "4f030b155ffcb1f4444d0a15f83a9f0cfbf350f734bef179df9d6c514554e5c8",
+      "sha256": "50534a25ddb3e68542c78b7d58bac1b2ad74b041d29931c157ce8877e9854c3c",
       "state": "frozen",
       "verify_local": true
     },
@@ -166,14 +166,14 @@
     {
       "id": "rw.path-identity",
       "path": "packages/runsteward-core/src/path-identity.mjs",
-      "sha256": "4288cba2c9ff3628f428daeca3f8608e788a72e9198879a1b16cdec156782686",
+      "sha256": "a3bcf6cca1118f78503e47d15bfb5056f1096ce564925085bce12c3a694ed089",
       "state": "accepted-rw2-clean-main",
       "verify_local": true
     },
     {
       "id": "rw.scheduler",
       "path": "packages/runsteward-core/src/scheduler.mjs",
-      "sha256": "8d453ffe53b537ad948c3bf12b08d0950a507fe06a9a8d6bb30581524b66d093",
+      "sha256": "0fe7ccc0d46ec9713f970570a0f128a1f10ac559f6661828e3e6ae1b19f6b70b",
       "state": "accepted-rw2-clean-main",
       "verify_local": true
     },
@@ -188,32 +188,32 @@
   "runsteward_owned_implementation_bindings": [
     {
       "path": "packages/runsteward-adapter-claude-code/src/index.mjs",
-      "sha256": "749b062c3d11b7cca261b875d9dfe21346e1fc50b3d149c8b3d9dbbfeff23ab6",
+      "sha256": "6479354070d62cb9f4d028a35d3c67896093206ef5db1038a4e425c2f7711a07",
       "state": "accepted-runsteward-owned-source"
     },
     {
       "path": "packages/runsteward-adapter-codex/src/index.mjs",
-      "sha256": "ede4e35b60fd0db9691e0cbb8045d81cd95c15e441d7494c799fbb5b94acafb6",
+      "sha256": "65a3c72ad51deeb0e3a255b4b8485338343f992e73db12beb969906a65d03208",
       "state": "accepted-runsteward-owned-source"
     },
     {
       "path": "packages/runsteward-sensor-claude-limits/src/index.mjs",
-      "sha256": "1eb12528d911cf3b91aca2c2bc7d0c9db18605fbbb951de789dcde58776b87ec",
+      "sha256": "305cc0c72fab026018ed004143bf81264ec0f2554ecbbd50cb7a1236009294cd",
       "state": "accepted-runsteward-owned-source"
     },
     {
       "path": "packages/runsteward-sensor-codex-usage/src/index.mjs",
-      "sha256": "9c88eb0f2ba2d690ccb98f7a076dca300bf862cec9152d1446f8b331ccbe8b46",
+      "sha256": "e9b6efa245ae14e4103a894f2be28412d25029fcfb21cd8b1a61b9662a8ee7b6",
       "state": "accepted-runsteward-owned-source"
     },
     {
       "path": "packages/runsteward-core/src/checkpoint-runtime.mjs",
-      "sha256": "d8a39c434bbc8261794db9c59f61dac6c6b60148e957ccefa78ed2e1a85e86ae",
+      "sha256": "e12c465a168b4ba0c5bf91818b6f7554213ab1c42d5609a789cc9fa83912164f",
       "state": "accepted-runsteward-owned-source"
     },
     {
       "path": "packages/runsteward-core/src/provider-evidence.mjs",
-      "sha256": "21959aeaa08fe106cfc27a49f1cfc3a19944fc7f96306c129c4554b531c3813f",
+      "sha256": "8615931d9f8965c991bb31a8b1646760f6f7bab9892334ce670e891009867a91",
       "state": "accepted-runsteward-owned-source"
     },
     {
