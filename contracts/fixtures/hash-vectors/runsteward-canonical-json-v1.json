@@ -1,0 +1,42 @@
+{
+  "schema_version": "runsteward.hash-vectors/v1",
+  "algorithm": "runsteward-canonical-json-sha256-v1",
+  "domain": {
+    "object_keys": "ASCII contract keys only, ordinally sorted",
+    "strings": "Unicode scalar values encoded as UTF-8",
+    "numbers": "safe integers only; negative zero forbidden",
+    "arrays": "order preserved",
+    "excluded": ["floats", "nonfinite numbers", "unsafe integers", "unpaired surrogates", "non-plain objects"]
+  },
+  "vectors": [
+    {
+      "id": "empty-object",
+      "value": {},
+      "canonical_utf8": "{}",
+      "digest": "sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": "nested-order-and-unicode",
+      "value": {
+        "z": 1,
+        "a": "é",
+        "nested": { "ok": true, "nil": null },
+        "items": [3, "line\nbreak"]
+      },
+      "canonical_utf8": "{\"a\":\"é\",\"items\":[3,\"line\\nbreak\"],\"nested\":{\"nil\":null,\"ok\":true},\"z\":1}",
+      "digest": "sha256:c6dc827c3677a1681bd401388d2ecfea83bdd04e0b89f3902d5bb2aa3278b933"
+    },
+    {
+      "id": "unicode-scalars",
+      "value": { "emoji": "🧭", "replacement": "�" },
+      "canonical_utf8": "{\"emoji\":\"🧭\",\"replacement\":\"�\"}",
+      "digest": "sha256:fc29e45660b8d24810b46ddee171b6a3d6d89fdd4bb323853f13fb578341f0bb"
+    },
+    {
+      "id": "safe-integer-bounds",
+      "value": { "max": 9007199254740991, "min": -9007199254740991 },
+      "canonical_utf8": "{\"max\":9007199254740991,\"min\":-9007199254740991}",
+      "digest": "sha256:63546eb60913dcb1cdd5118f7bf4885beed344af930c8a9d5f38fad243fd4819"
+    }
+  ]
+}

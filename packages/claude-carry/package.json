@@ -1,0 +1,21 @@
+{
+  "name": "claude-carry",
+  "version": "0.2.0",
+  "description": "Claude Carry — keep Claude Code work going unattended: queue tasks to run overnight, and continue your own live session in place after a usage-limit reset.",
+  "type": "module",
+  "author": "Rahul Krishna",
+  "bin": {
+    "carry": "./bin/carry.mjs",
+    "nq": "./bin/carry.mjs"
+  },
+  "scripts": {
+    "test": "node test/sentinel-test.mjs && node test/crash-store.mjs && node test/report-test.mjs && node test/runner-test.mjs && node test/infolder-test.mjs && node test/parallel-test.mjs && node test/handoff-test.mjs && node test/adopt-test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "files": ["bin", "lib", "scripts", "setup.ps1", "CHANGELOG.md", "ROADMAP.md", "demo.svg", "logo.svg"],
+  "keywords": ["claude", "claude-code", "anthropic", "llm", "ai-agent", "automation", "cli", "unattended", "developer-tools", "windows"],
+  "private": false
+}

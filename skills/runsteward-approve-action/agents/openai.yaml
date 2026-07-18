@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Approve Action"
+  short_description: "Bind one exact approval to one pending RunSteward action."
+  default_prompt: "Use $runsteward-approve-action to bind one exact approval to one pending RunSteward action and scope."
+policy:
+  allow_implicit_invocation: false

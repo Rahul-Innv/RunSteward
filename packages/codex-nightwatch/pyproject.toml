@@ -1,0 +1,38 @@
+[project]
+name = "codex-nightwatch"
+version = "0.1.0"
+description = "Usage-aware orchestration for unattended Codex runs"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Codex Nightwatch maintainers" }]
+keywords = [
+  "codex",
+  "codex-cli",
+  "agent",
+  "ai-agent",
+  "automation",
+  "usage-monitoring",
+  "rate-limit",
+  "checkpointing",
+  "resume",
+  "nightwatch",
+  "orchestration",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Build Tools",
+  "Topic :: System :: Monitoring",
+  "Topic :: Utilities",
+]
+
+[tool.codex-nightwatch]
+status = "mvp"
+distribution = "plugin-shaped-local-cli"

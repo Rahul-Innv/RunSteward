@@ -1,0 +1,225 @@
+{
+  "schema": "runsteward-source-ref-bindings/v1",
+  "candidate_status": "inactive-precritic",
+  "authority": {
+    "accepted_runsteward_r2_receipt_sha256": "f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0",
+    "accepted_runsteward_r2_postcheck_sha256": "f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1",
+    "source_owner_map_sha256": "f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2",
+    "source_owner_assignment_count": 66,
+    "command_owner_map_sha256": "f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3",
+    "command_owner_tuple_contract": "source_command_key<TAB>disposition<TAB>owner rows sorted by Unicode code-point ordinal, LF-joined, UTF-8 without BOM or final LF",
+    "command_owner_tuple_sha256": "1ee379ac1718065364b4ffe25fa015b70e61670f8de993a1e2df844da3bd7b25",
+    "command_count": 45,
+    "shared_charter_sha256": "f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4",
+    "shared_matrix_sha256": "f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5",
+    "shared_verifier_sha256": "f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6"
+  },
+  "source_refs": [
+    {
+      "id": "rw.adapter-manifest",
+      "path": "packages/runsteward-core/src/adapter-manifest.mjs",
+      "sha256": "405e30518dcbaf599c0647a3812e4adc6a7c651024fcb4e266c2dc0998daec30",
+      "candidate_change": "add exact @runsteward/cli package membership only",
+      "state": "candidate-runsteward-owned-package-membership",
+      "verify_local": true
+    },
+    {
+      "id": "rw.atomic-write",
+      "path": "packages/runsteward-core/src/atomic-write.mjs",
+      "sha256": "de3163d7ee8c4eeea2e5e73a3c1140392d7658658a7b29eafa2dcbacc28dcb9c",
+      "state": "frozen",
+      "verify_local": true
+    },
+    {
+      "id": "rw.canonical-json",
+      "path": "packages/runsteward-core/src/canonical-json.mjs",
+      "sha256": "ec61be941d8fa4dac31c3e62f4b4d131db829fac0ed6b4440466a9c8144c68e4",
+      "state": "frozen",
+      "verify_local": true
+    },
+    {
+      "id": "rw.carry-cli",
+      "path": "packages/claude-carry/bin/carry.mjs",
+      "sha256": "2a5f53a160b1effa70de97ee1074b24fe6fd1077d9b9a5c210f8741a84237246",
+      "state": "immutable-import",
+      "verify_local": true
+    },
+    {
+      "id": "rw.child-join",
+      "path": "packages/runsteward-core/src/child-join.mjs",
+      "sha256": "ef4bcd105accfe5bd61c375789d2802c2b9ae2562c384432d8c3128d04e9d74e",
+      "state": "accepted-rw2-clean-main",
+      "verify_local": true
+    },
+    {
+      "id": "rw.contract-loader",
+      "path": "packages/runsteward-core/src/contract-loader.mjs",
+      "sha256": "765d59429d637ad04ff8bc598d238f29c18539dd3987a2f783ba05eb82b37a07",
+      "state": "frozen",
+      "verify_local": true
+    },
+    {
+      "id": "rw.event-fold",
+      "path": "packages/runsteward-core/src/event-fold.mjs",
+      "sha256": "23569edb8d9852d2fc98356338a39c3a2e74cb308202e99e13b6a9f78aec605c",
+      "state": "frozen",
+      "verify_local": true
+    },
+    {
+      "id": "rw.invariants",
+      "path": "packages/runsteward-core/src/invariants.mjs",
+      "sha256": "4f030b155ffcb1f4444d0a15f83a9f0cfbf350f734bef179df9d6c514554e5c8",
+      "state": "frozen",
+      "verify_local": true
+    },
+    {
+      "id": "rw.limit-burnrate",
+      "path": "packages/limit-aware-wrapup/sensor/burnrate.js",
+      "sha256": "a291dfb8a030a038ef4cb04c8877a0c7c5d1d54759d8a85384f6e8991b3346ec",
+      "state": "immutable-import",
+      "verify_local": true
+    },
+    {
+      "id": "rw.limit-check",
+      "path": "packages/limit-aware-wrapup/trigger/check.js",
+      "sha256": "ba17fbe7e4c3f1c5f7bf3c4b585346c551d8704a4f4547779fff53e60462532d",
+      "state": "immutable-import",
+      "verify_local": true
+    },
+    {
+      "id": "rw.limit-decide",
+      "path": "packages/limit-aware-wrapup/trigger/decide.js",
+      "sha256": "5c0b853ea0f86e30b434119ab6aa0118b9f5fd6f197c0bc8feaf9d4cdd9930c8",
+      "state": "immutable-import",
+      "verify_local": true
+    },
+    {
+      "id": "rw.limit-demo",
+      "path": "packages/limit-aware-wrapup/bin/demo.js",
+      "sha256": "fe4bf136201f14779bad449c704e7df54870da28981dad03c2ce95c3b6e18cf2",
+      "state": "immutable-import",
+      "verify_local": true
+    },
+    {
+      "id": "rw.limit-notify",
+      "path": "packages/limit-aware-wrapup/trigger/notify.js",
+      "sha256": "8fe58f480f4566ae1b66b5f794c48006084ce595d1286dfe4921c0c43c9cee12",
+      "state": "immutable-import",
+      "verify_local": true
+    },
+    {
+      "id": "rw.limit-oauth",
+      "path": "packages/limit-aware-wrapup/sensor/refresh-oauth.js",
+      "sha256": "886504db16b51295275f0f73d66b70ad7c61931c241072eb7ae62366cceae45a",
+      "state": "immutable-import",
+      "verify_local": true
+    },
+    {
+      "id": "rw.limit-status",
+      "path": "packages/limit-aware-wrapup/bin/status.js",
+      "sha256": "87c0ddd9cbb9f26130e7c9f68815ab602cf26a92357dbecf7e84aee6323603bc",
+      "state": "immutable-import",
+      "verify_local": true
+    },
+    {
+      "id": "rw.limit-statusline",
+      "path": "packages/limit-aware-wrapup/sensor/statusline.js",
+      "sha256": "1072e33995ab98219a65343bc478a2b183b166c003f2d4e9ca3f817795c29867",
+      "state": "immutable-import",
+      "verify_local": true
+    },
+    {
+      "id": "rw.limit-validate",
+      "path": "packages/limit-aware-wrapup/bin/validate-config.js",
+      "sha256": "ab171c2408925316856d968cc482ccd4e76942d3946d936d2ad5ff65c4b63ee5",
+      "state": "immutable-import",
+      "verify_local": true
+    },
+    {
+      "id": "rw.live-carry-queue",
+      "path": "[external live source path removed]",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "state": "live-read-only",
+      "verify_local": false
+    },
+    {
+      "id": "rw.live-continue-reset",
+      "path": "[external live source path removed]",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "state": "live-read-only",
+      "verify_local": false
+    },
+    {
+      "id": "rw.live-landing",
+      "path": "[external live source path removed]",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "state": "live-read-only",
+      "verify_local": false
+    },
+    {
+      "id": "rw.nightwatch",
+      "path": "packages/codex-nightwatch/scripts/nightwatch.py",
+      "sha256": "284e67e9029db4b2d924359efdc1a285cb4982a4b743a9e292f5f8aa38e93714",
+      "state": "immutable-import",
+      "verify_local": true
+    },
+    {
+      "id": "rw.path-identity",
+      "path": "packages/runsteward-core/src/path-identity.mjs",
+      "sha256": "4288cba2c9ff3628f428daeca3f8608e788a72e9198879a1b16cdec156782686",
+      "state": "accepted-rw2-clean-main",
+      "verify_local": true
+    },
+    {
+      "id": "rw.scheduler",
+      "path": "packages/runsteward-core/src/scheduler.mjs",
+      "sha256": "8d453ffe53b537ad948c3bf12b08d0950a507fe06a9a8d6bb30581524b66d093",
+      "state": "accepted-rw2-clean-main",
+      "verify_local": true
+    },
+    {
+      "id": "rw.wrap-skill",
+      "path": "packages/limit-aware-wrapup/skills/wrapping-up/SKILL.md",
+      "sha256": "461cb6360c7b313c4ac4d420866ca64ac7e16b022969215aa0fc29a6554540ea",
+      "state": "immutable-import",
+      "verify_local": true
+    }
+  ],
+  "runsteward_owned_implementation_bindings": [
+    {
+      "path": "packages/runsteward-adapter-claude-code/src/index.mjs",
+      "sha256": "749b062c3d11b7cca261b875d9dfe21346e1fc50b3d149c8b3d9dbbfeff23ab6",
+      "state": "accepted-runsteward-owned-source"
+    },
+    {
+      "path": "packages/runsteward-adapter-codex/src/index.mjs",
+      "sha256": "ede4e35b60fd0db9691e0cbb8045d81cd95c15e441d7494c799fbb5b94acafb6",
+      "state": "accepted-runsteward-owned-source"
+    },
+    {
+      "path": "packages/runsteward-sensor-claude-limits/src/index.mjs",
+      "sha256": "1eb12528d911cf3b91aca2c2bc7d0c9db18605fbbb951de789dcde58776b87ec",
+      "state": "accepted-runsteward-owned-source"
+    },
+    {
+      "path": "packages/runsteward-sensor-codex-usage/src/index.mjs",
+      "sha256": "9c88eb0f2ba2d690ccb98f7a076dca300bf862cec9152d1446f8b331ccbe8b46",
+      "state": "accepted-runsteward-owned-source"
+    },
+    {
+      "path": "packages/runsteward-core/src/checkpoint-runtime.mjs",
+      "sha256": "d8a39c434bbc8261794db9c59f61dac6c6b60148e957ccefa78ed2e1a85e86ae",
+      "state": "accepted-runsteward-owned-source"
+    },
+    {
+      "path": "packages/runsteward-core/src/provider-evidence.mjs",
+      "sha256": "21959aeaa08fe106cfc27a49f1cfc3a19944fc7f96306c129c4554b531c3813f",
+      "state": "accepted-runsteward-owned-source"
+    },
+    {
+      "path": "packages/runsteward-core/src/wrap-orchestration.mjs",
+      "sha256": "55c7423e95b3a11228bc90e8d884c8fbd04ec8da65a5ecba16330ed139dfc759",
+      "state": "accepted-runsteward-owned-source"
+    }
+  ]
+}

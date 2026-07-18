@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://runsteward.local/contracts/runsteward/v1/worktree-lease.schema.json",
+  "title": "RunSteward worktree lease v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "lease_id",
+    "run_id",
+    "task_id",
+    "lease_epoch",
+    "purpose",
+    "status",
+    "repository_id",
+    "original_source_head",
+    "observed_head",
+    "branch_name",
+    "worktree",
+    "state_path",
+    "evidence_path",
+    "lock_path",
+    "owner",
+    "acquired_at",
+    "last_heartbeat_at",
+    "expires_at",
+    "previous_lease_ref",
+    "previous_lease_id",
+    "release_reason",
+    "lease_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": "runsteward.worktree-lease/v1" },
+    "lease_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "run_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "task_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "lease_epoch": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "purpose": { "enum": ["initial", "resume"] },
+    "status": { "enum": ["proposed", "active", "releasing", "released", "stale", "quarantined"] },
+    "repository_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "original_source_head": { "$ref": "common.schema.json#/$defs/gitCommit" },
+    "observed_head": { "$ref": "common.schema.json#/$defs/gitCommit" },
+    "branch_name": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "worktree": { "$ref": "common.schema.json#/$defs/pathBinding" },
+    "state_path": { "$ref": "common.schema.json#/$defs/pathBinding" },
+    "evidence_path": { "$ref": "common.schema.json#/$defs/pathBinding" },
+    "lock_path": { "$ref": "common.schema.json#/$defs/pathBinding" },
+    "owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["executor_id", "process_session_ref", "host_fingerprint"],
+      "properties": {
+        "executor_id": { "$ref": "common.schema.json#/$defs/stableId" },
+        "process_session_ref": { "$ref": "common.schema.json#/$defs/runstewardDigest" },
+        "host_fingerprint": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+      }
+    },
+    "acquired_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "last_heartbeat_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "expires_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "previous_lease_ref": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/artifactRef" },
+        { "type": "null" }
+      ]
+    },
+    "previous_lease_id": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/stableId" },
+        { "type": "null" }
+      ]
+    },
+    "release_reason": {
+      "oneOf": [
+        { "type": "string", "minLength": 1, "maxLength": 512 },
+        { "type": "null" }
+      ]
+    },
+    "lease_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "lease_epoch": { "const": 1 } }, "required": ["lease_epoch"] },
+      "then": { "properties": { "purpose": { "const": "initial" }, "previous_lease_ref": { "type": "null" }, "previous_lease_id": { "type": "null" } } },
+      "else": {
+        "properties": {
+          "purpose": { "const": "resume" },
+          "previous_lease_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+          "previous_lease_id": { "$ref": "common.schema.json#/$defs/stableId" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "const": "released" } }, "required": ["status"] },
+      "then": { "properties": { "release_reason": { "type": "string", "minLength": 1 } } }
+    }
+  ]
+}

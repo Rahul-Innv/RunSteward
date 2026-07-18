@@ -1,0 +1,26 @@
+image: python:3.12
+
+stages:
+  - test
+  - proof
+
+test:
+  stage: test
+  script:
+    - python -m unittest discover -s tests
+    - python -m py_compile scripts/nightwatch.py tests/test_nightwatch.py
+
+proof_demo:
+  stage: proof
+  script:
+    - python scripts/nightwatch.py analyze --jsonl tests/sample_codex_events.jsonl --token-budget 5000 --reserve-tokens 1000
+    - python scripts/nightwatch.py analyze --jsonl tests/fixtures/real_codex_minimal.redacted.jsonl --token-budget 20000 --reserve-tokens 5000
+    - python scripts/nightwatch.py init --state .nightwatch/proof-state.json --objective "Public proof demo" --prompt "Demonstrate Codex Nightwatch against a sample JSONL stream." --token-budget 5000 --reserve-tokens 1000
+    - python scripts/nightwatch.py record --state .nightwatch/proof-state.json --jsonl tests/sample_codex_events.jsonl
+    - python scripts/nightwatch.py report --state .nightwatch/proof-state.json --output .nightwatch/proof-report.md
+  artifacts:
+    when: always
+    paths:
+      - .nightwatch/proof-state.json
+      - .nightwatch/proof-report.md
+    expire_in: 30 days

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Nightwatch"
+  short_description: "Manage unattended Codex runs around usage budgets and checkpoints."
+  default_prompt: "Use Codex Nightwatch to plan a safe unattended Codex run with checkpoints, pause/resume thresholds, and a morning report."

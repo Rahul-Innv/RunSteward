@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Adopt Session"
+  short_description: "Produce one adoption record for the current live session that..."
+  default_prompt: "Use $runsteward-adopt-session to produce one adoption record for the current live session that is not already a RunSteward run."
+policy:
+  allow_implicit_invocation: false

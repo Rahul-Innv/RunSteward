@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://runsteward.local/contracts/runsteward/v1/provider-evidence.schema.json",
+  "title": "RunSteward typed provider evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "adapter_id",
+    "observed_at",
+    "source_status",
+    "reason_code",
+    "metrics",
+    "raw_evidence_refs",
+    "evidence_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": "runsteward.provider-evidence/v1" },
+    "adapter_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "observed_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "source_status": { "enum": ["verified", "estimated", "unknown"] },
+    "reason_code": { "$ref": "common.schema.json#/$defs/stableId" },
+    "metrics": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric", "value", "unit", "source_adapter", "confidence", "raw_evidence_ref"],
+        "properties": {
+          "metric": { "$ref": "common.schema.json#/$defs/stableId" },
+          "value": { "type": "string", "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$" },
+          "unit": { "$ref": "common.schema.json#/$defs/stableId" },
+          "source_adapter": { "$ref": "common.schema.json#/$defs/stableId" },
+          "confidence": { "enum": ["verified", "estimated"] },
+          "raw_evidence_ref": { "$ref": "common.schema.json#/$defs/evidenceRef" }
+        }
+      }
+    },
+    "raw_evidence_refs": {
+      "type": "array",
+      "maxItems": 16,
+      "items": { "$ref": "common.schema.json#/$defs/evidenceRef" }
+    },
+    "evidence_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "source_status": { "const": "unknown" } }, "required": ["source_status"] },
+      "then": { "properties": { "metrics": { "maxItems": 0 } } }
+    }
+  ]
+}

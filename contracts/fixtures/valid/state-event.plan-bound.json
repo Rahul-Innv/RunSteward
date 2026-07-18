@@ -1,0 +1,68 @@
+{
+  "schema_version": "runsteward.state-event/v1",
+  "event_id": "event:atomic-01:2",
+  "run_id": "run:atomic-01",
+  "sequence": 2,
+  "occurred_at": "2026-07-14T00:01:02Z",
+  "event_type": "capability-plan.bound",
+  "actor": {
+    "kind": "runsteward-core",
+    "actor_id": "runsteward-core-v1"
+  },
+  "from_state": "planned",
+  "to_state": "planned",
+  "reason_code": "CAPABILITY_PLAN_BOUND",
+  "reason_summary": "The accepted ChoiceGate receipt was frozen without reranking.",
+  "previous_event_digest": "sha256:d27a5e4c39bad97cae5d21196598ae5d89f2a87effa2716f0085aeae0615a3ba",
+  "evidence_refs": [],
+  "projection": {
+    "task_id": "task:atomic-01",
+    "created_at": "2026-07-14T00:01:00Z",
+    "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+    "repository": {
+      "repository_id": "runsteward",
+      "canonical_root": "C:\\repos\\runsteward",
+      "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+      "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+      "dirty_state_policy": "clean-required"
+    },
+    "lifecycle_policy": {
+      "autonomy_mode": "standing-local",
+      "approval_mode": "exact-gates",
+      "commit_policy": "standing-isolated",
+      "push_policy": "forbidden",
+      "maximum_runtime_seconds": 36000,
+      "inactivity_timeout_seconds": 3600,
+      "budget_policy_ref": null,
+      "resume_after_stop_policy": "verified-checkpoint-only"
+    },
+    "status": "planned",
+    "lease_ref": null,
+    "state_dir": {
+      "path": "C:\\runsteward\\state\\run-atomic-01",
+      "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "evidence_dir": {
+      "path": "C:\\runsteward\\evidence\\run-atomic-01",
+      "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "capability_plan_ref": {
+      "ref": "contracts/fixtures/valid/capability-plan.atomic.json",
+      "digest": "sha256:8069f8cebb02f6d6192e35199a33b9ebaf884c07f14d6d5640e9077ea722db60"
+    },
+    "latest_checkpoint_ref": null,
+    "sensor_bindings": [],
+    "owner_gates": [],
+    "stopped_report_ref": null,
+    "final_status_report_ref": null
+  },
+  "event_data": {
+    "kind": "capability-plan.bound",
+    "capability_plan_ref": {
+      "ref": "contracts/fixtures/valid/capability-plan.atomic.json",
+      "digest": "sha256:8069f8cebb02f6d6192e35199a33b9ebaf884c07f14d6d5640e9077ea722db60"
+    }
+  },
+  "event_digest": "sha256:634afa9526f49593bfc638a24bf26a1115f1620329413231c8ece5be884d12e9"
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "runsteward.capability-plan/v1",
+  "capability_plan_id": "plan:atomic-01",
+  "run_id": "run:atomic-01",
+  "bound_at": "2026-07-14T00:01:00Z",
+  "choicegate_receipt": {
+    "schema_id": "choicegate.decision-receipt/v1",
+    "receipt_schema_sha256": "3d32d4bac2cb9ff78d0249741d74e8572326894435e3bab10bf0f2f7ca7c949d",
+    "receipt_version": "choicegate.decision-receipt/v1",
+    "immutable_ref": "contracts/fixtures/choicegate/rw4-cg-atomic-01.receipt.json",
+    "native_digest_procedure": "choicegate-native-sorted-compact-json-sha256-v1",
+    "receipt_sha256": "693a22ab0e38106773f951d1a9ba65262a2c215d1a3da582516036a8b896a34d",
+    "request_id": "cg3:cg-atomic-01",
+    "request_sha256": "47ea796bc812d875952332ba7976b6ac6ffe084781901b60ac7ddd53da3b7663",
+    "task_class": "repo-orientation",
+    "inventory_fingerprint": "e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1",
+    "accepted_lifecycle_authority_commit": "d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1",
+    "choicegate_commit": "c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1",
+    "qualification_ref": {
+      "ref": "contracts/fixtures/choicegate/qualification.rw4.json",
+      "digest": "sha256:217a099c368796095e4ed9c961b939c0f2e42cdf835ec749b1faa27ae016112d"
+    }
+  },
+  "selected_route": {
+    "route_type": "atomic",
+    "route_id": "repo-orientation",
+    "version": null,
+    "owner": "codebase-overview",
+    "member_ids": [],
+    "executable": true,
+    "original_selection_ref": null
+  },
+  "frozen_preconditions": [],
+  "authorization_state": "not-required",
+  "owner_gates": [],
+  "fallback": {
+    "route_type": "no-safe-route",
+    "route_id": "NO_SAFE_ROUTE",
+    "reason": "no-eligible-registered-fallback",
+    "eligible": true
+  },
+  "scope_fingerprint": "sha256:69cc9fc6ab9ca535543e8257f69200cf546b890ff8794d1913689e401f2159c6",
+  "plan_digest": "sha256:ca9f865134aa2da4a95634ebc1d5b3f0d2e8087b8ad477328f25848d76ddc3be"
+}

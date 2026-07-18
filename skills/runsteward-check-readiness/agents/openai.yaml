@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Check Readiness"
+  short_description: "Return one read-only readiness verdict with exact missing, dr..."
+  default_prompt: "Use $runsteward-check-readiness to return one read-only readiness verdict with exact missing, drifted, or blocked prerequisites."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Limit-Aware Wrapup config",
+  "description": "Config for the limit-wrapup sensor/trigger. Lives at ~/.claude/limit-wrapup/config.json. Every field is optional: anything missing, misspelled, or out of range falls back to a safe default (the runtime is fail-open and never throws on bad config). Units are account-% of a usage window, never tokens.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Path/URL to this schema, for editor autocomplete + hover docs. Not read by the tool."
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Master kill-switch. false silences all decision logic (the hook still no-ops cheaply)."
+    },
+    "mode": {
+      "enum": [
+        "warn",
+        "auto"
+      ],
+      "default": "warn",
+      "description": "warn = informational heads-ups only, never forces a wrap (attended). auto = also emits a hard WRAPUP directive once a window passes (100 - reserve)%, for unattended sessions. Any other value is treated as 'warn'."
+    },
+    "plan": {
+      "enum": [
+        "pro",
+        "max_5x",
+        "max_10x",
+        "max_20x"
+      ],
+      "default": "pro",
+      "description": "Selects the reserve fallback (fallback_reserve_pct) ONLY until wrapup_cost_measured or reserve_pct is set. pro is the most conservative."
+    },
+    "warn_at": {
+      "description": "Heads-up thresholds (account-%, exclusive 0-100). A flat array applies to both windows; an object sets each window independently.",
+      "default": [
+        70,
+        85
+      ],
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "exclusiveMaximum": 100
+          },
+          "minItems": 1
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "five_hour": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "exclusiveMaximum": 100
+              },
+              "minItems": 1
+            },
+            "seven_day": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "exclusiveMaximum": 100
+              },
+              "minItems": 1
+            }
+          }
+        }
+      ]
+    },
+    "reserve_pct": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "default": null,
+      "minimum": 0.5,
+      "maximum": 10,
+      "description": "The wrap-point knob: auto-wrap fires at (100 - reserve_pct)%. Set directly (e.g. 1.5 -> wrap at 98.5%). Overrides the measured/fallback reserve. null = derive from wrapup_cost_measured x margin, else the plan fallback. Clamped to [0.5, 10]."
+    },
+    "wrapup_cost_measured": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "default": null,
+      "exclusiveMinimum": 0,
+      "description": "Account-% one wrap-up ritual costs, from calibration runs. When set (and reserve_pct is null), reserve = this x wrapup_reserve_margin."
+    },
+    "wrapup_reserve_margin": {
+      "type": "number",
+      "default": 2.5,
+      "exclusiveMinimum": 0,
+      "description": "Safety factor over wrapup_cost_measured (ritual cost scales with context/diff size). Only used when reserve_pct is null and wrapup_cost_measured is set."
+    },
+    "fallback_reserve_pct": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {
+        "pro": 3,
+        "max_5x": 2,
+        "max_10x": 1.5,
+        "max_20x": 1
+      },
+      "description": "Per-plan reserve used only until a measured value or reserve_pct lands.",
+      "properties": {
+        "pro": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_5x": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_10x": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_20x": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "dry_run": {
+      "type": "boolean",
+      "default": true,
+      "description": "true = log decisions to decisions.log but inject nothing (observe before trusting). Flip to false to let heads-ups/WRAPUP directives actually reach the session."
+    },
+    "notify": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show a native desktop notification when an (unattended) WRAPUP fires, so the auto-wrap is seen and not just discovered later as a wip/ branch. Only fires on WRAPUP, never on a heads-up. Fail-open: a missing toast subsystem is silently ignored."
+    },
+    "stale_after_min": {
+      "type": "number",
+      "default": 10,
+      "exclusiveMinimum": 0,
+      "description": "Sensor samples older than this (minutes) are treated as unknown -> silent (fail-open)."
+    },
+    "suppress_warn_if_reset_within_min": {
+      "type": "number",
+      "default": 15,
+      "minimum": 0,
+      "description": "Cheap cliff: if the window resets within this many minutes, being cut off costs only minutes, so suppress the warn/wrap."
+    }
+  }
+}

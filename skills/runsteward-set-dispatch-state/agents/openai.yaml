@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Set Dispatch State"
+  short_description: "Produce one validated dispatcher pause or unpause request."
+  default_prompt: "Use $runsteward-set-dispatch-state to produce one validated dispatcher pause or unpause request."
+policy:
+  allow_implicit_invocation: false

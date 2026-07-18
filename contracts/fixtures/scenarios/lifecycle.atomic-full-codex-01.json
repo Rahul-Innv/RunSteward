@@ -1,0 +1,1183 @@
+{
+  "chain_id": "atomic-full-codex-01",
+  "events": [
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:1",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 1,
+      "occurred_at": "2026-07-14T00:01:01Z",
+      "event_type": "run.created",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixtures"
+      },
+      "from_state": null,
+      "to_state": "planned",
+      "reason_code": "RUN_CREATED",
+      "reason_summary": "The immutable run identity and initial policy were recorded.",
+      "previous_event_digest": null,
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "planned",
+        "lease_ref": null,
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": null,
+        "latest_checkpoint_ref": null,
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "run.created"
+      },
+      "event_digest": "sha256:8139da0f924817b00f9cac6bdac44754d04a1250881a20958bda7677ec4ba7b6"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:2",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 2,
+      "occurred_at": "2026-07-14T01:02:00Z",
+      "event_type": "capability-plan.bound",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "planned",
+      "to_state": "planned",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:8139da0f924817b00f9cac6bdac44754d04a1250881a20958bda7677ec4ba7b6",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "planned",
+        "lease_ref": null,
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": null,
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "capability-plan.bound",
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        }
+      },
+      "event_digest": "sha256:8d9dc0fb4948eeae3874c8c0fd0352f45dec2ebba74c29064dd3be9e48ea1104"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:3",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 3,
+      "occurred_at": "2026-07-14T01:03:00Z",
+      "event_type": "run.queued",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "planned",
+      "to_state": "queued",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:8d9dc0fb4948eeae3874c8c0fd0352f45dec2ebba74c29064dd3be9e48ea1104",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "queued",
+        "lease_ref": null,
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": null,
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "run.queued",
+        "queue_purpose": "initial",
+        "resume_from_state": null,
+        "previous_lease_ref": null
+      },
+      "event_digest": "sha256:9c04d65101c0e5b580141216bd4e97367c99faaa7bbfa1f2197212638baf4f0e"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:4",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 4,
+      "occurred_at": "2026-07-14T01:04:00Z",
+      "event_type": "lease.acquired",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "queued",
+      "to_state": "allocated",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:9c04d65101c0e5b580141216bd4e97367c99faaa7bbfa1f2197212638baf4f0e",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "allocated",
+        "lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.active.json",
+          "digest": "sha256:01b5a0934583f982c8817545911047fff706d1e42285b2ee3dccc1c40633dde4"
+        },
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": null,
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "lease.acquired",
+        "lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.active.json",
+          "digest": "sha256:01b5a0934583f982c8817545911047fff706d1e42285b2ee3dccc1c40633dde4"
+        },
+        "lease_epoch": 1,
+        "lease_purpose": "initial",
+        "previous_lease_ref": null
+      },
+      "event_digest": "sha256:48c1959d8c28b67ee930059fbc040346f71d35f0cf4b162eb757cc9faa217322"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:5",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 5,
+      "occurred_at": "2026-07-14T01:05:00Z",
+      "event_type": "run.started",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "allocated",
+      "to_state": "running",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:48c1959d8c28b67ee930059fbc040346f71d35f0cf4b162eb757cc9faa217322",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "running",
+        "lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.active.json",
+          "digest": "sha256:01b5a0934583f982c8817545911047fff706d1e42285b2ee3dccc1c40633dde4"
+        },
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": null,
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "run.started"
+      },
+      "event_digest": "sha256:6cc4c4dfcc397d5b1198814cc4fc73d7d8996af2807be8d500c49fa555da90c4"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:6",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 6,
+      "occurred_at": "2026-07-14T01:06:00Z",
+      "event_type": "run.checkpointed",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "running",
+      "to_state": "checkpointed",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:6cc4c4dfcc397d5b1198814cc4fc73d7d8996af2807be8d500c49fa555da90c4",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "checkpointed",
+        "lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.active.json",
+          "digest": "sha256:01b5a0934583f982c8817545911047fff706d1e42285b2ee3dccc1c40633dde4"
+        },
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": null,
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "run.checkpointed"
+      },
+      "event_digest": "sha256:496c1cb992026a008270fc371c744c2f6eea8bc336c82645453eac23cada821d"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:7",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 7,
+      "occurred_at": "2026-07-14T01:07:00Z",
+      "event_type": "checkpoint.finalized",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "checkpointed",
+      "to_state": "checkpointed",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:496c1cb992026a008270fc371c744c2f6eea8bc336c82645453eac23cada821d",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "checkpointed",
+        "lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.active.json",
+          "digest": "sha256:01b5a0934583f982c8817545911047fff706d1e42285b2ee3dccc1c40633dde4"
+        },
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "checkpoint.finalized",
+        "checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "checkpoint_event_ref": {
+          "ref": "evidence/events/event-atomic-full-codex-01-6.json",
+          "digest": "sha256:496c1cb992026a008270fc371c744c2f6eea8bc336c82645453eac23cada821d"
+        }
+      },
+      "event_digest": "sha256:502cd2415ca21cab56ba134d0e7881fe4208ab842b6db79fc4430ec31094b17a"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:8",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 8,
+      "occurred_at": "2026-07-14T01:08:00Z",
+      "event_type": "run.stopped",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "checkpointed",
+      "to_state": "stopped",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:502cd2415ca21cab56ba134d0e7881fe4208ab842b6db79fc4430ec31094b17a",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "stopped",
+        "lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.active.json",
+          "digest": "sha256:01b5a0934583f982c8817545911047fff706d1e42285b2ee3dccc1c40633dde4"
+        },
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "run.stopped"
+      },
+      "event_digest": "sha256:de0e76dfa0f2edf4f955167e01d445db719f5c1b0076551fcf9fc1e59f4c33ae"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:9",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 9,
+      "occurred_at": "2026-07-14T01:09:00Z",
+      "event_type": "lease.released",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "stopped",
+      "to_state": "stopped",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:de0e76dfa0f2edf4f955167e01d445db719f5c1b0076551fcf9fc1e59f4c33ae",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "stopped",
+        "lease_ref": null,
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "lease.released",
+        "active_lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.active.json",
+          "digest": "sha256:01b5a0934583f982c8817545911047fff706d1e42285b2ee3dccc1c40633dde4"
+        },
+        "released_lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.released.json",
+          "digest": "sha256:035605464035a4633aa3eb851a2b569ea1f9303a5527663a4e57c9429c3fc88d"
+        }
+      },
+      "event_digest": "sha256:c311d2b90a74ef83df430b11ff0c2ee8e1635aa54ab19a8c25ce348b9bbd1b0d"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:10",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 10,
+      "occurred_at": "2026-07-14T01:10:00Z",
+      "event_type": "report.finalized",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "stopped",
+      "to_state": "stopped",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:c311d2b90a74ef83df430b11ff0c2ee8e1635aa54ab19a8c25ce348b9bbd1b0d",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "stopped",
+        "lease_ref": null,
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": {
+          "ref": "evidence/run-atomic-full-codex-01/reports/stopped.json",
+          "digest": "sha256:bc107b566a50f64af5caf1b034bfc6252556839650493b177d8d90391b7c078c"
+        },
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "report.finalized",
+        "report_ref": {
+          "ref": "evidence/run-atomic-full-codex-01/reports/stopped.json",
+          "digest": "sha256:bc107b566a50f64af5caf1b034bfc6252556839650493b177d8d90391b7c078c"
+        },
+        "terminal_event_ref": {
+          "ref": "evidence/events/event-atomic-full-codex-01-8.json",
+          "digest": "sha256:de0e76dfa0f2edf4f955167e01d445db719f5c1b0076551fcf9fc1e59f4c33ae"
+        }
+      },
+      "event_digest": "sha256:c2f27ecbb184aee0cdf4e12cb902271dc33c850ee2078b258d63a9b844531c94"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:11",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 11,
+      "occurred_at": "2026-07-14T01:11:00Z",
+      "event_type": "lease.acquired",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "stopped",
+      "to_state": "allocated",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:c2f27ecbb184aee0cdf4e12cb902271dc33c850ee2078b258d63a9b844531c94",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "allocated",
+        "lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch2.active.json",
+          "digest": "sha256:0b48909ad3875a2d900a4e0b3e8674b6222a5ab4c6cce9bc7975a77bc06a8d7a"
+        },
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "lease.acquired",
+        "lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch2.active.json",
+          "digest": "sha256:0b48909ad3875a2d900a4e0b3e8674b6222a5ab4c6cce9bc7975a77bc06a8d7a"
+        },
+        "lease_epoch": 2,
+        "lease_purpose": "resume",
+        "previous_lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.released.json",
+          "digest": "sha256:035605464035a4633aa3eb851a2b569ea1f9303a5527663a4e57c9429c3fc88d"
+        }
+      },
+      "event_digest": "sha256:5af87d204b906f3c50711256cc5d69f32e719050b7aaa10e860e6ddd8dc6cf44"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:12",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 12,
+      "occurred_at": "2026-07-14T01:12:00Z",
+      "event_type": "run.resumed",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "allocated",
+      "to_state": "running",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:5af87d204b906f3c50711256cc5d69f32e719050b7aaa10e860e6ddd8dc6cf44",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "running",
+        "lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch2.active.json",
+          "digest": "sha256:0b48909ad3875a2d900a4e0b3e8674b6222a5ab4c6cce9bc7975a77bc06a8d7a"
+        },
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "run.resumed",
+        "checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "checkpoint_event_id": "event:atomic-full-codex-01:6",
+        "checkpoint_event_sequence": 6,
+        "checkpoint_event_digest": "sha256:496c1cb992026a008270fc371c744c2f6eea8bc336c82645453eac23cada821d",
+        "new_lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch2.active.json",
+          "digest": "sha256:0b48909ad3875a2d900a4e0b3e8674b6222a5ab4c6cce9bc7975a77bc06a8d7a"
+        },
+        "prior_lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.released.json",
+          "digest": "sha256:035605464035a4633aa3eb851a2b569ea1f9303a5527663a4e57c9429c3fc88d"
+        },
+        "new_lease_id": "lease:atomic-full-codex-01:2",
+        "new_lease_epoch": 2,
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "repository_id": "runsteward",
+        "original_source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+        "observed_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+        "branch_name": "feature/runsteward-contracts-core",
+        "worktree_collision_key": "fs:win32:3333333333333333333333333333333333333333333333333333333333333333",
+        "state_collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111",
+        "evidence_collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222",
+        "adapter_id": "codex-local",
+        "identity_reference_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "event_digest": "sha256:1efcb54156c14357778f4f5e6d9a3772eabd0c9613107ca8b544752f1a08836c"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:13",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 13,
+      "occurred_at": "2026-07-14T01:13:00Z",
+      "event_type": "run.stop_requested",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "running",
+      "to_state": "stopping",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:1efcb54156c14357778f4f5e6d9a3772eabd0c9613107ca8b544752f1a08836c",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "stopping",
+        "lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch2.active.json",
+          "digest": "sha256:0b48909ad3875a2d900a4e0b3e8674b6222a5ab4c6cce9bc7975a77bc06a8d7a"
+        },
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "run.stop_requested"
+      },
+      "event_digest": "sha256:f14335d72c5746493c1160fc8ee50b1d35f57a20249e589954f97e7555ea277c"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:14",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 14,
+      "occurred_at": "2026-07-14T01:14:00Z",
+      "event_type": "run.completed",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "stopping",
+      "to_state": "completed",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:f14335d72c5746493c1160fc8ee50b1d35f57a20249e589954f97e7555ea277c",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "completed",
+        "lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch2.active.json",
+          "digest": "sha256:0b48909ad3875a2d900a4e0b3e8674b6222a5ab4c6cce9bc7975a77bc06a8d7a"
+        },
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "run.completed"
+      },
+      "event_digest": "sha256:f4914ceb2d2e576ac50f2f20ed17677d2683e33f6088d8e6094b041e6b6440a7"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:15",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 15,
+      "occurred_at": "2026-07-14T01:15:00Z",
+      "event_type": "lease.released",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "completed",
+      "to_state": "completed",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:f4914ceb2d2e576ac50f2f20ed17677d2683e33f6088d8e6094b041e6b6440a7",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "completed",
+        "lease_ref": null,
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": null
+      },
+      "event_data": {
+        "kind": "lease.released",
+        "active_lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch2.active.json",
+          "digest": "sha256:0b48909ad3875a2d900a4e0b3e8674b6222a5ab4c6cce9bc7975a77bc06a8d7a"
+        },
+        "released_lease_ref": {
+          "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch2.released.json",
+          "digest": "sha256:7420385d3e84291ce27c754abb3110d4b17c439cfa718ee0294cc2e6adff2f4b"
+        }
+      },
+      "event_digest": "sha256:c891dbb3c45c28a651b372bda0ea79d504602d4b3ea92922805f780204f7321e"
+    },
+    {
+      "schema_version": "runsteward.state-event/v1",
+      "event_id": "event:atomic-full-codex-01:16",
+      "run_id": "run:atomic-full-codex-01",
+      "sequence": 16,
+      "occurred_at": "2026-07-14T01:16:00Z",
+      "event_type": "report.finalized",
+      "actor": {
+        "kind": "test-harness",
+        "actor_id": "rw1-fixture-builder"
+      },
+      "from_state": "completed",
+      "to_state": "completed",
+      "reason_code": "FIXTURE_EVENT",
+      "reason_summary": "Deterministic provider-neutral lifecycle fixture event.",
+      "previous_event_digest": "sha256:c891dbb3c45c28a651b372bda0ea79d504602d4b3ea92922805f780204f7321e",
+      "evidence_refs": [],
+      "projection": {
+        "task_id": "task:atomic-full-codex-01",
+        "created_at": "2026-07-14T00:01:00Z",
+        "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+        "repository": {
+          "repository_id": "runsteward",
+          "canonical_root": "C:\\repos\\runsteward",
+          "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+          "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+          "dirty_state_policy": "clean-required"
+        },
+        "lifecycle_policy": {
+          "autonomy_mode": "standing-local",
+          "approval_mode": "exact-gates",
+          "commit_policy": "standing-isolated",
+          "push_policy": "forbidden",
+          "maximum_runtime_seconds": 36000,
+          "inactivity_timeout_seconds": 3600,
+          "budget_policy_ref": null,
+          "resume_after_stop_policy": "verified-checkpoint-only"
+        },
+        "status": "completed",
+        "lease_ref": null,
+        "state_dir": {
+          "path": "C:\\runsteward\\state\\run-atomic-01",
+          "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+        },
+        "evidence_dir": {
+          "path": "C:\\runsteward\\evidence\\run-atomic-01",
+          "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "capability_plan_ref": {
+          "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+          "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+        },
+        "latest_checkpoint_ref": {
+          "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+          "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+        },
+        "sensor_bindings": [],
+        "owner_gates": [],
+        "stopped_report_ref": null,
+        "final_status_report_ref": {
+          "ref": "evidence/run-atomic-full-codex-01/reports/completed.json",
+          "digest": "sha256:039f37011639bf0eb794a3cb58dcdc5b9a76a5dbf8b2dce4d05eb41deebaf122"
+        }
+      },
+      "event_data": {
+        "kind": "report.finalized",
+        "report_ref": {
+          "ref": "evidence/run-atomic-full-codex-01/reports/completed.json",
+          "digest": "sha256:039f37011639bf0eb794a3cb58dcdc5b9a76a5dbf8b2dce4d05eb41deebaf122"
+        },
+        "terminal_event_ref": {
+          "ref": "evidence/events/event-atomic-full-codex-01-14.json",
+          "digest": "sha256:f4914ceb2d2e576ac50f2f20ed17677d2683e33f6088d8e6094b041e6b6440a7"
+        }
+      },
+      "event_digest": "sha256:8da177ba9e9f678e8b76ec0cebb8ebb2e37ab91322980b342255607565f739b2"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "records": [
+    " M README.md",
+    "?? skills/runsteward-queue-task/SKILL.md"
+  ],
+  "expected_paths": [
+    "README.md",
+    "skills/runsteward-queue-task/SKILL.md"
+  ]
+}

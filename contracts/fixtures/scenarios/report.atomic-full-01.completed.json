@@ -1,0 +1,56 @@
+{
+  "schema_version": "runsteward.report/v1",
+  "report_id": "report:atomic-full-01:completed",
+  "report_kind": "final",
+  "run_id": "run:atomic-full-01",
+  "created_at": "2026-07-14T00:20:00Z",
+  "status": "completed",
+  "terminal_event_ref": {
+    "ref": "evidence/events/event-atomic-full-01-14.json",
+    "digest": "sha256:42a6e5acf68889f053bd0ca7365cef37a089d21e395abc2dc82f16d3d264e9b8"
+  },
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-01.atomic.json",
+    "digest": "sha256:f7af3eb5e2ca110ea2ab4979dbb25d9f30ec469fbda26d8cd781374c3aaf83fd"
+  },
+  "lease_history_refs": [
+    {
+      "ref": "contracts/fixtures/scenarios/lease.atomic-full-01.epoch1.released.json",
+      "digest": "sha256:a51a81d9a65a5aa1a9e1438d90b0abe70f3c09d5e1d41fcb08cd4d761c18c6ab"
+    },
+    {
+      "ref": "contracts/fixtures/scenarios/lease.atomic-full-01.epoch2.released.json",
+      "digest": "sha256:57d7d6b8556ff47a3b2cf4075e8d6639e3c32e117733a3a81189ee0541960f2f"
+    }
+  ],
+  "checkpoint_refs": [
+    {
+      "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-01.claude-not-required.json",
+      "digest": "sha256:14f59770d4d26a62567f48a7d37aa2667461c19684751d04a7042a678fad4fab"
+    }
+  ],
+  "handoff_ref": {
+    "ref": "contracts/fixtures/scenarios/handoff.atomic-full-01.redacted.json",
+    "digest": "sha256:ec846f9a0c9bff89e1afd881510cb61bb1df9c8f014e2a4fc4fae209a3581234"
+  },
+  "outcome": {
+    "summary": "The bounded local contract qualification completed without outward action.",
+    "objective_satisfied": true
+  },
+  "blocker": {
+    "type": "none",
+    "reason": null,
+    "safe_next_action": "Preserve this report as the final status marker."
+  },
+  "budget_summary": [],
+  "validation_results": [],
+  "changed_paths_summary": [],
+  "failed_commands_summary": [],
+  "owner_gate_summary": [],
+  "evidence_index": [],
+  "redactions": [],
+  "evidence_dir_collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222",
+  "report_ref": "evidence/run-atomic-full-01/reports/completed.json",
+  "final_status_marker": "RUNSTEWARD_FINAL_STATUS",
+  "report_digest": "sha256:5d4a6fde048df24fbb88b433b8eab3a81e1320a7531494cec3fdffd77302681e"
+}

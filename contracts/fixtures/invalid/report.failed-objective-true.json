@@ -1,0 +1,39 @@
+{
+  "schema_version": "runsteward.report/v1",
+  "report_id": "report:failed-objective-true:final",
+  "report_kind": "final",
+  "run_id": "run:failed-objective-true",
+  "created_at": "2026-07-14T00:23:00Z",
+  "status": "failed",
+  "terminal_event_ref": {
+    "ref": "evidence/events/event-failed-objective-true.json",
+    "digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+  },
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/valid/capability-plan.atomic.json",
+    "digest": "sha256:8069f8cebb02f6d6192e35199a33b9ebaf884c07f14d6d5640e9077ea722db60"
+  },
+  "lease_history_refs": [],
+  "checkpoint_refs": [],
+  "handoff_ref": null,
+  "outcome": {
+    "summary": "This invalid failed report incorrectly claims that its objective was satisfied.",
+    "objective_satisfied": true
+  },
+  "blocker": {
+    "type": "validation",
+    "reason": "The execution attempt failed validation.",
+    "safe_next_action": "Correct the failed report outcome before accepting it."
+  },
+  "budget_summary": [],
+  "validation_results": [],
+  "changed_paths_summary": [],
+  "failed_commands_summary": [],
+  "owner_gate_summary": [],
+  "evidence_index": [],
+  "redactions": [],
+  "evidence_dir_collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222",
+  "report_ref": "evidence/run-failed-objective-true/reports/failed.json",
+  "final_status_marker": "RUNSTEWARD_FINAL_STATUS",
+  "report_digest": "sha256:9dea16cc52c9c8c95b1611fce0eaa66f614d34b15d2139d22f511c14c1bc41c7"
+}

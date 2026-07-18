@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://runsteward.local/contracts/runsteward/v1/checkpoint.schema.json",
+  "title": "RunSteward immutable checkpoint v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "checkpoint_id",
+    "run_id",
+    "created_at",
+    "completeness",
+    "event_ref",
+    "previous_checkpoint_ref",
+    "repository",
+    "lease_id",
+    "lease_epoch",
+    "capability_plan_ref",
+    "provider_resume_binding",
+    "progress",
+    "changed_paths",
+    "validation_results",
+    "raw_evidence_refs",
+    "handoff_ref",
+    "checkpoint_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": "runsteward.checkpoint/v1" },
+    "checkpoint_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "run_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "created_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "completeness": { "enum": ["complete", "partial"] },
+    "event_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+    "previous_checkpoint_ref": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/artifactRef" },
+        { "type": "null" }
+      ]
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["original_source_head", "observed_head", "branch_name", "worktree", "dirty_summary"],
+      "properties": {
+        "original_source_head": { "$ref": "common.schema.json#/$defs/gitCommit" },
+        "observed_head": { "$ref": "common.schema.json#/$defs/gitCommit" },
+        "branch_name": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "worktree": { "$ref": "common.schema.json#/$defs/pathBinding" },
+        "dirty_summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["dirty", "changed_path_count", "status_digest"],
+          "properties": {
+            "dirty": { "type": "boolean" },
+            "changed_path_count": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+            "status_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+          }
+        }
+      }
+    },
+    "lease_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "lease_epoch": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "capability_plan_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+    "provider_resume_binding": { "$ref": "common.schema.json#/$defs/providerResumeBinding" },
+    "progress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["completed_work", "current_atomic_step", "remaining_work", "blocker", "safe_next_action"],
+      "properties": {
+        "completed_work": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/boundedSummary" }, "maxItems": 64 },
+        "current_atomic_step": {
+          "oneOf": [
+            { "$ref": "common.schema.json#/$defs/boundedSummary" },
+            { "type": "null" }
+          ]
+        },
+        "remaining_work": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/boundedSummary" }, "maxItems": 64 },
+        "blocker": {
+          "oneOf": [
+            { "$ref": "common.schema.json#/$defs/boundedSummary" },
+            { "type": "null" }
+          ]
+        },
+        "safe_next_action": { "$ref": "common.schema.json#/$defs/boundedSummary" }
+      }
+    },
+    "changed_paths": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/changedPath" },
+      "maxItems": 512
+    },
+    "validation_results": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/validationResult" },
+      "maxItems": 128
+    },
+    "raw_evidence_refs": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/evidenceRef" },
+      "maxItems": 128
+    },
+    "handoff_ref": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/artifactRef" },
+        { "type": "null" }
+      ]
+    },
+    "checkpoint_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "completeness": { "const": "complete" } }, "required": ["completeness"] },
+      "then": {
+        "properties": {
+          "provider_resume_binding": {
+            "type": "object",
+            "properties": { "verification_state": { "enum": ["verified", "not-required"] } },
+            "required": ["verification_state"]
+          }
+        }
+      }
+    }
+  ]
+}

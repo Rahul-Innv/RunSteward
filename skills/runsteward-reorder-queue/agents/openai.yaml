@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Reorder Queue"
+  short_description: "Produce one validated reorder request for an existing pending..."
+  default_prompt: "Use $runsteward-reorder-queue to produce one validated reorder request for an existing pending task."
+policy:
+  allow_implicit_invocation: false

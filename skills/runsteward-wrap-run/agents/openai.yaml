@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Wrap Run"
+  short_description: "Produce one coordinator plan that delegates exactly checkpoin..."
+  default_prompt: "Use $runsteward-wrap-run to produce one coordinator plan that delegates exactly checkpoint, report, and resumable stop outcomes."
+policy:
+  allow_implicit_invocation: false

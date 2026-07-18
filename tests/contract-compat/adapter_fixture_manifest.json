@@ -1,0 +1,86 @@
+{
+  "schema_version": "runsteward.adapter-fixture-manifest/v2",
+  "boundary": "provider-specific-classification-remains-imported-product-owned-and-runsteward-consumers-stay-thin",
+  "shared_core_consumes": [
+    "classified lifecycle facts",
+    "opaque provider identity digests",
+    "bounded evidence references"
+  ],
+  "shared_core_forbids": [
+    "provider authentication",
+    "provider calls",
+    "raw transcript ingestion",
+    "provider-specific reranking",
+    "modification of imported packages"
+  ],
+  "runsteward_owned_packages": [
+    {
+      "package_id": "@runsteward/core",
+      "path": "packages/runsteward-core",
+      "owner": "runsteward-integration-owned",
+      "phase": "rw1-rw4",
+      "role": "provider-neutral-contract-lifecycle-orchestration-and-frozen-choicegate-ingestion-core"
+    },
+    {
+      "package_id": "@runsteward/cli",
+      "path": "packages/runsteward-cli",
+      "owner": "runsteward-integration-owned",
+      "phase": "v2-atomic-family",
+      "role": "inactive-route-only-atomic-family-cli"
+    },
+    {
+      "package_id": "@runsteward/adapter-claude-code",
+      "path": "packages/runsteward-adapter-claude-code",
+      "owner": "runsteward-integration-owned",
+      "phase": "rw3",
+      "role": "thin-claude-checkpoint-wrap-resume-consumer"
+    },
+    {
+      "package_id": "@runsteward/adapter-codex",
+      "path": "packages/runsteward-adapter-codex",
+      "owner": "runsteward-integration-owned",
+      "phase": "rw3",
+      "role": "thin-codex-checkpoint-wrap-resume-consumer"
+    },
+    {
+      "package_id": "@runsteward/sensor-claude-limits",
+      "path": "packages/runsteward-sensor-claude-limits",
+      "owner": "runsteward-integration-owned",
+      "phase": "rw3",
+      "role": "typed-claude-limit-evidence-only"
+    },
+    {
+      "package_id": "@runsteward/sensor-codex-usage",
+      "path": "packages/runsteward-sensor-codex-usage",
+      "owner": "runsteward-integration-owned",
+      "phase": "rw3",
+      "role": "typed-codex-usage-evidence-only"
+    }
+  ],
+  "imported_packages": [
+    {
+      "package_id": "claude-carry",
+      "path": "packages/claude-carry",
+      "owner": "imported-product-owned",
+      "rw1_mutation": "forbidden",
+      "fixture_role": "claude-local-resume-and-handoff-regression",
+      "focused_test": "npm.cmd test --prefix packages/claude-carry"
+    },
+    {
+      "package_id": "codex-nightwatch",
+      "path": "packages/codex-nightwatch",
+      "owner": "imported-product-owned",
+      "rw1_mutation": "forbidden",
+      "fixture_role": "codex-classified-lifecycle-fact-regression",
+      "focused_test": "python.exe -B -m unittest discover -s packages/codex-nightwatch/tests -p test_*.py"
+    },
+    {
+      "package_id": "limit-aware-wrapup",
+      "path": "packages/limit-aware-wrapup",
+      "owner": "imported-product-owned",
+      "rw1_mutation": "forbidden",
+      "fixture_role": "bounded-sensor-and-wrapup-regression",
+      "focused_test": "node --test packages/limit-aware-wrapup/test/*.test.js"
+    }
+  ]
+}

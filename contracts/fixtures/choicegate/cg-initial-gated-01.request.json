@@ -1,0 +1,11 @@
+{
+  "schema_version": "runsteward.choicegate-contract-request/v1",
+  "fixture_class": "deterministic-runsteward-contract-fixture",
+  "production_decision": false,
+  "fixture_id": "atomic-initial-owner-gated-runsteward-contract",
+  "authorization_required": true,
+  "approvals_required": [
+    "approval:initial-local"
+  ],
+  "purpose": "Exercise local ChoiceGate receipt qualification and RunSteward owner-gate binding without execution."
+}

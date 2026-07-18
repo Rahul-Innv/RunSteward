@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Resume Run"
+  short_description: "Authorize one resumed attempt only after checkpoint, identity..."
+  default_prompt: "Use $runsteward-resume-run to authorize one resumed attempt only after checkpoint, identity, predecessor release, and successor lease all validate."
+policy:
+  allow_implicit_invocation: false

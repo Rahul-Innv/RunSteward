@@ -1,0 +1,39 @@
+{
+  "schema_version": "runsteward.report/v1",
+  "report_id": "report:atomic-01:final",
+  "report_kind": "final",
+  "run_id": "run:atomic-01",
+  "created_at": "2026-07-14T00:20:00Z",
+  "status": "completed",
+  "terminal_event_ref": {
+    "ref": "evidence/events/event-atomic-01-completed.json",
+    "digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+  },
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/valid/capability-plan.atomic.json",
+    "digest": "sha256:8069f8cebb02f6d6192e35199a33b9ebaf884c07f14d6d5640e9077ea722db60"
+  },
+  "lease_history_refs": [],
+  "checkpoint_refs": [],
+  "handoff_ref": null,
+  "outcome": {
+    "summary": "The bounded local contract qualification completed without outward action.",
+    "objective_satisfied": true
+  },
+  "blocker": {
+    "type": "none",
+    "reason": null,
+    "safe_next_action": "Preserve this report as the final status marker."
+  },
+  "budget_summary": [],
+  "validation_results": [],
+  "changed_paths_summary": [],
+  "failed_commands_summary": [],
+  "owner_gate_summary": [],
+  "evidence_index": [],
+  "redactions": [],
+  "evidence_dir_collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222",
+  "report_ref": "evidence/run-atomic-01/reports/final.json",
+  "final_status_marker": "RUNSTEWARD_FINAL_STATUS",
+  "report_digest": "sha256:c5f6fe381237f272c9bca9cd7d7c546d24fb36edc5ae138ad332cd1e637dc714"
+}

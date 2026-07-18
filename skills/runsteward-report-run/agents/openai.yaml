@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Report Run"
+  short_description: "Produce one bounded report or handoff whose final form carrie..."
+  default_prompt: "Use $runsteward-report-run to produce one bounded report or handoff whose final form carries the literal RUNSTEWARD_FINAL_STATUS marker."
+policy:
+  allow_implicit_invocation: false

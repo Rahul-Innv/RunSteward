@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">RunSteward lifecycle demo</title>
+  <desc id="desc">A bounded run moving through queue, supervise, checkpoint, stop, resume, and report gates.</desc>
+  <rect width="1200" height="630" rx="36" fill="#0d1324"/>
+  <text x="72" y="92" fill="#f7f9ff" font-family="Segoe UI, sans-serif" font-size="46" font-weight="700">RunSteward</text>
+  <text x="72" y="138" fill="#aeb8d0" font-family="Segoe UI, sans-serif" font-size="24">Evidence-bound lifecycle control for long-running agent work</text>
+  <g font-family="Segoe UI, sans-serif" font-size="22" text-anchor="middle">
+    <g fill="#17233d" stroke="#66e3c4" stroke-width="3">
+      <rect x="70" y="248" width="150" height="78" rx="18"/><rect x="252" y="248" width="150" height="78" rx="18"/>
+      <rect x="434" y="248" width="150" height="78" rx="18"/><rect x="616" y="248" width="150" height="78" rx="18"/>
+      <rect x="798" y="248" width="150" height="78" rx="18"/><rect x="980" y="248" width="150" height="78" rx="18"/>
+    </g>
+    <g fill="#f7f9ff">
+      <text x="145" y="296">Queue</text><text x="327" y="296">Supervise</text><text x="509" y="296">Checkpoint</text>
+      <text x="691" y="296">Stop</text><text x="873" y="296">Resume</text><text x="1055" y="296">Report</text>
+    </g>
+  </g>
+  <g stroke="#8b9cff" stroke-width="5" fill="none" stroke-linecap="round">
+    <path d="M220 287h32"/><path d="M402 287h32"/><path d="M584 287h32"/><path d="M766 287h32"/><path d="M948 287h32"/>
+  </g>
+  <g font-family="Segoe UI, sans-serif" font-size="20" fill="#aeb8d0">
+    <text x="72" y="440">An external lifecycle authority controls lifecycle status and priority.</text>
+    <text x="72" y="480">ChoiceGate selects capabilities; RunSteward does not rerank them.</text>
+    <text x="72" y="520">Every transition preserves approval, lease, evidence, and digest gates.</text>
+  </g>
+  <text x="72" y="580" fill="#66e3c4" font-family="Segoe UI, sans-serif" font-size="20">Private candidate · no provider execution · no live activation</text>
+</svg>

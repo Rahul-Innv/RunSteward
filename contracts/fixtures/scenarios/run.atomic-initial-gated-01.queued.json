@@ -1,0 +1,62 @@
+{
+  "schema_version": "runsteward.run/v1",
+  "run_id": "run:atomic-initial-gated-01",
+  "task_id": "task:atomic-initial-gated-01",
+  "created_at": "2026-07-14T00:01:00Z",
+  "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+  "repository": {
+    "repository_id": "runsteward",
+    "canonical_root": "C:\\repos\\runsteward",
+    "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+    "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+    "dirty_state_policy": "clean-required"
+  },
+  "lifecycle_policy": {
+    "autonomy_mode": "standing-local",
+    "approval_mode": "exact-gates",
+    "commit_policy": "standing-isolated",
+    "push_policy": "forbidden",
+    "maximum_runtime_seconds": 36000,
+    "inactivity_timeout_seconds": 3600,
+    "budget_policy_ref": null,
+    "resume_after_stop_policy": "verified-checkpoint-only"
+  },
+  "status": "queued",
+  "lease_ref": null,
+  "state_dir": {
+    "path": "C:\\runsteward\\state\\run-atomic-01",
+    "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "evidence_dir": {
+    "path": "C:\\runsteward\\evidence\\run-atomic-01",
+    "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/scenarios/capability-plan.atomic-initial-gated-01.atomic.json",
+    "digest": "sha256:4659422e29c2e4e3e3128c48d5b3ffd8b9741cf044bf011ec56ef3eea8132c82"
+  },
+  "latest_checkpoint_ref": null,
+  "sensor_bindings": [],
+  "owner_gates": [
+    {
+      "gate_id": "approval:initial-local",
+      "owner": "owner:local",
+      "state": "satisfied",
+      "protected_action": "Authorize the bounded initial local execution.",
+      "evidence_refs": [
+        {
+          "ref": "evidence/approval-initial-local.json",
+          "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "media_type": "application/json"
+        }
+      ]
+    }
+  ],
+  "stopped_report_ref": null,
+  "final_status_report_ref": null,
+  "last_event_id": "event:atomic-initial-gated-01:4",
+  "last_event_sequence": 4,
+  "last_event_digest": "sha256:666e41c0c32d7208ca3c7ff8d84016bf1739132d8c46b97b53660e3eabb041c6",
+  "run_digest": "sha256:3c92e6c67851f014f712a7ceebbd9c10c72d16b34b52ac3a0a8bba3b9c50debc"
+}

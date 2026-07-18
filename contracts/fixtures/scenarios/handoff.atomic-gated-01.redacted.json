@@ -1,0 +1,42 @@
+{
+  "schema_version": "runsteward.handoff/v1",
+  "handoff_id": "handoff:atomic-gated-01:1",
+  "run_id": "run:atomic-gated-01",
+  "created_at": "2026-07-14T00:11:00Z",
+  "checkpoint_ref": {
+    "ref": "contracts/fixtures/scenarios/checkpoint.atomic-gated-01.claude-not-required.json",
+    "digest": "sha256:2dbe2ae6624e3e37e1072ff6a062b6d75a3a23128465e9d6c204b8ef919ecb6a"
+  },
+  "status": "checkpointed",
+  "outcome_summary": "The contract checkpoint is complete and contains no provider credentials or raw transcripts.",
+  "completed_items": [
+    "Schemas and frozen authority bindings were validated locally."
+  ],
+  "remaining_items": [
+    "Run imported-package regressions."
+  ],
+  "blockers": [],
+  "decisions_required": [],
+  "approvals_required": [],
+  "validation_summary": [],
+  "changed_paths_summary": [],
+  "failed_commands_summary": [],
+  "safe_resume": {
+    "eligible": true,
+    "preconditions": [
+      "Use the same run ID and a new verified lease epoch."
+    ],
+    "adapter_id": "claude-code-local",
+    "identity_reference_digest": null,
+    "invocation_template": "npm.cmd test --prefix packages/runsteward-core"
+  },
+  "redactions": [
+    {
+      "class": "private-prompt",
+      "replacement": "[REDACTED_PRIVATE_PROMPT]",
+      "source_ref": "evidence/raw/private-prompt.txt"
+    }
+  ],
+  "raw_evidence_refs": [],
+  "handoff_digest": "sha256:7425c2e9f4d8a368738771c83b2088f9b67c3ee45bcd61ce5e63d89a44121de7"
+}

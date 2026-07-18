@@ -1,0 +1,52 @@
+{
+  "schema_version": "runsteward.report/v1",
+  "report_id": "report:atomic-full-01:stopped",
+  "report_kind": "final",
+  "run_id": "run:atomic-full-01",
+  "created_at": "2026-07-14T00:15:00Z",
+  "status": "stopped",
+  "terminal_event_ref": {
+    "ref": "evidence/events/event-atomic-full-01-8.json",
+    "digest": "sha256:ff60d33d5d13f609524a7d0fa801d11774284c964ea03e22d9cf9155d60b1e84"
+  },
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-01.atomic.json",
+    "digest": "sha256:f7af3eb5e2ca110ea2ab4979dbb25d9f30ec469fbda26d8cd781374c3aaf83fd"
+  },
+  "lease_history_refs": [
+    {
+      "ref": "contracts/fixtures/scenarios/lease.atomic-full-01.epoch1.released.json",
+      "digest": "sha256:a51a81d9a65a5aa1a9e1438d90b0abe70f3c09d5e1d41fcb08cd4d761c18c6ab"
+    }
+  ],
+  "checkpoint_refs": [
+    {
+      "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-01.claude-not-required.json",
+      "digest": "sha256:14f59770d4d26a62567f48a7d37aa2667461c19684751d04a7042a678fad4fab"
+    }
+  ],
+  "handoff_ref": {
+    "ref": "contracts/fixtures/scenarios/handoff.atomic-full-01.redacted.json",
+    "digest": "sha256:ec846f9a0c9bff89e1afd881510cb61bb1df9c8f014e2a4fc4fae209a3581234"
+  },
+  "outcome": {
+    "summary": "The execution attempt stopped cleanly with a complete checkpoint; the objective is not claimed complete.",
+    "objective_satisfied": false
+  },
+  "blocker": {
+    "type": "none",
+    "reason": null,
+    "safe_next_action": "Resume only from the verified checkpoint under a new lease epoch."
+  },
+  "budget_summary": [],
+  "validation_results": [],
+  "changed_paths_summary": [],
+  "failed_commands_summary": [],
+  "owner_gate_summary": [],
+  "evidence_index": [],
+  "redactions": [],
+  "evidence_dir_collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222",
+  "report_ref": "evidence/run-atomic-full-01/reports/stopped.json",
+  "final_status_marker": "RUNSTEWARD_FINAL_STATUS",
+  "report_digest": "sha256:a601bc26b09c0ba4d79b22fb2ceddcd4a13d8a97b7da532ba9ae9eeed4ac4724"
+}

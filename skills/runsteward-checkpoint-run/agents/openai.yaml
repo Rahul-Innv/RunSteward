@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Checkpoint Run"
+  short_description: "Create one digest-bound complete checkpoint that preserves ex..."
+  default_prompt: "Use $runsteward-checkpoint-run to create one digest-bound complete checkpoint that preserves exact run, plan, repository, lease, and provider identity."
+policy:
+  allow_implicit_invocation: false

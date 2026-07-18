@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://runsteward.local/contracts/runsteward/v1/wrap-plan.schema.json",
+  "title": "RunSteward wrap coordinator plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "plan_id",
+    "run_id",
+    "trigger",
+    "ordered_capabilities",
+    "forbidden_actions",
+    "final_status_marker_required",
+    "coordinator_only",
+    "plan_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": "runsteward.wrap-plan/v1" },
+    "plan_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "run_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "trigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "source_status", "reason_code", "evidence_ref"],
+      "properties": {
+        "kind": { "enum": ["owner-request", "exact-compatibility-directive", "provider-advisory"] },
+        "source_status": { "enum": ["verified", "estimated"] },
+        "reason_code": { "$ref": "common.schema.json#/$defs/stableId" },
+        "evidence_ref": {
+          "oneOf": [
+            { "$ref": "common.schema.json#/$defs/evidenceRef" },
+            { "type": "null" }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "provider-advisory" } }, "required": ["kind"] },
+          "then": { "properties": { "evidence_ref": { "$ref": "common.schema.json#/$defs/evidenceRef" } } }
+        }
+      ]
+    },
+    "ordered_capabilities": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sequence", "skill_id", "outcome"],
+          "properties": {
+            "sequence": { "const": 1 },
+            "skill_id": { "const": "runsteward-checkpoint-run" },
+            "outcome": { "const": "complete-checkpoint" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sequence", "skill_id", "outcome"],
+          "properties": {
+            "sequence": { "const": 2 },
+            "skill_id": { "const": "runsteward-stop-run" },
+            "outcome": { "const": "resumable-stopped-attempt" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sequence", "skill_id", "outcome"],
+          "properties": {
+            "sequence": { "const": 3 },
+            "skill_id": { "const": "runsteward-report-run" },
+            "outcome": { "const": "digest-bound-final-status-report" }
+          }
+        }
+      ]
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "prefixItems": [
+        { "const": "automatic-git-add" },
+        { "const": "automatic-git-commit" },
+        { "const": "branch-deletion" },
+        { "const": "destructive-cleanup" },
+        { "const": "provider-call" },
+        { "const": "remote-write" }
+      ]
+    },
+    "final_status_marker_required": { "const": "RUNSTEWARD_FINAL_STATUS" },
+    "coordinator_only": { "const": true },
+    "plan_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+  }
+}

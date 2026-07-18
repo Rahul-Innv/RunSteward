@@ -1,0 +1,9 @@
+{
+  "$schema": "./config.schema.json",
+  "enabled": true,
+  "mode": "warn",
+  "plan": "pro",
+  "warn_at": [70, 85],
+  "reserve_pct": 1.5,
+  "dry_run": true
+}

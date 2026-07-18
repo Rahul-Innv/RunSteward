@@ -1,0 +1,45 @@
+{
+  "schema_version": "runsteward.run/v1",
+  "run_id": "run:atomic-01",
+  "task_id": "task:atomic-01",
+  "created_at": "2026-07-14T00:01:00Z",
+  "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+  "repository": {
+    "repository_id": "runsteward",
+    "canonical_root": "C:\\repos\\runsteward",
+    "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+    "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+    "dirty_state_policy": "clean-required"
+  },
+  "lifecycle_policy": {
+    "autonomy_mode": "standing-local",
+    "approval_mode": "exact-gates",
+    "commit_policy": "standing-isolated",
+    "push_policy": "forbidden",
+    "maximum_runtime_seconds": 36000,
+    "inactivity_timeout_seconds": 3600,
+    "budget_policy_ref": null,
+    "resume_after_stop_policy": "verified-checkpoint-only"
+  },
+  "status": "planned",
+  "lease_ref": null,
+  "state_dir": {
+    "path": "C:\\runsteward\\state\\run-atomic-01",
+    "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "evidence_dir": {
+    "path": "C:\\runsteward\\evidence\\run-atomic-01",
+    "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "capability_plan_ref": null,
+  "latest_checkpoint_ref": null,
+  "sensor_bindings": [],
+  "owner_gates": [],
+  "stopped_report_ref": null,
+  "final_status_report_ref": null,
+  "last_event_id": "event:atomic-01:1",
+  "last_event_sequence": 1,
+  "last_event_digest": "sha256:d27a5e4c39bad97cae5d21196598ae5d89f2a87effa2716f0085aeae0615a3ba",
+  "run_digest": "sha256:9f98e1ca8264b3b2a732a3afd75ca6d8ce16a128be74b3686e56a3eb687e36b6"
+}

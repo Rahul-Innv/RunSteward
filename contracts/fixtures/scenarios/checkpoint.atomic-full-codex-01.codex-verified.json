@@ -1,0 +1,66 @@
+{
+  "schema_version": "runsteward.checkpoint/v1",
+  "checkpoint_id": "checkpoint:atomic-full-codex-01:1",
+  "run_id": "run:atomic-full-codex-01",
+  "created_at": "2026-07-14T00:10:00Z",
+  "completeness": "complete",
+  "event_ref": {
+    "ref": "evidence/events/event-atomic-full-codex-01-6.json",
+    "digest": "sha256:496c1cb992026a008270fc371c744c2f6eea8bc336c82645453eac23cada821d"
+  },
+  "previous_checkpoint_ref": null,
+  "repository": {
+    "original_source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+    "observed_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+    "branch_name": "feature/runsteward-contracts-core",
+    "worktree": {
+      "path": "C:\\lifecycle\\worktrees\\contracts-core",
+      "collision_key": "fs:win32:3333333333333333333333333333333333333333333333333333333333333333"
+    },
+    "dirty_summary": {
+      "dirty": true,
+      "changed_path_count": 24,
+      "status_digest": "sha256:4444444444444444444444444444444444444444444444444444444444444444"
+    }
+  },
+  "lease_id": "lease:atomic-full-codex-01:1",
+  "lease_epoch": 1,
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+    "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+  },
+  "provider_resume_binding": {
+    "adapter_id": "codex-local",
+    "identity_reference_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "verification_state": "verified"
+  },
+  "progress": {
+    "completed_work": [
+      "Seven schema contracts were materialized and meta-validated."
+    ],
+    "current_atomic_step": null,
+    "remaining_work": [
+      "Run the complete deterministic regression suite."
+    ],
+    "blocker": null,
+    "safe_next_action": "Continue with the next bounded local validation step."
+  },
+  "changed_paths": [
+    {
+      "path": "contracts/runsteward/v1/run.schema.json",
+      "change": "added",
+      "content_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555"
+    }
+  ],
+  "validation_results": [
+    {
+      "check_id": "draft-2020-12-meta-schema",
+      "status": "passed",
+      "summary": "Every RunSteward v1 schema passed Draft 2020-12 meta-validation.",
+      "evidence_refs": []
+    }
+  ],
+  "raw_evidence_refs": [],
+  "handoff_ref": null,
+  "checkpoint_digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+}

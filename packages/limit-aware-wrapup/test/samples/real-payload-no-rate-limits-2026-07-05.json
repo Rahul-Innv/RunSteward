@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "captured": "2026-07-05T17:06:05Z",
+    "claude_code_version": "2.1.201",
+    "how": "raw-sample.json from the same real TUI session, ~58s in",
+    "notes": [
+      "PROOF that some statusline invocations arrive WITHOUT rate_limits (and with zeroed cost / null context fields) even mid-session, seconds apart from invocations that HAVE it.",
+      "The sensor and trigger must treat rate_limits as per-invocation optional, not just per-session — the existing per-field fail-open already handles this.",
+      "session_id/transcript_path redacted."
+    ]
+  },
+  "session_id": "REDACTED",
+  "transcript_path": "REDACTED",
+  "cwd": "C:\\projects\\limit-aware-wrapup",
+  "model": { "id": "claude-haiku-4-5-20251001", "display_name": "Haiku 4.5" },
+  "workspace": {
+    "current_dir": "C:\\projects\\limit-aware-wrapup",
+    "project_dir": "C:\\projects\\limit-aware-wrapup",
+    "added_dirs": []
+  },
+  "version": "2.1.201",
+  "output_style": { "name": "default" },
+  "cost": {
+    "total_cost_usd": 0,
+    "total_duration_ms": 57992,
+    "total_api_duration_ms": 0,
+    "total_lines_added": 0,
+    "total_lines_removed": 0
+  },
+  "context_window": {
+    "total_input_tokens": 0,
+    "total_output_tokens": 0,
+    "context_window_size": 200000,
+    "current_usage": null,
+    "used_percentage": null,
+    "remaining_percentage": null
+  },
+  "exceeds_200k_tokens": false,
+  "fast_mode": false,
+  "thinking": { "enabled": true }
+}

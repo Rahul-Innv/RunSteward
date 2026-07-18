@@ -1,0 +1,52 @@
+{
+  "schema_version": "runsteward.report/v1",
+  "report_id": "report:atomic-gated-01:stopped",
+  "report_kind": "final",
+  "run_id": "run:atomic-gated-01",
+  "created_at": "2026-07-14T00:15:00Z",
+  "status": "stopped",
+  "terminal_event_ref": {
+    "ref": "evidence/events/event-atomic-gated-01-8.json",
+    "digest": "sha256:577f15ff1d8fe0eb1fff404c7a184d6776353621479198abe92eec033ae69864"
+  },
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/scenarios/capability-plan.atomic-gated-01.atomic.json",
+    "digest": "sha256:95f31288ebbe94603b265d5296b7b8d70f41888ba9e76163f2badd5700f68c36"
+  },
+  "lease_history_refs": [
+    {
+      "ref": "contracts/fixtures/scenarios/lease.atomic-gated-01.epoch1.released.json",
+      "digest": "sha256:afe122d0a795bea0c616358d417b04faef490ec28100af1e7109ae1fc02d5226"
+    }
+  ],
+  "checkpoint_refs": [
+    {
+      "ref": "contracts/fixtures/scenarios/checkpoint.atomic-gated-01.claude-not-required.json",
+      "digest": "sha256:2dbe2ae6624e3e37e1072ff6a062b6d75a3a23128465e9d6c204b8ef919ecb6a"
+    }
+  ],
+  "handoff_ref": {
+    "ref": "contracts/fixtures/scenarios/handoff.atomic-gated-01.redacted.json",
+    "digest": "sha256:7425c2e9f4d8a368738771c83b2088f9b67c3ee45bcd61ce5e63d89a44121de7"
+  },
+  "outcome": {
+    "summary": "The execution attempt stopped cleanly with a complete checkpoint; the objective is not claimed complete.",
+    "objective_satisfied": false
+  },
+  "blocker": {
+    "type": "none",
+    "reason": null,
+    "safe_next_action": "Resume only from the verified checkpoint under a new lease epoch."
+  },
+  "budget_summary": [],
+  "validation_results": [],
+  "changed_paths_summary": [],
+  "failed_commands_summary": [],
+  "owner_gate_summary": [],
+  "evidence_index": [],
+  "redactions": [],
+  "evidence_dir_collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222",
+  "report_ref": "evidence/run-atomic-gated-01/reports/stopped.json",
+  "final_status_marker": "RUNSTEWARD_FINAL_STATUS",
+  "report_digest": "sha256:13cf0d205beb6cf10a9854878cf72c3d143f8c9bd6bf5e1f5bf6db1cff2b67ab"
+}

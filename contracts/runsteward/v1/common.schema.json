@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://runsteward.local/contracts/runsteward/v1/common.schema.json",
+  "title": "RunSteward v1 common definitions",
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._:-]{2,127}$"
+    },
+    "gitCommit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "runstewardDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "bareSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "choicegateStableId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "utcTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "relativeRef": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "^(?![A-Za-z]:)(?![/\\\\])(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$))[A-Za-z0-9._/\\\\:-]+$"
+    },
+    "boundedSummary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "lifecycleState": {
+      "enum": [
+        "planned",
+        "queued",
+        "allocated",
+        "running",
+        "waiting",
+        "needs_approval",
+        "checkpointed",
+        "stopping",
+        "stopped",
+        "completed",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "terminalState": {
+      "enum": ["completed", "failed", "cancelled"]
+    },
+    "pathBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "collision_key"],
+      "properties": {
+        "path": { "type": "string", "minLength": 3, "maxLength": 1024 },
+        "collision_key": { "type": "string", "pattern": "^fs:[a-z0-9-]+:[0-9a-f]{64}$" }
+      }
+    },
+    "artifactRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "digest"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/relativeRef" },
+        "digest": { "$ref": "#/$defs/runstewardDigest" }
+      }
+    },
+    "evidenceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "digest", "media_type"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/relativeRef" },
+        "digest": {
+          "oneOf": [
+            { "$ref": "#/$defs/runstewardDigest" },
+            { "$ref": "#/$defs/bareSha256" }
+          ]
+        },
+        "media_type": { "type": "string", "pattern": "^[a-z0-9.+-]+/[a-z0-9.+-]+$" }
+      }
+    },
+    "ownerGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate_id", "owner", "state", "protected_action", "evidence_refs"],
+      "properties": {
+        "gate_id": { "$ref": "#/$defs/stableId" },
+        "owner": { "$ref": "#/$defs/stableId" },
+        "state": { "enum": ["open", "satisfied", "denied"] },
+        "protected_action": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "evidence_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidenceRef" },
+          "maxItems": 16
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "state": { "const": "satisfied" } }, "required": ["state"] },
+          "then": { "properties": { "evidence_refs": { "minItems": 1 } } }
+        }
+      ]
+    },
+    "lifecyclePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "autonomy_mode",
+        "approval_mode",
+        "commit_policy",
+        "push_policy",
+        "maximum_runtime_seconds",
+        "inactivity_timeout_seconds",
+        "budget_policy_ref",
+        "resume_after_stop_policy"
+      ],
+      "properties": {
+        "autonomy_mode": { "enum": ["supervised", "standing-local"] },
+        "approval_mode": { "enum": ["exact-gates", "closed"] },
+        "commit_policy": { "enum": ["forbidden", "owner-approved", "standing-isolated"] },
+        "push_policy": { "const": "forbidden" },
+        "maximum_runtime_seconds": { "type": "integer", "minimum": 1, "maximum": 604800 },
+        "inactivity_timeout_seconds": { "type": "integer", "minimum": 1, "maximum": 86400 },
+        "budget_policy_ref": {
+          "oneOf": [
+            { "$ref": "#/$defs/artifactRef" },
+            { "type": "null" }
+          ]
+        },
+        "resume_after_stop_policy": { "enum": ["forbidden", "verified-checkpoint-only"] }
+      }
+    },
+    "repositoryBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository_id", "canonical_root", "source_head", "source_tree", "dirty_state_policy"],
+      "properties": {
+        "repository_id": { "$ref": "#/$defs/stableId" },
+        "canonical_root": { "type": "string", "minLength": 3, "maxLength": 1024 },
+        "source_head": { "$ref": "#/$defs/gitCommit" },
+        "source_tree": { "$ref": "#/$defs/gitCommit" },
+        "dirty_state_policy": { "enum": ["clean-required", "preserve-owner-work"] }
+      }
+    },
+    "sensorBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adapter_id", "evidence_namespace"],
+      "properties": {
+        "adapter_id": { "$ref": "#/$defs/stableId" },
+        "evidence_namespace": { "$ref": "#/$defs/stableId" }
+      }
+    },
+    "validationResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["check_id", "status", "summary", "evidence_refs"],
+      "properties": {
+        "check_id": { "$ref": "#/$defs/stableId" },
+        "status": { "enum": ["passed", "failed", "not-run"] },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "evidence_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidenceRef" },
+          "maxItems": 16
+        }
+      }
+    },
+    "changedPath": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "change", "content_digest"],
+      "properties": {
+        "path": { "$ref": "#/$defs/relativeRef" },
+        "change": { "enum": ["added", "modified", "deleted", "renamed"] },
+        "content_digest": {
+          "oneOf": [
+            { "$ref": "#/$defs/runstewardDigest" },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "redaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["class", "replacement", "source_ref"],
+      "properties": {
+        "class": { "enum": ["credential", "private-prompt", "personal-data", "unbounded-transcript"] },
+        "replacement": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "source_ref": { "$ref": "#/$defs/relativeRef" }
+      }
+    },
+    "providerResumeBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adapter_id", "identity_reference_digest", "verification_state"],
+      "properties": {
+        "adapter_id": { "$ref": "#/$defs/stableId" },
+        "identity_reference_digest": {
+          "oneOf": [
+            { "$ref": "#/$defs/runstewardDigest" },
+            { "type": "null" }
+          ]
+        },
+        "verification_state": { "enum": ["verified", "not-required", "unknown", "mismatched"] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "verification_state": { "const": "verified" } }, "required": ["verification_state"] },
+          "then": { "properties": { "identity_reference_digest": { "$ref": "#/$defs/runstewardDigest" } } }
+        },
+        {
+          "if": { "properties": { "verification_state": { "const": "not-required" } }, "required": ["verification_state"] },
+          "then": { "properties": { "identity_reference_digest": { "type": "null" } } }
+        }
+      ]
+    },
+    "failedCommandSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command_digest", "exit_code", "summary", "evidence_refs"],
+      "properties": {
+        "command_digest": { "$ref": "#/$defs/runstewardDigest" },
+        "exit_code": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "evidence_refs": { "type": "array", "items": { "$ref": "#/$defs/evidenceRef" }, "maxItems": 16 }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": "runsteward.state-event/v1",
+  "event_id": "event:atomic-01:3",
+  "run_id": "run:atomic-01",
+  "sequence": 3,
+  "occurred_at": "2026-07-14T00:01:03Z",
+  "event_type": "run.queued",
+  "actor": {
+    "kind": "runsteward-core",
+    "actor_id": "runsteward-core-v1"
+  },
+  "from_state": "planned",
+  "to_state": "queued",
+  "reason_code": "GATES_SATISFIED",
+  "reason_summary": "All declared local gates were satisfied without outward action.",
+  "previous_event_digest": "sha256:634afa9526f49593bfc638a24bf26a1115f1620329413231c8ece5be884d12e9",
+  "evidence_refs": [],
+  "projection": {
+    "task_id": "task:atomic-01",
+    "created_at": "2026-07-14T00:01:00Z",
+    "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+    "repository": {
+      "repository_id": "runsteward",
+      "canonical_root": "C:\\repos\\runsteward",
+      "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+      "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+      "dirty_state_policy": "clean-required"
+    },
+    "lifecycle_policy": {
+      "autonomy_mode": "standing-local",
+      "approval_mode": "exact-gates",
+      "commit_policy": "standing-isolated",
+      "push_policy": "forbidden",
+      "maximum_runtime_seconds": 36000,
+      "inactivity_timeout_seconds": 3600,
+      "budget_policy_ref": null,
+      "resume_after_stop_policy": "verified-checkpoint-only"
+    },
+    "status": "queued",
+    "lease_ref": null,
+    "state_dir": {
+      "path": "C:\\runsteward\\state\\run-atomic-01",
+      "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "evidence_dir": {
+      "path": "C:\\runsteward\\evidence\\run-atomic-01",
+      "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "capability_plan_ref": {
+      "ref": "contracts/fixtures/valid/capability-plan.atomic.json",
+      "digest": "sha256:8069f8cebb02f6d6192e35199a33b9ebaf884c07f14d6d5640e9077ea722db60"
+    },
+    "latest_checkpoint_ref": null,
+    "sensor_bindings": [],
+    "owner_gates": [],
+    "stopped_report_ref": null,
+    "final_status_report_ref": null
+  },
+  "event_data": {
+    "kind": "run.queued",
+    "queue_purpose": "initial",
+    "resume_from_state": null,
+    "previous_lease_ref": null
+  },
+  "event_digest": "sha256:3e14b29b60d8dcd6c62a87fbbd3d3e847e6fa0258fe8d7191c4717e992ea4804"
+}

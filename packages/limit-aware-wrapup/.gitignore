@@ -1,0 +1,30 @@
+# Node
+node_modules/
+npm-debug.log*
+*.tsbuildinfo
+
+# Runtime state (this tool writes to ~/.claude/limit-wrapup/, not the repo — but ignore any local copies)
+state.json
+latches.json
+decisions.log
+decisions.log.1
+raw-sample.json
+last-invoked.txt
+oauth-refresh.txt
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+.env.local
+.env.backup
+*.pem
+*.key
+.credentials.json

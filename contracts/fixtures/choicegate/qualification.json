@@ -1,0 +1,42 @@
+{
+  "schema_version": "runsteward.choicegate-qualification/v1",
+  "verifier": "runsteward-choicegate-python-qualification/v1",
+  "receipt_schema_id": "choicegate.decision-receipt/v1",
+  "receipt_schema_ref": "contracts/vendor/choicegate/decision-receipt.schema.json",
+  "receipt_schema_sha256": "3d32d4bac2cb9ff78d0249741d74e8572326894435e3bab10bf0f2f7ca7c949d",
+  "receipt_schema_source_raw_sha256": "c21949ee1a0fcf80d550d22b541123bbd31c5c424c92f819ee9cfa409827b69f",
+  "choicegate_commit": "c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0",
+  "choicegate_tree": "008206b7302dbb919777d380145d7af97e3bf0b1",
+  "lifecycle_authority_commit": "d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0",
+  "lifecycle_authority_state_model": "orthogonal-seven-axis-v1",
+  "lifecycle_inventory_fingerprint": "e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0",
+  "provenance_ref": {
+    "ref": "contracts/fixtures/choicegate/provenance.json",
+    "digest": "sha256:4f28b496ee37f2cd28a8c2df4fb0c0ea528935bd822020f86bcd9973cee3d7ad"
+  },
+  "receipts": [
+    {
+      "case_id": "CG-ATOMIC-01",
+      "immutable_ref": "contracts/fixtures/choicegate/cg-atomic-01.receipt.json",
+      "normalized_utf8_lf_sha256": "ccb4d7201b8ed8e1e3b3c59a5192626ebe5428e9821daffbbafb962df494a858",
+      "raw_bytes_sha256": "ccb4d7201b8ed8e1e3b3c59a5192626ebe5428e9821daffbbafb962df494a858",
+      "receipt_sha256": "3e97714ec2963415aab383e30d1899b771c8f1f2f6763674a25627ab264958b9",
+      "request_sha256": "47ea796bc812d875952332ba7976b6ac6ffe084781901b60ac7ddd53da3b7663",
+      "schema_id": "choicegate.decision-receipt/v1",
+      "choicegate_commit": "c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0",
+      "qualification_status": "passed"
+    },
+    {
+      "case_id": "CG-BUNDLE-01",
+      "immutable_ref": "contracts/fixtures/choicegate/cg-bundle-01.receipt.json",
+      "normalized_utf8_lf_sha256": "d9e175a2876e925db2b6717eda8d359d9f1c0f4d1ed97febe305f5c6802183bd",
+      "raw_bytes_sha256": "d9e175a2876e925db2b6717eda8d359d9f1c0f4d1ed97febe305f5c6802183bd",
+      "receipt_sha256": "c22dc3d2226789432841239c5978f1e88c6d0924cd8fb0f931d0858ae119efbe",
+      "request_sha256": "35025f6ddce9073d189b8195927cc9ab70e958cbf158cfb6ee508fc804530cc5",
+      "schema_id": "choicegate.decision-receipt/v1",
+      "choicegate_commit": "c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0",
+      "qualification_status": "passed"
+    }
+  ],
+  "qualification_digest": "sha256:b4b4de68b2822695233d57f5475939a0a2bed054b0ae24e970ed36e3c4b77082"
+}

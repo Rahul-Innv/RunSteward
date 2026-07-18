@@ -1,0 +1,31 @@
+{
+  "schema_version": "runsteward.choicegate-qualification/v1",
+  "verifier": "runsteward-choicegate-python-qualification/v1",
+  "receipt_schema_id": "choicegate.decision-receipt/v1",
+  "receipt_schema_ref": "contracts/vendor/choicegate/decision-receipt.schema.json",
+  "receipt_schema_sha256": "3d32d4bac2cb9ff78d0249741d74e8572326894435e3bab10bf0f2f7ca7c949d",
+  "receipt_schema_source_raw_sha256": "c21949ee1a0fcf80d550d22b541123bbd31c5c424c92f819ee9cfa409827b69f",
+  "choicegate_commit": "c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0",
+  "choicegate_tree": "008206b7302dbb919777d380145d7af97e3bf0b1",
+  "lifecycle_authority_commit": "d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0",
+  "lifecycle_authority_state_model": "orthogonal-seven-axis-v1",
+  "lifecycle_inventory_fingerprint": "e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0",
+  "provenance_ref": {
+    "ref": "contracts/fixtures/choicegate/provenance.initial-gated.json",
+    "digest": "sha256:27d6aed06985c67e74c150b11b3843e3d0e585e6c36d22f7e5ee86567c7d2cb0"
+  },
+  "receipts": [
+    {
+      "case_id": "CG-INITIAL-GATED-01",
+      "immutable_ref": "contracts/fixtures/choicegate/cg-initial-gated-01.receipt.json",
+      "normalized_utf8_lf_sha256": "7c0a7f47da33e9d737074d32a288add21022800ecef1609e51210fd607f5003f",
+      "raw_bytes_sha256": "7c0a7f47da33e9d737074d32a288add21022800ecef1609e51210fd607f5003f",
+      "receipt_sha256": "6ab72c077b77cfb267f2d88e007bc2bd958da7d98bda4378e1a00bb07d948b84",
+      "request_sha256": "f89203d699af3773d0d9c7292f18fa13a428488376e50b99f1b47fc836a82132",
+      "schema_id": "choicegate.decision-receipt/v1",
+      "choicegate_commit": "c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0",
+      "qualification_status": "passed"
+    }
+  ],
+  "qualification_digest": "sha256:2d3581ded3afdf169c5e53083a8c7570d4a57e15355a0974c882148b113884e8"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "limit-aware-wrapup",
+  "version": "0.1.0",
+  "description": "Limit-aware graceful wrap-up for Claude Code: when the remaining usage budget won't fit the remaining task, commit WIP, write a handoff, and stop clean — otherwise stay silent.",
+  "type": "commonjs",
+  "bin": {
+    "limit-wrapup-status": "bin/status.js",
+    "limit-wrapup-validate-config": "bin/validate-config.js"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "status": "node bin/status.js",
+    "demo": "node bin/demo.js",
+    "validate-config": "node bin/validate-config.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "keywords": [
+    "claude-code",
+    "usage-limits",
+    "rate-limit",
+    "graceful-shutdown",
+    "hooks",
+    "developer-tools"
+  ],
+  "author": "Rahul K",
+  "license": "MIT",
+  "private": false
+}

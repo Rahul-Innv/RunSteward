@@ -1,0 +1,55 @@
+{
+  "schema_version": "runsteward.choicegate-qualification/v1",
+  "verifier": "runsteward-choicegate-python-qualification/v1",
+  "receipt_schema_id": "choicegate.decision-receipt/v1",
+  "receipt_schema_ref": "contracts/vendor/choicegate/decision-receipt.schema.json",
+  "receipt_schema_sha256": "3d32d4bac2cb9ff78d0249741d74e8572326894435e3bab10bf0f2f7ca7c949d",
+  "receipt_schema_source_raw_sha256": "c21949ee1a0fcf80d550d22b541123bbd31c5c424c92f819ee9cfa409827b69f",
+  "choicegate_commit": "c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1",
+  "choicegate_tree": "c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2",
+  "lifecycle_authority_commit": "d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1",
+  "lifecycle_authority_tree": "d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2",
+  "lifecycle_authority_state_model": "orthogonal-seven-axis-v1",
+  "lifecycle_inventory_fingerprint": "e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1",
+  "lifecycle_authority_fingerprint": "e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2",
+  "provenance_ref": {
+    "ref": "contracts/fixtures/choicegate/provenance.rw4.json",
+    "digest": "sha256:b893b2e1aee3af61671c03d56966c79e3be761b122457dfcae955670be74ffa3"
+  },
+  "receipts": [
+    {
+      "case_id": "CG-RW4-ATOMIC-01",
+      "immutable_ref": "contracts/fixtures/choicegate/rw4-cg-atomic-01.receipt.json",
+      "normalized_utf8_lf_sha256": "f8b75af41e02d98ea2d2eb5e2166f0e18d242fa021f2c45679401d0e877353d0",
+      "raw_bytes_sha256": "f8b75af41e02d98ea2d2eb5e2166f0e18d242fa021f2c45679401d0e877353d0",
+      "receipt_sha256": "693a22ab0e38106773f951d1a9ba65262a2c215d1a3da582516036a8b896a34d",
+      "request_sha256": "47ea796bc812d875952332ba7976b6ac6ffe084781901b60ac7ddd53da3b7663",
+      "schema_id": "choicegate.decision-receipt/v1",
+      "choicegate_commit": "c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1",
+      "qualification_status": "passed"
+    },
+    {
+      "case_id": "CG-RW4-BUNDLE-01",
+      "immutable_ref": "contracts/fixtures/choicegate/rw4-cg-bundle-01.receipt.json",
+      "normalized_utf8_lf_sha256": "980831f3db4c3f332d4440892acd94d34dbac9ab16498c307b35f7340aaf2a23",
+      "raw_bytes_sha256": "980831f3db4c3f332d4440892acd94d34dbac9ab16498c307b35f7340aaf2a23",
+      "receipt_sha256": "377cce4ef07ea3d42047ee529fae75ba446caff9876ccf352ca5544800d517e4",
+      "request_sha256": "35025f6ddce9073d189b8195927cc9ab70e958cbf158cfb6ee508fc804530cc5",
+      "schema_id": "choicegate.decision-receipt/v1",
+      "choicegate_commit": "c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1",
+      "qualification_status": "passed"
+    },
+    {
+      "case_id": "CG-RW4-OWNER-GATED-01",
+      "immutable_ref": "contracts/fixtures/choicegate/rw4-cg-owner-gated-01.receipt.json",
+      "normalized_utf8_lf_sha256": "7a5bf1589cc3201ab4c68c85115f24afc463436fc5ea1406504b6902eb7f8277",
+      "raw_bytes_sha256": "7a5bf1589cc3201ab4c68c85115f24afc463436fc5ea1406504b6902eb7f8277",
+      "receipt_sha256": "2343d687066f58b6515fd54b92e44de2f1d5034e8c0ae14e9406cf312cab321e",
+      "request_sha256": "f89203d699af3773d0d9c7292f18fa13a428488376e50b99f1b47fc836a82132",
+      "schema_id": "choicegate.decision-receipt/v1",
+      "choicegate_commit": "c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1",
+      "qualification_status": "passed"
+    }
+  ],
+  "qualification_digest": "sha256:1e742dd8408f2c9045de68ad221c3c6a76f959c3bf9a376da718f7aa4844849e"
+}

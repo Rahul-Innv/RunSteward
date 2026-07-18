@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"thread_rate_limit_fixture"}
+{"type":"turn.started"}
+{"type":"error","message":"429 rate limit reached; try again later"}
+{"type":"turn.completed","usage":{"input_tokens":40,"cached_input_tokens":0,"output_tokens":2,"reasoning_output_tokens":0}}

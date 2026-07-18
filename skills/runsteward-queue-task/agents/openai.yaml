@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Queue Task"
+  short_description: "Produce one validated queue-task request for a new task ident..."
+  default_prompt: "Use $runsteward-queue-task to produce one validated queue-task request for a new task identity."
+policy:
+  allow_implicit_invocation: false

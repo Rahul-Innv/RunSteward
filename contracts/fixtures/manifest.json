@@ -1,0 +1,452 @@
+{
+  "schema_version": "runsteward.fixture-manifest/v1",
+  "schemas": [
+    "contracts/runsteward/v1/capability-plan.schema.json",
+    "contracts/runsteward/v1/checkpoint.schema.json",
+    "contracts/runsteward/v1/choicegate-qualification.schema.json",
+    "contracts/runsteward/v1/common.schema.json",
+    "contracts/runsteward/v1/handoff.schema.json",
+    "contracts/runsteward/v1/provider-evidence.schema.json",
+    "contracts/runsteward/v1/report.schema.json",
+    "contracts/runsteward/v1/run.schema.json",
+    "contracts/runsteward/v1/state-event.schema.json",
+    "contracts/runsteward/v1/worktree-lease.schema.json",
+    "contracts/runsteward/v1/wrap-plan.schema.json"
+  ],
+  "vendor_schemas": [
+    {
+      "path": "contracts/vendor/choicegate/decision-receipt.schema.json",
+      "owner": "ChoiceGate",
+      "normalized_utf8_lf_sha256": "3d32d4bac2cb9ff78d0249741d74e8572326894435e3bab10bf0f2f7ca7c949d"
+    }
+  ],
+  "valid": [
+    {
+      "path": "contracts/fixtures/choicegate/qualification.json",
+      "schema": "choicegate-qualification.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/choicegate/qualification.initial-gated.json",
+      "schema": "choicegate-qualification.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/choicegate/qualification.rw4.json",
+      "schema": "choicegate-qualification.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/capability-plan.atomic.json",
+      "schema": "capability-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/capability-plan.bundle.json",
+      "schema": "capability-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/capability-plan.initial-gated.json",
+      "schema": "capability-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/capability-plan.rw4-atomic.json",
+      "schema": "capability-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/capability-plan.rw4-bundle.json",
+      "schema": "capability-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/capability-plan.rw4-owner-gated.json",
+      "schema": "capability-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/state-event.created.json",
+      "schema": "state-event.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/state-event.plan-bound.json",
+      "schema": "state-event.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/state-event.queued.json",
+      "schema": "state-event.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/run.queued.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/checkpoint.complete.json",
+      "schema": "checkpoint.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/handoff.checkpointed.json",
+      "schema": "handoff.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/report.final.json",
+      "schema": "report.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/report.null-lease-cancelled.json",
+      "schema": "report.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/report.stopped.json",
+      "schema": "report.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/worktree-lease.active.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/provider-evidence.claude.json",
+      "schema": "provider-evidence.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/provider-evidence.codex.json",
+      "schema": "provider-evidence.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/valid/wrap-plan.provider.json",
+      "schema": "wrap-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/capability-plan.atomic-full-01.atomic.json",
+      "schema": "capability-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+      "schema": "capability-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/capability-plan.atomic-gated-01.atomic.json",
+      "schema": "capability-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/capability-plan.atomic-initial-gated-01.atomic.json",
+      "schema": "capability-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/capability-plan.bundle-running-01.bundle.json",
+      "schema": "capability-plan.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/checkpoint.atomic-full-01.claude-not-required.json",
+      "schema": "checkpoint.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+      "schema": "checkpoint.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/checkpoint.atomic-gated-01.claude-not-required.json",
+      "schema": "checkpoint.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/handoff.atomic-full-01.redacted.json",
+      "schema": "handoff.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/handoff.atomic-full-codex-01.redacted.json",
+      "schema": "handoff.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/handoff.atomic-gated-01.redacted.json",
+      "schema": "handoff.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-full-01.epoch1.active.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-full-01.epoch1.released.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-full-01.epoch2.active.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-full-01.epoch2.released.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.active.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.released.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch2.active.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch2.released.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-gated-01.epoch1.active.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-gated-01.epoch1.released.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-gated-01.epoch2.active.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.atomic-gated-01.epoch2.released.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/lease.bundle-running-01.epoch1.active.json",
+      "schema": "worktree-lease.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/report.atomic-full-01.completed.json",
+      "schema": "report.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/report.atomic-full-01.stopped.json",
+      "schema": "report.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/report.atomic-full-codex-01.completed.json",
+      "schema": "report.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/report.atomic-full-codex-01.stopped.json",
+      "schema": "report.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/report.atomic-gated-01.completed.json",
+      "schema": "report.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/report.atomic-gated-01.stopped.json",
+      "schema": "report.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.atomic-full-01.allocated.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.atomic-full-01.completed.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.atomic-full-01.resumed.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.atomic-full-01.running.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.atomic-full-01.stopped.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.atomic-full-01.waiting.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.atomic-full-codex-01.completed.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.atomic-gated-01.completed.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.atomic-gated-01.needs-approval.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.atomic-gated-01.queued.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.atomic-initial-gated-01.queued.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.bundle-running-01.running.json",
+      "schema": "run.schema.json"
+    },
+    {
+      "path": "contracts/fixtures/scenarios/run.planned-no-plan.json",
+      "schema": "run.schema.json"
+    }
+  ],
+  "invalid": [
+    {
+      "path": "contracts/fixtures/invalid/capability-plan.missing-required.json",
+      "schema": "capability-plan.schema.json",
+      "fault": "capability-plan.missing-required"
+    },
+    {
+      "path": "contracts/fixtures/invalid/checkpoint.invalid-provider-pair.json",
+      "schema": "checkpoint.schema.json",
+      "fault": "checkpoint.invalid-provider-pair"
+    },
+    {
+      "path": "contracts/fixtures/invalid/checkpoint.missing-required.json",
+      "schema": "checkpoint.schema.json",
+      "fault": "checkpoint.missing-required"
+    },
+    {
+      "path": "contracts/fixtures/invalid/choicegate-qualification.missing-required.json",
+      "schema": "choicegate-qualification.schema.json",
+      "fault": "choicegate-qualification.missing-required"
+    },
+    {
+      "path": "contracts/fixtures/invalid/choicegate-qualification.rw4-missing-choicegate-acceptance-receipt-sha256.json",
+      "schema": "choicegate-qualification.schema.json",
+      "fault": "choicegate-qualification.rw4-missing-choicegate-acceptance-receipt-sha256"
+    },
+    {
+      "path": "contracts/fixtures/invalid/choicegate-qualification.rw4-missing-lifecycle-authority-tree.json",
+      "schema": "choicegate-qualification.schema.json",
+      "fault": "choicegate-qualification.rw4-missing-lifecycle-authority-tree"
+    },
+    {
+      "path": "contracts/fixtures/invalid/choicegate-qualification.rw4-missing-lifecycle-authority-fingerprint.json",
+      "schema": "choicegate-qualification.schema.json",
+      "fault": "choicegate-qualification.rw4-missing-lifecycle-authority-fingerprint"
+    },
+    {
+      "path": "contracts/fixtures/invalid/handoff.missing-required.json",
+      "schema": "handoff.schema.json",
+      "fault": "handoff.missing-required"
+    },
+    {
+      "path": "contracts/fixtures/invalid/report.final-marker-missing.json",
+      "schema": "report.schema.json",
+      "fault": "report.final-marker-missing"
+    },
+    {
+      "path": "contracts/fixtures/invalid/report.failed-objective-true.json",
+      "schema": "report.schema.json",
+      "fault": "report.failed-objective-true"
+    },
+    {
+      "path": "contracts/fixtures/invalid/report.missing-required.json",
+      "schema": "report.schema.json",
+      "fault": "report.missing-required"
+    },
+    {
+      "path": "contracts/fixtures/invalid/run.additional-property.json",
+      "schema": "run.schema.json",
+      "fault": "run.additional-property"
+    },
+    {
+      "path": "contracts/fixtures/invalid/run.gate-satisfied-no-evidence.json",
+      "schema": "run.schema.json",
+      "fault": "run.gate-satisfied-no-evidence"
+    },
+    {
+      "path": "contracts/fixtures/invalid/run.missing-required.json",
+      "schema": "run.schema.json",
+      "fault": "run.missing-required"
+    },
+    {
+      "path": "contracts/fixtures/invalid/run.unknown-version.json",
+      "schema": "run.schema.json",
+      "fault": "run.unknown-version"
+    },
+    {
+      "path": "contracts/fixtures/invalid/state-event.missing-required.json",
+      "schema": "state-event.schema.json",
+      "fault": "state-event.missing-required"
+    },
+    {
+      "path": "contracts/fixtures/invalid/state-event.unsafe-sequence.json",
+      "schema": "state-event.schema.json",
+      "fault": "state-event.unsafe-sequence"
+    },
+    {
+      "path": "contracts/fixtures/invalid/worktree-lease.missing-required.json",
+      "schema": "worktree-lease.schema.json",
+      "fault": "worktree-lease.missing-required"
+    },
+    {
+      "path": "contracts/fixtures/invalid/worktree-lease.predecessor-missing.json",
+      "schema": "worktree-lease.schema.json",
+      "fault": "worktree-lease.predecessor-missing"
+    },
+    {
+      "path": "contracts/fixtures/invalid/provider-evidence.unknown-with-metric.json",
+      "schema": "provider-evidence.schema.json",
+      "fault": "provider-evidence.unknown-with-metric"
+    },
+    {
+      "path": "contracts/fixtures/invalid/provider-evidence.converted-metric.json",
+      "schema": "provider-evidence.schema.json",
+      "fault": "provider-evidence.converted-metric"
+    },
+    {
+      "path": "contracts/fixtures/invalid/wrap-plan.unknown-trigger.json",
+      "schema": "wrap-plan.schema.json",
+      "fault": "wrap-plan.unknown-trigger"
+    }
+  ],
+  "event_chains": [
+    {
+      "chain_id": "gate-free-queued",
+      "event_paths": [
+        "contracts/fixtures/valid/state-event.created.json",
+        "contracts/fixtures/valid/state-event.plan-bound.json",
+        "contracts/fixtures/valid/state-event.queued.json"
+      ],
+      "run_path": "contracts/fixtures/valid/run.queued.json"
+    },
+    {
+      "chain_id": "atomic-full-01",
+      "chain_path": "contracts/fixtures/scenarios/lifecycle.atomic-full-01.json",
+      "run_path": "contracts/fixtures/scenarios/run.atomic-full-01.completed.json"
+    },
+    {
+      "chain_id": "atomic-full-01-waiting",
+      "chain_path": "contracts/fixtures/scenarios/lifecycle.atomic-full-01.waiting.json",
+      "run_path": "contracts/fixtures/scenarios/run.atomic-full-01.waiting.json"
+    },
+    {
+      "chain_id": "atomic-full-codex-01",
+      "chain_path": "contracts/fixtures/scenarios/lifecycle.atomic-full-codex-01.json",
+      "run_path": "contracts/fixtures/scenarios/run.atomic-full-codex-01.completed.json"
+    },
+    {
+      "chain_id": "atomic-gated-01",
+      "chain_path": "contracts/fixtures/scenarios/lifecycle.atomic-gated-01.json",
+      "run_path": "contracts/fixtures/scenarios/run.atomic-gated-01.completed.json"
+    },
+    {
+      "chain_id": "atomic-initial-gated-01",
+      "chain_path": "contracts/fixtures/scenarios/lifecycle.atomic-initial-gated-01.json",
+      "run_path": "contracts/fixtures/scenarios/run.atomic-initial-gated-01.queued.json"
+    },
+    {
+      "chain_id": "bundle-running-01",
+      "chain_path": "contracts/fixtures/scenarios/lifecycle.bundle-running-01.json",
+      "run_path": "contracts/fixtures/scenarios/run.bundle-running-01.running.json"
+    }
+  ],
+  "auxiliary": [
+    "contracts/fixtures/choicegate/provenance.json",
+    "contracts/fixtures/choicegate/provenance.initial-gated.json",
+    "contracts/fixtures/choicegate/cg-atomic-01.receipt.json",
+    "contracts/fixtures/choicegate/cg-bundle-01.receipt.json",
+    "contracts/fixtures/choicegate/cg-initial-gated-01.receipt.json",
+    "contracts/fixtures/choicegate/cg-initial-gated-01.request.json",
+    "contracts/fixtures/choicegate/provenance.rw4.json",
+    "contracts/fixtures/choicegate/rw4-cg-atomic-01.receipt.json",
+    "contracts/fixtures/choicegate/rw4-cg-bundle-01.receipt.json",
+    "contracts/fixtures/choicegate/rw4-cg-owner-gated-01.receipt.json",
+    "contracts/fixtures/hash-vectors/runsteward-canonical-json-v1.json",
+    "contracts/fixtures/hash-vectors/runsteward-canonical-json-v1-rejected.json"
+  ]
+}

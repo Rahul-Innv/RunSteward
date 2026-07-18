@@ -1,0 +1,203 @@
+{
+  "approvals_required": [
+    "approval:initial-local"
+  ],
+  "bundle_members": [],
+  "candidates": [
+    {
+      "candidate_evidence_sha256": "ea35fdb11f4503001eeb95aca1ca94fc9e1c805ec8d5708ba38f534d443ddc48",
+      "canonical_route_id": "repo-orientation",
+      "duplicate_of": null,
+      "evidence_refs": [
+        "registry/capabilities.json#repo-orientation"
+      ],
+      "final_disposition": "selected",
+      "hard_exclusion_codes": [],
+      "owner": "codebase-overview",
+      "pool": "executable",
+      "route_id": "repo-orientation",
+      "route_type": "atomic",
+      "score_breakdown": {
+        "context_cost": 1,
+        "expected_cost": 1,
+        "lexical_tiebreak": "repo-orientation",
+        "member_count": 1,
+        "required_outcomes_covered": 1,
+        "risk_penalty": 0,
+        "scope_penalty": 1,
+        "selection_tuple": [
+          1,
+          1,
+          5,
+          -1,
+          0,
+          -1,
+          -1,
+          -1
+        ],
+        "task_class_exact": 1,
+        "task_fit": 5
+      },
+      "version": null
+    }
+  ],
+  "decision": {
+    "executable": true,
+    "owner": "codebase-overview",
+    "reason": "highest-ranked-eligible-route",
+    "route_id": "repo-orientation",
+    "route_type": "atomic",
+    "version": null
+  },
+  "discovery": {
+    "reason": "no-valid-prior-receipt",
+    "status": "required"
+  },
+  "fallback": {
+    "eligible": true,
+    "reason": "no-eligible-registered-fallback",
+    "route_id": "NO_SAFE_ROUTE",
+    "route_type": "no-safe-route"
+  },
+  "inventory_binding": {
+    "accepted_lifecycle_authority_commit": "d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0",
+    "component_hashes": [
+      {
+        "path": "evals/choicegate/inventory-fixtures.json",
+        "sha256": "ceb003f49e389b033655490e0588baf056c2b93683a7007957be8f1a5875ae4a"
+      },
+      {
+        "path": "evals/choicegate/manifest.json",
+        "sha256": "bec35cbfce0d87dcff25c9e35ad2df83d03125ffa5409298a7ee862a2cc86c91"
+      },
+      {
+        "path": "evals/choicegate/routing-cases.json",
+        "sha256": "a22b0a9ef68e9faa67e57f30f5182b44456350c2aa88c12fc3675e5a867b8e6c"
+      },
+      {
+        "path": "registry/bundles.json",
+        "sha256": "62927a2888b50b8194430d089c0ceb99168e31850ad3d31e42d214c327ed2d2b"
+      },
+      {
+        "path": "registry/capabilities.json",
+        "sha256": "be383e642af3aaf585c9c5e5270b8005804311aa185606524a07af79b7f1d991"
+      },
+      {
+        "path": "registry/conflicts.json",
+        "sha256": "47a3a8375f73ee27448923521a04149c332fce2919c737a7388480c38cfa4f0f"
+      },
+      {
+        "path": "registry/dependencies.json",
+        "sha256": "44b4a99854bca406b313ddb64bee2cabbbea637a2cb6b31764f01f1f1f95d4ad"
+      },
+      {
+        "path": "registry/preconditions.json",
+        "sha256": "e93e9e0be91e426b4dc83d4587e82f7e083c06dff1b0e805cb83d8d1dd5f410d"
+      },
+      {
+        "path": "registry/schemas/bundle.schema.json",
+        "sha256": "481ddc3d9a3316faf713e0982fea9fc794a22fe3dfb00da70fa72afaf1126f65"
+      },
+      {
+        "path": "registry/schemas/capability.schema.json",
+        "sha256": "21c1baf865817622d7df7ccc7942671b4fc4159d3fb027ba4cba161f557a1b8c"
+      },
+      {
+        "path": "registry/schemas/conflict.schema.json",
+        "sha256": "94b2e1113fbb03659b5e153a9fd15420db4e8b853345d84a0fcaeabfbc587e6b"
+      },
+      {
+        "path": "registry/schemas/dependency.schema.json",
+        "sha256": "cc8c32114b87f4e2d7a687d35c864d216993739de7e2a300c53ac6898e8704c9"
+      },
+      {
+        "path": "registry/schemas/precondition.schema.json",
+        "sha256": "50953c3e6f0ff5cbdf2ee14eaedbb232d12232d74f5db014e4ddf23ca4edaff2"
+      },
+      {
+        "path": "registry/schemas/supersession.schema.json",
+        "sha256": "4edeffaf980b79a77073d510706a09ce88dd30726528686f3d1f9b3d1ba01ebf"
+      },
+      {
+        "path": "registry/state-axes.json",
+        "sha256": "666465eeed8ed37d1d294a23af44a4ffb5e9d11b314406d6e46ca8587bbefbfd"
+      },
+      {
+        "path": "registry/supersessions.json",
+        "sha256": "e79495bea3a7998fc6f120ce476bd99c0e99c72a78266dd96c2d80fb7f0e6d41"
+      }
+    ],
+    "manifest_algorithm": "sha256-path-hash-manifest-v1",
+    "manifest_fingerprint": "e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0",
+    "state_model_id": "orthogonal-seven-axis-v1"
+  },
+  "prohibited_actions": [
+    "activate",
+    "authorize",
+    "browse-outside-explicit-exception",
+    "configure-provider",
+    "enable",
+    "execute-selected-capability",
+    "expose",
+    "install",
+    "modify-live-skill",
+    "mutate-remote",
+    "spend"
+  ],
+  "receipt_sha256": "6ab72c077b77cfb267f2d88e007bc2bd958da7d98bda4378e1a00bb07d948b84",
+  "receipt_version": "choicegate.decision-receipt/v1",
+  "request_id": "runsteward-contract:cg-initial-gated-01",
+  "request_sha256": "f89203d699af3773d0d9c7292f18fa13a428488376e50b99f1b47fc836a82132",
+  "reselection_triggers": [
+    "authorization-changed",
+    "availability-changed",
+    "bundle-contract-changed",
+    "evidence-freshness-changed",
+    "inventory-fingerprint-changed",
+    "owner-gate-changed",
+    "permission-or-risk-changed",
+    "router-binding-changed",
+    "scope-changed",
+    "selected-path-failed"
+  ],
+  "router_binding": {
+    "choicegate_commit": "c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0",
+    "deterministic_helper_sha256": "3644728a2030180402d88a4859274d2c645c7a3bd3d0b5e6028bf262e16202ba",
+    "receipt_schema_sha256": "3d32d4bac2cb9ff78d0249741d74e8572326894435e3bab10bf0f2f7ca7c949d",
+    "request_schema_sha256": "661bf8ecd42ade520aad1789cb8b23db5680a96045ccb6b54499b0fddd529ec1",
+    "router_policy_sha256": "c9c10a0ea83b33b00356b69cf34b2c2ba6fe26697952ad64575bf50d25fdd67e",
+    "router_policy_version": "choicegate-router-policy/v1",
+    "router_source_sha256": "9c576a871f2b2fbf471e38123524562557bd204cc8d0595c48ec7e0dfb5acade",
+    "router_text_hash_algorithm": "sha256-utf8-lf-v1",
+    "router_version": "choicegate-bundle-router/v1"
+  },
+  "task": {
+    "allow_setup_choice": false,
+    "allowed_scope": {
+      "local_files_only": true,
+      "outward_messages": false,
+      "paid_actions": false,
+      "provider_configuration": false,
+      "provider_use": false,
+      "remote_actions": false,
+      "write_files": false
+    },
+    "authorization_required": true,
+    "explicit_browser_choice": false,
+    "fixture_id": "atomic-initial-owner-gated-runsteward-contract",
+    "fixture_scope": true,
+    "intrinsic_visual_testing": false,
+    "max_discoverable_capabilities": 12,
+    "owner_selected_route_id": null,
+    "preconditions": {},
+    "private_data_class": "none",
+    "requested_route_ids": [],
+    "required_outcomes": [
+      "repository-map"
+    ],
+    "risk_class": "high",
+    "selected_path_failed": false,
+    "surface": "local",
+    "task_class": "repo-orientation"
+  }
+}

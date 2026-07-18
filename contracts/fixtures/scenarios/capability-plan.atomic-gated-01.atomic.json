@@ -1,0 +1,44 @@
+{
+  "schema_version": "runsteward.capability-plan/v1",
+  "capability_plan_id": "plan:atomic-gated-01",
+  "run_id": "run:atomic-gated-01",
+  "bound_at": "2026-07-14T00:01:00Z",
+  "choicegate_receipt": {
+    "schema_id": "choicegate.decision-receipt/v1",
+    "receipt_schema_sha256": "3d32d4bac2cb9ff78d0249741d74e8572326894435e3bab10bf0f2f7ca7c949d",
+    "receipt_version": "choicegate.decision-receipt/v1",
+    "immutable_ref": "contracts/fixtures/choicegate/cg-atomic-01.receipt.json",
+    "native_digest_procedure": "choicegate-native-sorted-compact-json-sha256-v1",
+    "receipt_sha256": "3e97714ec2963415aab383e30d1899b771c8f1f2f6763674a25627ab264958b9",
+    "request_id": "cg3:cg-atomic-01",
+    "request_sha256": "47ea796bc812d875952332ba7976b6ac6ffe084781901b60ac7ddd53da3b7663",
+    "task_class": "repo-orientation",
+    "inventory_fingerprint": "e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0",
+    "accepted_lifecycle_authority_commit": "d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0",
+    "choicegate_commit": "c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0",
+    "qualification_ref": {
+      "ref": "contracts/fixtures/choicegate/qualification.json",
+      "digest": "sha256:b4b4de68b2822695233d57f5475939a0a2bed054b0ae24e970ed36e3c4b77082"
+    }
+  },
+  "selected_route": {
+    "route_type": "atomic",
+    "route_id": "repo-orientation",
+    "version": null,
+    "owner": "codebase-overview",
+    "member_ids": [],
+    "executable": true,
+    "original_selection_ref": null
+  },
+  "frozen_preconditions": [],
+  "authorization_state": "not-required",
+  "owner_gates": [],
+  "fallback": {
+    "route_type": "no-safe-route",
+    "route_id": "NO_SAFE_ROUTE",
+    "reason": "no-eligible-registered-fallback",
+    "eligible": true
+  },
+  "scope_fingerprint": "sha256:69cc9fc6ab9ca535543e8257f69200cf546b890ff8794d1913689e401f2159c6",
+  "plan_digest": "sha256:95f31288ebbe94603b265d5296b7b8d70f41888ba9e76163f2badd5700f68c36"
+}

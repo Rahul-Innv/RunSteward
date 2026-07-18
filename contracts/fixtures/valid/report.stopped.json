@@ -1,0 +1,47 @@
+{
+  "schema_version": "runsteward.report/v1",
+  "report_id": "report:atomic-01:stopped",
+  "report_kind": "final",
+  "run_id": "run:atomic-01",
+  "created_at": "2026-07-14T00:15:00Z",
+  "status": "stopped",
+  "terminal_event_ref": {
+    "ref": "evidence/events/event-atomic-01-stopped.json",
+    "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/valid/capability-plan.atomic.json",
+    "digest": "sha256:8069f8cebb02f6d6192e35199a33b9ebaf884c07f14d6d5640e9077ea722db60"
+  },
+  "lease_history_refs": [],
+  "checkpoint_refs": [
+    {
+      "ref": "contracts/fixtures/valid/checkpoint.complete.json",
+      "digest": "sha256:14de4a9c0c7bd6c6ec26f0d9439106945c02f3cfeb82ab2320d130b1a8aba4ad"
+    }
+  ],
+  "handoff_ref": {
+    "ref": "contracts/fixtures/valid/handoff.checkpointed.json",
+    "digest": "sha256:27feb0f0fb9b8159fefbedab60fa531e3842adf6bf52e7f40fdf496cd288c7a0"
+  },
+  "outcome": {
+    "summary": "The execution attempt stopped cleanly with a complete checkpoint; the objective is not claimed complete.",
+    "objective_satisfied": false
+  },
+  "blocker": {
+    "type": "none",
+    "reason": null,
+    "safe_next_action": "Resume only from the verified checkpoint under a new lease epoch."
+  },
+  "budget_summary": [],
+  "validation_results": [],
+  "changed_paths_summary": [],
+  "failed_commands_summary": [],
+  "owner_gate_summary": [],
+  "evidence_index": [],
+  "redactions": [],
+  "evidence_dir_collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222",
+  "report_ref": "evidence/run-atomic-01/reports/stopped.json",
+  "final_status_marker": "RUNSTEWARD_FINAL_STATUS",
+  "report_digest": "sha256:44072249231c0af567270eefa6f547459ace6895e6a12425873796254883748f"
+}

@@ -1,0 +1,43 @@
+{
+  "skill_name": "wrapping-up",
+  "_note": "Lightweight tier. Trigger cases mirror how the limit-wrapup hook directive and Rahul actually phrase it; near-misses guard against 'wrap' collisions and normal git flow.",
+  "evals": [
+    {
+      "id": "trigger-positive-hook-directive",
+      "prompt": "[limit-wrapup] Account usage warning (this fires at most once per threshold per session):\n- 5h window: 87% of usage budget consumed, resets 18:00 (2h); recent burn ~14%/h across all sessions -> ~0.9h of headroom at this rate\nIf the remaining work on the current task likely exceeds the remaining budget, wrap up cleanly soon (finish the current atomic step, commit WIP, write a brief handoff). If it comfortably fits, continue and ignore this. [Context: mid-way through a large multi-file refactor with ~2h of work remaining]",
+      "should_trigger": true,
+      "expected_behavior": [
+        "Finishes only the current atomic step; starts no new work after the warning",
+        "Creates or reuses a wip/<date>-<slug> branch (never commits the WIP to main/master)",
+        "Writes HANDOFF.md containing: state of work, ordered next steps, and an exact resume command",
+        "HANDOFF.md is included in the WIP commit",
+        "Final message is a brief summary + resume pointer, then stops (no further task work)"
+      ]
+    },
+    {
+      "id": "trigger-positive-user-explicit",
+      "prompt": "I'm about to hit my Claude usage limit — wrap up this session cleanly so I can pick it up after the reset.",
+      "should_trigger": true
+    },
+    {
+      "id": "trigger-positive-unattended",
+      "prompt": "Running low on weekly budget (91% used). Wrap up: commit whatever is in progress and leave me a handoff so tomorrow's session can resume.",
+      "should_trigger": true
+    },
+    {
+      "id": "trigger-nearmiss-code-wrap",
+      "prompt": "Wrap this function in a try/catch and add a retry.",
+      "should_trigger": false
+    },
+    {
+      "id": "trigger-nearmiss-normal-commit",
+      "prompt": "Commit my changes to a new branch and push it up.",
+      "should_trigger": false
+    },
+    {
+      "id": "trigger-nearmiss-fits-budget",
+      "prompt": "[limit-wrapup] Account usage warning:\n- 5h window: 71% of usage budget consumed, resets 19:00 (3h); recent burn ~5%/h -> ~5.8h of headroom at this rate\nIf the remaining work on the current task likely exceeds the remaining budget, wrap up cleanly soon. If it comfortably fits, continue and ignore this. [Context: the only remaining work is a one-line typo fix]",
+      "should_trigger": false
+    }
+  ]
+}

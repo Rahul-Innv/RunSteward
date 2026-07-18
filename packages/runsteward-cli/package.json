@@ -1,0 +1,21 @@
+{
+  "name": "@runsteward/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Inactive route-only CLI surface for the atomic RunSteward family",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "runsteward": "./bin/runsteward.mjs"
+  },
+  "exports": "./src/dispatch.mjs",
+  "files": [
+    "bin",
+    "src"
+  ],
+  "scripts": {
+    "test": "node --test test/dispatch.test.mjs"
+  }
+}

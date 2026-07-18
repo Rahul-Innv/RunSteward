@@ -1,0 +1,14 @@
+{
+  "name": "@runsteward/adapter-codex",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "RunSteward-owned thin Codex checkpoint, wrap, and resume consumer",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": "./src/index.mjs",
+  "scripts": {
+    "test": "node --test test/adapter.test.mjs"
+  }
+}

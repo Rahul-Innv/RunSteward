@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://runsteward.local/contracts/runsteward/v1/handoff.schema.json",
+  "title": "RunSteward bounded handoff v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "handoff_id",
+    "run_id",
+    "created_at",
+    "checkpoint_ref",
+    "status",
+    "outcome_summary",
+    "completed_items",
+    "remaining_items",
+    "blockers",
+    "decisions_required",
+    "approvals_required",
+    "validation_summary",
+    "changed_paths_summary",
+    "failed_commands_summary",
+    "safe_resume",
+    "redactions",
+    "raw_evidence_refs",
+    "handoff_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": "runsteward.handoff/v1" },
+    "handoff_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "run_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "created_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "checkpoint_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+    "status": { "$ref": "common.schema.json#/$defs/lifecycleState" },
+    "outcome_summary": { "$ref": "common.schema.json#/$defs/boundedSummary" },
+    "completed_items": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/boundedSummary" }, "maxItems": 64 },
+    "remaining_items": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/boundedSummary" }, "maxItems": 64 },
+    "blockers": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/boundedSummary" }, "maxItems": 64 },
+    "decisions_required": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/ownerGate" }, "maxItems": 64 },
+    "approvals_required": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/ownerGate" }, "maxItems": 64 },
+    "validation_summary": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/validationResult" }, "maxItems": 128 },
+    "changed_paths_summary": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/changedPath" }, "maxItems": 512 },
+    "failed_commands_summary": {
+      "type": "array",
+      "maxItems": 64,
+      "items": { "$ref": "common.schema.json#/$defs/failedCommandSummary" }
+    },
+    "safe_resume": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eligible", "preconditions", "adapter_id", "identity_reference_digest", "invocation_template"],
+      "properties": {
+        "eligible": { "type": "boolean" },
+        "preconditions": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 256 }, "maxItems": 32 },
+        "adapter_id": { "$ref": "common.schema.json#/$defs/stableId" },
+        "identity_reference_digest": {
+          "oneOf": [
+            { "$ref": "common.schema.json#/$defs/runstewardDigest" },
+            { "type": "null" }
+          ]
+        },
+        "invocation_template": {
+          "oneOf": [
+            { "type": "string", "minLength": 1, "maxLength": 1024 },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "redactions": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/redaction" }, "maxItems": 128 },
+    "raw_evidence_refs": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/evidenceRef" }, "maxItems": 128 },
+    "handoff_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "safe_resume": { "type": "object", "properties": { "eligible": { "const": true } }, "required": ["eligible"] }
+        }
+      },
+      "then": {
+        "properties": {
+          "safe_resume": {
+            "type": "object",
+            "properties": {
+              "preconditions": { "minItems": 1 },
+              "invocation_template": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

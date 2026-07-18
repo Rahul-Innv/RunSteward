@@ -1,0 +1,14 @@
+{
+  "name": "@runsteward/sensor-claude-limits",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Thin typed-evidence consumer for Claude usage-limit state",
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": "./src/index.mjs",
+  "scripts": {
+    "test": "node --test test/sensor.test.mjs"
+  }
+}

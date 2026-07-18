@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">RunSteward logo</title>
+  <desc id="desc">Interwoven indigo and teal paths forming a stable checkpoint.</desc>
+  <rect width="512" height="512" rx="112" fill="#10172a"/>
+  <path d="M104 150h188c64 0 116 52 116 116s-52 116-116 116H104" fill="none" stroke="#66e3c4" stroke-width="42" stroke-linecap="round"/>
+  <path d="M408 150H220c-64 0-116 52-116 116s52 116 116 116h188" fill="none" stroke="#8b9cff" stroke-width="42" stroke-linecap="round"/>
+  <circle cx="256" cy="266" r="35" fill="#f7f9ff" stroke="#10172a" stroke-width="14"/>
+</svg>

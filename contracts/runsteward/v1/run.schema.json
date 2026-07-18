@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://runsteward.local/contracts/runsteward/v1/run.schema.json",
+  "title": "RunSteward run projection v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "task_id",
+    "created_at",
+    "objective_digest",
+    "objective_summary",
+    "repository",
+    "lifecycle_policy",
+    "status",
+    "last_event_id",
+    "last_event_sequence",
+    "last_event_digest",
+    "lease_ref",
+    "state_dir",
+    "evidence_dir",
+    "capability_plan_ref",
+    "latest_checkpoint_ref",
+    "sensor_bindings",
+    "owner_gates",
+    "stopped_report_ref",
+    "final_status_report_ref",
+    "run_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": "runsteward.run/v1" },
+    "run_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "task_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "created_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "objective_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" },
+    "objective_summary": { "$ref": "common.schema.json#/$defs/boundedSummary" },
+    "repository": { "$ref": "common.schema.json#/$defs/repositoryBinding" },
+    "lifecycle_policy": { "$ref": "common.schema.json#/$defs/lifecyclePolicy" },
+    "status": { "$ref": "common.schema.json#/$defs/lifecycleState" },
+    "last_event_id": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/stableId" },
+        { "type": "null" }
+      ]
+    },
+    "last_event_sequence": { "type": "integer", "minimum": 0, "maximum": 9007199254740991 },
+    "last_event_digest": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/runstewardDigest" },
+        { "type": "null" }
+      ]
+    },
+    "lease_ref": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/artifactRef" },
+        { "type": "null" }
+      ]
+    },
+    "state_dir": { "$ref": "common.schema.json#/$defs/pathBinding" },
+    "evidence_dir": { "$ref": "common.schema.json#/$defs/pathBinding" },
+    "capability_plan_ref": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/artifactRef" },
+        { "type": "null" }
+      ]
+    },
+    "latest_checkpoint_ref": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/artifactRef" },
+        { "type": "null" }
+      ]
+    },
+    "sensor_bindings": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/sensorBinding" },
+      "maxItems": 16
+    },
+    "owner_gates": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/ownerGate" },
+      "maxItems": 64
+    },
+    "stopped_report_ref": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/artifactRef" },
+        { "type": "null" }
+      ]
+    },
+    "final_status_report_ref": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/artifactRef" },
+        { "type": "null" }
+      ]
+    },
+    "run_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "enum": ["allocated", "running", "stopping"] } }, "required": ["status"] },
+      "then": { "properties": { "lease_ref": { "$ref": "common.schema.json#/$defs/artifactRef" } } }
+    },
+    {
+      "if": { "properties": { "status": { "const": "running" } }, "required": ["status"] },
+      "then": { "properties": { "capability_plan_ref": { "$ref": "common.schema.json#/$defs/artifactRef" } } }
+    }
+  ]
+}

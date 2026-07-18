@@ -1,0 +1,358 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "choicegate.decision-receipt/v1",
+  "title": "ChoiceGate deterministic decision receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_version",
+    "request_id",
+    "request_sha256",
+    "inventory_binding",
+    "router_binding",
+    "task",
+    "decision",
+    "bundle_members",
+    "candidates",
+    "approvals_required",
+    "fallback",
+    "discovery",
+    "reselection_triggers",
+    "prohibited_actions",
+    "receipt_sha256"
+  ],
+  "properties": {
+    "receipt_version": { "const": "choicegate.decision-receipt/v1" },
+    "request_id": { "$ref": "#/$defs/stableId" },
+    "request_sha256": { "$ref": "#/$defs/sha256" },
+    "inventory_binding": { "$ref": "#/$defs/inventoryBinding" },
+    "router_binding": { "$ref": "#/$defs/routerBinding" },
+    "task": { "$ref": "#/$defs/normalizedTask" },
+    "decision": { "$ref": "#/$defs/decision" },
+    "bundle_members": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/bundleMember" }
+    },
+    "candidates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/candidate" }
+    },
+    "approvals_required": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/stableId" }
+    },
+    "fallback": { "$ref": "#/$defs/fallback" },
+    "discovery": { "$ref": "#/$defs/discovery" },
+    "reselection_triggers": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/stableId" }
+    },
+    "prohibited_actions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/stableId" }
+    },
+    "receipt_sha256": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$"
+    },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "gitCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "nullableStableId": { "oneOf": [{ "$ref": "#/$defs/stableId" }, { "type": "null" }] },
+    "allowedScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "local_files_only",
+        "write_files",
+        "remote_actions",
+        "outward_messages",
+        "paid_actions",
+        "provider_use",
+        "provider_configuration"
+      ],
+      "properties": {
+        "local_files_only": { "type": "boolean" },
+        "write_files": { "type": "boolean" },
+        "remote_actions": { "type": "boolean" },
+        "outward_messages": { "type": "boolean" },
+        "paid_actions": { "type": "boolean" },
+        "provider_use": { "type": "boolean" },
+        "provider_configuration": { "type": "boolean" }
+      }
+    },
+    "scalarMap": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/stableId" },
+      "additionalProperties": { "type": ["string", "number", "boolean"] }
+    },
+    "componentHash": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^[A-Za-z0-9._/-]+\\.json$" },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "inventoryBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted_lifecycle_authority_commit",
+        "state_model_id",
+        "manifest_algorithm",
+        "manifest_fingerprint",
+        "component_hashes"
+      ],
+      "properties": {
+        "accepted_lifecycle_authority_commit": { "$ref": "#/$defs/gitCommit" },
+        "state_model_id": { "const": "orthogonal-seven-axis-v1" },
+        "manifest_algorithm": { "const": "sha256-path-hash-manifest-v1" },
+        "manifest_fingerprint": { "$ref": "#/$defs/sha256" },
+        "component_hashes": {
+          "type": "array",
+          "minItems": 16,
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/componentHash" },
+          "allOf": [
+            { "contains": { "properties": { "path": { "const": "evals/choicegate/inventory-fixtures.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "evals/choicegate/manifest.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "evals/choicegate/routing-cases.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/bundles.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/capabilities.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/conflicts.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/dependencies.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/preconditions.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/schemas/bundle.schema.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/schemas/capability.schema.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/schemas/conflict.schema.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/schemas/dependency.schema.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/schemas/precondition.schema.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/schemas/supersession.schema.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/state-axes.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 },
+            { "contains": { "properties": { "path": { "const": "registry/supersessions.json" } }, "required": ["path"] }, "minContains": 1, "maxContains": 1 }
+          ]
+        }
+      }
+    },
+    "routerBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "choicegate_commit",
+        "router_version",
+        "router_policy_version",
+        "router_policy_sha256",
+        "request_schema_sha256",
+        "receipt_schema_sha256",
+        "router_source_sha256",
+        "deterministic_helper_sha256",
+        "router_text_hash_algorithm"
+      ],
+      "properties": {
+        "choicegate_commit": { "$ref": "#/$defs/gitCommit" },
+        "router_version": { "const": "choicegate-bundle-router/v1" },
+        "router_policy_version": { "const": "choicegate-router-policy/v1" },
+        "router_policy_sha256": { "$ref": "#/$defs/sha256" },
+        "request_schema_sha256": { "$ref": "#/$defs/sha256" },
+        "receipt_schema_sha256": { "$ref": "#/$defs/sha256" },
+        "router_source_sha256": { "$ref": "#/$defs/sha256" },
+        "deterministic_helper_sha256": { "$ref": "#/$defs/sha256" },
+        "router_text_hash_algorithm": { "const": "sha256-utf8-lf-v1" }
+      }
+    },
+    "normalizedTask": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_class",
+        "required_outcomes",
+        "allowed_scope",
+        "surface",
+        "private_data_class",
+        "authorization_required",
+        "explicit_browser_choice",
+        "intrinsic_visual_testing",
+        "risk_class",
+        "max_discoverable_capabilities",
+        "allow_setup_choice",
+        "fixture_scope",
+        "fixture_id",
+        "requested_route_ids",
+        "preconditions",
+        "owner_selected_route_id",
+        "selected_path_failed"
+      ],
+      "properties": {
+        "task_class": { "$ref": "#/$defs/stableId" },
+        "required_outcomes": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/stableId" } },
+        "allowed_scope": { "$ref": "#/$defs/allowedScope" },
+        "surface": { "type": "string", "enum": ["codex", "claude-code", "local", "browser", "manual"] },
+        "private_data_class": { "type": "string", "enum": ["none", "public", "private", "sensitive"] },
+        "authorization_required": { "type": "boolean" },
+        "explicit_browser_choice": { "type": "boolean" },
+        "intrinsic_visual_testing": { "type": "boolean" },
+        "risk_class": { "type": "string", "enum": ["low", "low-medium", "medium", "high", "critical"] },
+        "max_discoverable_capabilities": { "type": "integer", "minimum": 1, "maximum": 12 },
+        "allow_setup_choice": { "type": "boolean" },
+        "fixture_scope": { "type": "boolean" },
+        "fixture_id": { "$ref": "#/$defs/nullableStableId" },
+        "requested_route_ids": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/stableId" } },
+        "preconditions": { "$ref": "#/$defs/scalarMap" },
+        "owner_selected_route_id": { "$ref": "#/$defs/nullableStableId" },
+        "selected_path_failed": { "type": "boolean" }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["route_type", "route_id", "version", "owner", "executable", "reason"],
+      "properties": {
+        "route_type": {
+          "type": "string",
+          "enum": ["atomic", "bundle", "requires-setup-approval", "browser-manual", "no-safe-route", "handoff"]
+        },
+        "route_id": { "$ref": "#/$defs/stableId" },
+        "version": { "type": ["string", "null"] },
+        "owner": { "$ref": "#/$defs/nullableStableId" },
+        "executable": { "type": "boolean" },
+        "reason": { "$ref": "#/$defs/stableId" }
+      }
+    },
+    "stateBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_state",
+        "install_state",
+        "enablement_state",
+        "exposure_state",
+        "authorization_state",
+        "activity_state",
+        "promotion_state"
+      ],
+      "properties": {
+        "source_state": { "type": "string" },
+        "install_state": { "type": "string" },
+        "enablement_state": { "type": "string" },
+        "exposure_state": { "type": "string" },
+        "authorization_state": { "type": "string" },
+        "activity_state": { "type": "string" },
+        "promotion_state": { "type": "string" }
+      }
+    },
+    "bundleMember": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["order", "capability_id", "requirement", "role", "selection", "state_binding"],
+      "properties": {
+        "order": { "type": "integer", "minimum": 1 },
+        "capability_id": { "$ref": "#/$defs/stableId" },
+        "requirement": { "type": "string", "enum": ["required", "optional"] },
+        "role": { "$ref": "#/$defs/stableId" },
+        "selection": { "type": "string", "enum": ["selected", "omitted"] },
+        "state_binding": { "$ref": "#/$defs/stateBinding" }
+      }
+    },
+    "scoreBreakdown": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_class_exact",
+        "required_outcomes_covered",
+        "task_fit",
+        "scope_penalty",
+        "risk_penalty",
+        "context_cost",
+        "expected_cost",
+        "member_count",
+        "selection_tuple",
+        "lexical_tiebreak"
+      ],
+      "properties": {
+        "task_class_exact": { "type": "integer", "minimum": 0, "maximum": 1 },
+        "required_outcomes_covered": { "type": "integer", "minimum": 0 },
+        "task_fit": { "type": "number", "minimum": 0, "maximum": 5 },
+        "scope_penalty": { "type": "integer", "minimum": 0 },
+        "risk_penalty": { "type": "integer", "minimum": 0, "maximum": 4 },
+        "context_cost": { "type": "number", "minimum": 0, "maximum": 5 },
+        "expected_cost": { "type": "number", "minimum": 0, "maximum": 5 },
+        "member_count": { "type": "integer", "minimum": 1 },
+        "selection_tuple": { "type": "array", "minItems": 8, "maxItems": 8, "items": { "type": "number" } },
+        "lexical_tiebreak": { "$ref": "#/$defs/stableId" }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "route_type",
+        "route_id",
+        "canonical_route_id",
+        "candidate_evidence_sha256",
+        "version",
+        "owner",
+        "pool",
+        "hard_exclusion_codes",
+        "evidence_refs",
+        "score_breakdown",
+        "duplicate_of",
+        "final_disposition"
+      ],
+      "properties": {
+        "route_type": { "type": "string", "enum": ["atomic", "bundle"] },
+        "route_id": { "$ref": "#/$defs/stableId" },
+        "canonical_route_id": { "$ref": "#/$defs/stableId" },
+        "candidate_evidence_sha256": { "$ref": "#/$defs/sha256" },
+        "version": { "type": ["string", "null"] },
+        "owner": { "$ref": "#/$defs/nullableStableId" },
+        "pool": { "type": "string", "enum": ["executable", "setup-required", "rejected"] },
+        "hard_exclusion_codes": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/stableId" } },
+        "evidence_refs": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "score_breakdown": { "oneOf": [{ "$ref": "#/$defs/scoreBreakdown" }, { "type": "null" }] },
+        "duplicate_of": { "$ref": "#/$defs/nullableStableId" },
+        "final_disposition": { "$ref": "#/$defs/stableId" }
+      }
+    },
+    "fallback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["route_type", "route_id", "eligible", "reason"],
+      "properties": {
+        "route_type": { "type": "string", "enum": ["atomic", "bundle", "browser-manual", "no-safe-route"] },
+        "route_id": { "$ref": "#/$defs/stableId" },
+        "eligible": { "type": "boolean" },
+        "reason": { "$ref": "#/$defs/stableId" }
+      }
+    },
+    "discovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "required",
+            "skipped-explicit-browser",
+            "skipped-intrinsic-visual",
+            "suppressed-valid-handoff",
+            "blocked-selected-path-failure"
+          ]
+        },
+        "reason": { "$ref": "#/$defs/stableId" }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "codex-nightwatch",
+  "version": "0.1.0",
+  "description": "Usage-aware orchestration for unattended Codex runs.",
+  "author": {
+    "name": "Codex Nightwatch maintainers"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Nightwatch",
+    "shortDescription": "Plan and manage overnight Codex runs.",
+    "longDescription": "Codex Nightwatch helps Codex plan unattended work around usage budgets, checkpoints, pause/resume behavior, and morning reports.",
+    "developerName": "Codex Nightwatch maintainers",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Use Codex Nightwatch to plan a safe unattended Codex run with checkpoints, budget thresholds, and a morning report."
+  }
+}

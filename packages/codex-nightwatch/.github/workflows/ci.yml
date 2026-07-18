@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m unittest discover -s tests
+      - run: python -m py_compile scripts/nightwatch.py tests/test_nightwatch.py
+      - run: python scripts/nightwatch.py analyze --jsonl tests/sample_codex_events.jsonl --token-budget 5000 --reserve-tokens 1000
+      - run: python scripts/nightwatch.py analyze --jsonl tests/fixtures/real_codex_minimal.redacted.jsonl --token-budget 20000 --reserve-tokens 5000

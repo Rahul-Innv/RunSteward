@@ -1,0 +1,43 @@
+{
+  "schema_version": "runsteward.wrap-plan/v1",
+  "plan_id": "wrap:fixture:1",
+  "run_id": "run:fixture:1",
+  "trigger": {
+    "kind": "provider-advisory",
+    "source_status": "estimated",
+    "reason_code": "claude-limit-wrap-directive",
+    "evidence_ref": {
+      "ref": "evidence/provider/claude-limit-evidence.json",
+      "digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "media_type": "application/json"
+    }
+  },
+  "ordered_capabilities": [
+    {
+      "sequence": 1,
+      "skill_id": "runsteward-checkpoint-run",
+      "outcome": "complete-checkpoint"
+    },
+    {
+      "sequence": 2,
+      "skill_id": "runsteward-stop-run",
+      "outcome": "resumable-stopped-attempt"
+    },
+    {
+      "sequence": 3,
+      "skill_id": "runsteward-report-run",
+      "outcome": "digest-bound-final-status-report"
+    }
+  ],
+  "forbidden_actions": [
+    "automatic-git-add",
+    "automatic-git-commit",
+    "branch-deletion",
+    "destructive-cleanup",
+    "provider-call",
+    "remote-write"
+  ],
+  "final_status_marker_required": "RUNSTEWARD_FINAL_STATUS",
+  "coordinator_only": true,
+  "plan_digest": "sha256:66e55813d44beb96d06947966b8a568af817e9288a1e0714879174e560cafb9c"
+}

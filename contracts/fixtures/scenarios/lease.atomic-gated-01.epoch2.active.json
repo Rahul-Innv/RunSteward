@@ -1,0 +1,44 @@
+{
+  "schema_version": "runsteward.worktree-lease/v1",
+  "lease_id": "lease:atomic-gated-01:2",
+  "run_id": "run:atomic-gated-01",
+  "task_id": "task:atomic-gated-01",
+  "lease_epoch": 2,
+  "purpose": "resume",
+  "status": "active",
+  "repository_id": "runsteward",
+  "original_source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+  "observed_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+  "branch_name": "feature/runsteward-contracts-core",
+  "worktree": {
+    "path": "C:\\lifecycle\\worktrees\\contracts-core",
+    "collision_key": "fs:win32:3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "state_path": {
+    "path": "C:\\runsteward\\state\\run-atomic-01",
+    "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "evidence_path": {
+    "path": "C:\\runsteward\\evidence\\run-atomic-01",
+    "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "lock_path": {
+    "path": "C:\\runsteward\\locks\\run-atomic-01.lock",
+    "collision_key": "fs:win32:7777777777777777777777777777777777777777777777777777777777777777"
+  },
+  "owner": {
+    "executor_id": "rw1-test-executor",
+    "process_session_ref": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+    "host_fingerprint": "sha256:9999999999999999999999999999999999999999999999999999999999999999"
+  },
+  "acquired_at": "2026-07-14T00:05:00Z",
+  "last_heartbeat_at": "2026-07-14T00:05:30Z",
+  "expires_at": "2026-07-14T00:10:30Z",
+  "previous_lease_ref": {
+    "ref": "contracts/fixtures/scenarios/lease.atomic-gated-01.epoch1.released.json",
+    "digest": "sha256:afe122d0a795bea0c616358d417b04faef490ec28100af1e7109ae1fc02d5226"
+  },
+  "previous_lease_id": "lease:atomic-gated-01:1",
+  "release_reason": null,
+  "lease_digest": "sha256:27c06ed87281eb7ca8b4cd631a846ae131e008e96b9de0262deb8a3fa6c7361e"
+}

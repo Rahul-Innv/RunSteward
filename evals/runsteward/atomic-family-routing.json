@@ -1,0 +1,607 @@
+{
+  "schema": "runsteward-atomic-routing-evals/v1",
+  "candidate_status": "inactive-precritic",
+  "public_skill_ids": [
+    "runsteward-queue-task",
+    "runsteward-reorder-queue",
+    "runsteward-set-dispatch-state",
+    "runsteward-cancel-run",
+    "runsteward-adopt-session",
+    "runsteward-supervise-run",
+    "runsteward-inspect-runs",
+    "runsteward-approve-action",
+    "runsteward-sense-claude-limits",
+    "runsteward-sense-codex-usage",
+    "runsteward-checkpoint-run",
+    "runsteward-wrap-run",
+    "runsteward-stop-run",
+    "runsteward-resume-run",
+    "runsteward-report-run",
+    "runsteward-check-readiness"
+  ],
+  "positive_cases": [
+    {
+      "id": "runsteward-queue-task-positive-1",
+      "prompt": "Queue this task for later RunSteward execution.",
+      "expected_skill": "runsteward-queue-task"
+    },
+    {
+      "id": "runsteward-queue-task-positive-2",
+      "prompt": "Add one new task to the RunSteward queue.",
+      "expected_skill": "runsteward-queue-task"
+    },
+    {
+      "id": "runsteward-reorder-queue-positive-1",
+      "prompt": "Move the existing database audit task to position two in the pending queue.",
+      "expected_skill": "runsteward-reorder-queue"
+    },
+    {
+      "id": "runsteward-reorder-queue-positive-2",
+      "prompt": "Put queued task rw-task-8 after rw-task-3 without adding work.",
+      "expected_skill": "runsteward-reorder-queue"
+    },
+    {
+      "id": "runsteward-set-dispatch-state-positive-1",
+      "prompt": "Pause future RunSteward queue dispatch.",
+      "expected_skill": "runsteward-set-dispatch-state"
+    },
+    {
+      "id": "runsteward-set-dispatch-state-positive-2",
+      "prompt": "Unpause the dispatcher but do not resume any stopped run.",
+      "expected_skill": "runsteward-set-dispatch-state"
+    },
+    {
+      "id": "runsteward-cancel-run-positive-1",
+      "prompt": "Cancel RunSteward run rw-run-7 terminally and retain its evidence.",
+      "expected_skill": "runsteward-cancel-run"
+    },
+    {
+      "id": "runsteward-cancel-run-positive-2",
+      "prompt": "Mark queued run rw-run-9 cancelled; do not delete it.",
+      "expected_skill": "runsteward-cancel-run"
+    },
+    {
+      "id": "runsteward-adopt-session-positive-1",
+      "prompt": "Adopt this current non-RunSteward Claude session for continuation after reset.",
+      "expected_skill": "runsteward-adopt-session"
+    },
+    {
+      "id": "runsteward-adopt-session-positive-2",
+      "prompt": "Arm later continuation for the live session I am in; it is not a RunSteward run.",
+      "expected_skill": "runsteward-adopt-session"
+    },
+    {
+      "id": "runsteward-supervise-run-positive-1",
+      "prompt": "Supervise accepted RunSteward run rw-run-2 across its bounded lifecycle.",
+      "expected_skill": "runsteward-supervise-run"
+    },
+    {
+      "id": "runsteward-supervise-run-positive-2",
+      "prompt": "Run the accepted RunSteward plan and enforce its leases and child dependencies.",
+      "expected_skill": "runsteward-supervise-run"
+    },
+    {
+      "id": "runsteward-inspect-runs-positive-1",
+      "prompt": "List current RunSteward runs without changing anything.",
+      "expected_skill": "runsteward-inspect-runs"
+    },
+    {
+      "id": "runsteward-inspect-runs-positive-2",
+      "prompt": "Show logs, plan, guardrails, and budget evidence for rw-run-4 read-only.",
+      "expected_skill": "runsteward-inspect-runs"
+    },
+    {
+      "id": "runsteward-approve-action-positive-1",
+      "prompt": "Record my approval for the exact pending action gate on rw-run-5.",
+      "expected_skill": "runsteward-approve-action"
+    },
+    {
+      "id": "runsteward-approve-action-positive-2",
+      "prompt": "Bind this explicit approval token to the named queued RunSteward action only.",
+      "expected_skill": "runsteward-approve-action"
+    },
+    {
+      "id": "runsteward-sense-claude-limits-positive-1",
+      "prompt": "Return typed Claude percentage-window evidence only.",
+      "expected_skill": "runsteward-sense-claude-limits"
+    },
+    {
+      "id": "runsteward-sense-claude-limits-positive-2",
+      "prompt": "Sense Claude limit state with bounded references; make no wrap decision.",
+      "expected_skill": "runsteward-sense-claude-limits"
+    },
+    {
+      "id": "runsteward-sense-codex-usage-positive-1",
+      "prompt": "Return typed Codex token-usage evidence from classified analysis.",
+      "expected_skill": "runsteward-sense-codex-usage"
+    },
+    {
+      "id": "runsteward-sense-codex-usage-positive-2",
+      "prompt": "Sense Codex usage only; do not interpret raw JSONL or decide stop.",
+      "expected_skill": "runsteward-sense-codex-usage"
+    },
+    {
+      "id": "runsteward-checkpoint-run-positive-1",
+      "prompt": "Create a complete resumable checkpoint for existing RunSteward run rw-run-3.",
+      "expected_skill": "runsteward-checkpoint-run"
+    },
+    {
+      "id": "runsteward-checkpoint-run-positive-2",
+      "prompt": "Checkpoint rw-run-3 without closing or reporting the attempt.",
+      "expected_skill": "runsteward-checkpoint-run"
+    },
+    {
+      "id": "runsteward-wrap-run-positive-1",
+      "prompt": "Gracefully wrap this RunSteward attempt through checkpoint, report, and stop.",
+      "expected_skill": "runsteward-wrap-run"
+    },
+    {
+      "id": "runsteward-wrap-run-positive-2",
+      "prompt": "Use the explicit RunSteward wrap coordinator without Git or provider actions.",
+      "expected_skill": "runsteward-wrap-run"
+    },
+    {
+      "id": "runsteward-stop-run-positive-1",
+      "prompt": "Stop current RunSteward attempt rw-run-6 resumably; do not cancel it.",
+      "expected_skill": "runsteward-stop-run"
+    },
+    {
+      "id": "runsteward-stop-run-positive-2",
+      "prompt": "Close this attempt as stopped without claiming completion.",
+      "expected_skill": "runsteward-stop-run"
+    },
+    {
+      "id": "runsteward-resume-run-positive-1",
+      "prompt": "Resume existing RunSteward run rw-run-3 from its complete verified checkpoint and successor lease.",
+      "expected_skill": "runsteward-resume-run"
+    },
+    {
+      "id": "runsteward-resume-run-positive-2",
+      "prompt": "Resume the stopped RunSteward run only after predecessor release and new lease validation.",
+      "expected_skill": "runsteward-resume-run"
+    },
+    {
+      "id": "runsteward-report-run-positive-1",
+      "prompt": "Materialize the final RunSteward report with RUNSTEWARD_FINAL_STATUS proof.",
+      "expected_skill": "runsteward-report-run"
+    },
+    {
+      "id": "runsteward-report-run-positive-2",
+      "prompt": "Write a bounded attempt handoff report without changing lifecycle state.",
+      "expected_skill": "runsteward-report-run"
+    },
+    {
+      "id": "runsteward-check-readiness-positive-1",
+      "prompt": "Check RunSteward local readiness without installing or changing anything.",
+      "expected_skill": "runsteward-check-readiness"
+    },
+    {
+      "id": "runsteward-check-readiness-positive-2",
+      "prompt": "Diagnose RunSteward paths, configuration, wake support, and recoverability read-only.",
+      "expected_skill": "runsteward-check-readiness"
+    }
+  ],
+  "near_miss_cases": [
+    {
+      "id": "queue-not-reorder",
+      "prompt": "Add a new queue task; do not move an existing task.",
+      "expected_skill": "runsteward-queue-task",
+      "reject": [
+        "runsteward-reorder-queue"
+      ]
+    },
+    {
+      "id": "reorder-not-queue",
+      "prompt": "Move existing queued task rw-task-1 after rw-task-2; add nothing.",
+      "expected_skill": "runsteward-reorder-queue",
+      "reject": [
+        "runsteward-queue-task"
+      ]
+    },
+    {
+      "id": "dispatch-not-stop",
+      "prompt": "Pause future dispatch, but leave the running attempt alone.",
+      "expected_skill": "runsteward-set-dispatch-state",
+      "reject": [
+        "runsteward-stop-run"
+      ]
+    },
+    {
+      "id": "stop-not-dispatch",
+      "prompt": "Stop current attempt resumably; do not pause future dispatch.",
+      "expected_skill": "runsteward-stop-run",
+      "reject": [
+        "runsteward-set-dispatch-state"
+      ]
+    },
+    {
+      "id": "cancel-not-stop",
+      "prompt": "Cancel this run terminally and retain evidence; do not leave it resumable.",
+      "expected_skill": "runsteward-cancel-run",
+      "reject": [
+        "runsteward-stop-run"
+      ]
+    },
+    {
+      "id": "stop-not-cancel",
+      "prompt": "Stop this attempt so a checked resume remains possible; do not cancel.",
+      "expected_skill": "runsteward-stop-run",
+      "reject": [
+        "runsteward-cancel-run"
+      ]
+    },
+    {
+      "id": "adopt-not-resume",
+      "prompt": "Adopt the current non-RunSteward live session; there is no RunSteward checkpoint.",
+      "expected_skill": "runsteward-adopt-session",
+      "reject": [
+        "runsteward-resume-run"
+      ]
+    },
+    {
+      "id": "resume-not-adopt",
+      "prompt": "Resume existing RunSteward run rw-run-1 from its checkpoint; do not adopt this live session.",
+      "expected_skill": "runsteward-resume-run",
+      "reject": [
+        "runsteward-adopt-session"
+      ]
+    },
+    {
+      "id": "supervise-not-inspect",
+      "prompt": "Actively supervise the accepted run plan; this is not a read-only status check.",
+      "expected_skill": "runsteward-supervise-run",
+      "reject": [
+        "runsteward-inspect-runs"
+      ]
+    },
+    {
+      "id": "inspect-not-supervise",
+      "prompt": "Only inspect current run state and write nothing.",
+      "expected_skill": "runsteward-inspect-runs",
+      "reject": [
+        "runsteward-supervise-run"
+      ]
+    },
+    {
+      "id": "approve-not-execute",
+      "prompt": "Bind my exact approval to the pending gate, but do not execute it.",
+      "expected_skill": "runsteward-approve-action",
+      "reject": [
+        "runsteward-supervise-run"
+      ]
+    },
+    {
+      "id": "claude-sensor-not-wrap",
+      "prompt": "Emit Claude limit evidence only; do not decide whether to wrap.",
+      "expected_skill": "runsteward-sense-claude-limits",
+      "reject": [
+        "runsteward-wrap-run"
+      ]
+    },
+    {
+      "id": "codex-sensor-not-supervise",
+      "prompt": "Emit classified Codex usage evidence only; do not supervise.",
+      "expected_skill": "runsteward-sense-codex-usage",
+      "reject": [
+        "runsteward-supervise-run"
+      ]
+    },
+    {
+      "id": "checkpoint-not-stop",
+      "prompt": "Checkpoint the run without closing the attempt.",
+      "expected_skill": "runsteward-checkpoint-run",
+      "reject": [
+        "runsteward-stop-run"
+      ]
+    },
+    {
+      "id": "report-not-checkpoint",
+      "prompt": "Materialize the existing checkpoint's report; create no checkpoint.",
+      "expected_skill": "runsteward-report-run",
+      "reject": [
+        "runsteward-checkpoint-run"
+      ]
+    },
+    {
+      "id": "wrap-not-stop",
+      "prompt": "Coordinate checkpoint, report, and stop; do not perform only the stop leaf.",
+      "expected_skill": "runsteward-wrap-run",
+      "reject": [
+        "runsteward-stop-run"
+      ]
+    },
+    {
+      "id": "readiness-not-install",
+      "prompt": "Check whether editor integration is ready, but do not install or configure it.",
+      "expected_skill": "runsteward-check-readiness",
+      "reject": []
+    },
+    {
+      "id": "inspect-not-report",
+      "prompt": "Show the current report status read-only; do not materialize a new report.",
+      "expected_skill": "runsteward-inspect-runs",
+      "reject": [
+        "runsteward-report-run"
+      ]
+    }
+  ],
+  "collision_cases": [
+    {
+      "id": "queue-v-reorder",
+      "prompt": "Move the existing queued task to position one; do not add a task.",
+      "expected_skill": "runsteward-reorder-queue",
+      "competing_skill": "runsteward-queue-task",
+      "decisive_signal": "existing queued task"
+    },
+    {
+      "id": "dispatch-v-stop",
+      "prompt": "Pause future queue dispatch while keeping the current run active.",
+      "expected_skill": "runsteward-set-dispatch-state",
+      "competing_skill": "runsteward-stop-run",
+      "decisive_signal": "future queue dispatch"
+    },
+    {
+      "id": "cancel-v-stop",
+      "prompt": "Cancel run rw-run-2 terminally with evidence retained.",
+      "expected_skill": "runsteward-cancel-run",
+      "competing_skill": "runsteward-stop-run",
+      "decisive_signal": "terminally"
+    },
+    {
+      "id": "adopt-v-resume",
+      "prompt": "Resume existing RunSteward run rw-run-2 from its complete checkpoint.",
+      "expected_skill": "runsteward-resume-run",
+      "competing_skill": "runsteward-adopt-session",
+      "decisive_signal": "existing RunSteward run"
+    },
+    {
+      "id": "supervise-v-inspect",
+      "prompt": "Only list current runs and make no changes.",
+      "expected_skill": "runsteward-inspect-runs",
+      "competing_skill": "runsteward-supervise-run",
+      "decisive_signal": "make no changes"
+    },
+    {
+      "id": "approve-v-supervise",
+      "prompt": "Record the exact approval token but do not execute the action.",
+      "expected_skill": "runsteward-approve-action",
+      "competing_skill": "runsteward-supervise-run",
+      "decisive_signal": "do not execute"
+    },
+    {
+      "id": "claude-v-codex-sensor",
+      "prompt": "Sense Claude percentage windows, not Codex token counts.",
+      "expected_skill": "runsteward-sense-claude-limits",
+      "competing_skill": "runsteward-sense-codex-usage",
+      "decisive_signal": "Claude percentage windows"
+    },
+    {
+      "id": "codex-v-claude-sensor",
+      "prompt": "Sense Codex token counts, not Claude percentage windows.",
+      "expected_skill": "runsteward-sense-codex-usage",
+      "competing_skill": "runsteward-sense-claude-limits",
+      "decisive_signal": "Codex token counts"
+    },
+    {
+      "id": "checkpoint-v-stop",
+      "prompt": "Persist resumable state without closing the attempt.",
+      "expected_skill": "runsteward-checkpoint-run",
+      "competing_skill": "runsteward-stop-run",
+      "decisive_signal": "without closing"
+    },
+    {
+      "id": "wrap-v-checkpoint",
+      "prompt": "Coordinate checkpoint, report, and stop as one explicit wrap.",
+      "expected_skill": "runsteward-wrap-run",
+      "competing_skill": "runsteward-checkpoint-run",
+      "decisive_signal": "checkpoint, report, and stop"
+    },
+    {
+      "id": "stop-v-cancel",
+      "prompt": "Close this attempt as resumable stopped, not cancelled.",
+      "expected_skill": "runsteward-stop-run",
+      "competing_skill": "runsteward-cancel-run",
+      "decisive_signal": "resumable stopped"
+    },
+    {
+      "id": "resume-v-adopt",
+      "prompt": "Adopt this current non-RunSteward live session for later continuation.",
+      "expected_skill": "runsteward-adopt-session",
+      "competing_skill": "runsteward-resume-run",
+      "decisive_signal": "current non-RunSteward live session"
+    },
+    {
+      "id": "report-v-inspect",
+      "prompt": "Materialize a new bounded final report with RUNSTEWARD_FINAL_STATUS.",
+      "expected_skill": "runsteward-report-run",
+      "competing_skill": "runsteward-inspect-runs",
+      "decisive_signal": "Materialize a new"
+    },
+    {
+      "id": "readiness-v-supervise",
+      "prompt": "Diagnose prerequisites only; do not start or supervise a run.",
+      "expected_skill": "runsteward-check-readiness",
+      "competing_skill": "runsteward-supervise-run",
+      "decisive_signal": "Diagnose prerequisites only"
+    },
+    {
+      "id": "inspect-v-sensor",
+      "prompt": "Show all existing run evidence, including already-recorded metrics, without sensing anew.",
+      "expected_skill": "runsteward-inspect-runs",
+      "competing_skill": "runsteward-sense-codex-usage",
+      "decisive_signal": "without sensing anew"
+    },
+    {
+      "id": "report-v-wrap",
+      "prompt": "Write the attempt report only; do not checkpoint or stop.",
+      "expected_skill": "runsteward-report-run",
+      "competing_skill": "runsteward-wrap-run",
+      "decisive_signal": "report only"
+    }
+  ],
+  "legacy_skill_alias_cases": [
+    {
+      "legacy_id": "carry-queue",
+      "successor": "runsteward-queue-task",
+      "requires_explicit_invocation": true,
+      "natural_language_eligible": false,
+      "coeligible_with_successor": false
+    },
+    {
+      "legacy_id": "continue-after-reset",
+      "successor": "runsteward-adopt-session",
+      "requires_explicit_invocation": true,
+      "natural_language_eligible": false,
+      "coeligible_with_successor": false
+    },
+    {
+      "legacy_id": "wrapping-up",
+      "successor": "runsteward-wrap-run",
+      "requires_explicit_invocation": true,
+      "natural_language_eligible": false,
+      "coeligible_with_successor": false
+    },
+    {
+      "legacy_id": "landing-carry-work",
+      "successor": [
+        "runsteward-inspect-runs",
+        "runsteward-approve-action"
+      ],
+      "requires_explicit_invocation": true,
+      "natural_language_eligible": false,
+      "coeligible_with_successor": false
+    },
+    {
+      "legacy_id": "codex-nightwatch",
+      "successor": [
+        "runsteward-supervise-run",
+        "runsteward-sense-codex-usage",
+        "runsteward-inspect-runs",
+        "runsteward-checkpoint-run",
+        "runsteward-stop-run",
+        "runsteward-resume-run",
+        "runsteward-report-run",
+        "runsteward-check-readiness"
+      ],
+      "requires_explicit_invocation": true,
+      "natural_language_eligible": false,
+      "coeligible_with_successor": false
+    },
+    {
+      "legacy_id": "[limit-wrapup] WRAPUP",
+      "successor": "runsteward-wrap-run",
+      "requires_explicit_invocation": true,
+      "natural_language_eligible": false,
+      "coeligible_with_successor": false
+    }
+  ],
+  "fail_closed_cases": [
+    {
+      "prompt": "Hard-delete this queue item and erase its evidence.",
+      "expected_skill": null,
+      "expected_exclusion": "runsteward.legacy-hard-queue-deletion"
+    },
+    {
+      "prompt": "Delete stale worktrees, queue archives, and retained evidence.",
+      "expected_skill": null,
+      "expected_exclusion": "runsteward.destructive-cleanup"
+    },
+    {
+      "prompt": "During wrap, automatically git add and commit everything.",
+      "expected_skill": null,
+      "expected_exclusion": "runsteward.automatic-git-add-or-commit"
+    },
+    {
+      "prompt": "Merge the branch and delete it as part of RunSteward landing.",
+      "expected_skill": null,
+      "expected_exclusion": "runsteward.landing-merge-or-branch-deletion"
+    },
+    {
+      "prompt": "Install RunSteward editor tasks into my live VS Code configuration.",
+      "expected_skill": null,
+      "expected_exclusion": "runsteward.live-editor-installation-or-configuration"
+    },
+    {
+      "prompt": "Create or remove a Windows wake task now.",
+      "expected_skill": null,
+      "expected_exclusion": "runsteward.live-wake-scheduler-mutation"
+    },
+    {
+      "prompt": "Refresh OAuth and execute the provider.",
+      "expected_skill": null,
+      "expected_exclusion": "runsteward.provider-auth-network-or-execution"
+    },
+    {
+      "prompt": "Edit Claude Carry internals to rename its commands.",
+      "expected_skill": null,
+      "expected_exclusion": "runsteward.imported-package-mutation"
+    },
+    {
+      "prompt": "Push, tag, release, publish, or change visibility.",
+      "expected_skill": null,
+      "expected_exclusion": "runsteward.remote-publication-or-public-exposure"
+    }
+  ],
+  "runtime_parity_cases": [
+    {
+      "id": "parallel-independent-leases",
+      "area": "concurrency",
+      "source_test": "packages/runsteward-core/test/scheduler.test.mjs",
+      "invariant": "distinct tasks allocate unique run, branch, worktree, state, evidence, and lease identities"
+    },
+    {
+      "id": "scheduler-lost-update",
+      "area": "concurrency",
+      "source_test": "packages/runsteward-core/test/scheduler.test.mjs",
+      "invariant": "coordination lock and prior digest prevent concurrent lost updates"
+    },
+    {
+      "id": "pre-rename-write-failure",
+      "area": "failure",
+      "source_test": "packages/runsteward-core/test/atomic-write.test.mjs",
+      "invariant": "old complete state survives and failed temporary state is removed"
+    },
+    {
+      "id": "child-blocked-independent",
+      "area": "failure",
+      "source_test": "packages/runsteward-core/test/child-join.test.mjs",
+      "invariant": "blocked child cannot satisfy wait or join and cannot claim parent completion"
+    },
+    {
+      "id": "checkpoint-resume-verified",
+      "area": "checkpoint-resume",
+      "source_test": "packages/runsteward-core/test/invariants.test.mjs",
+      "invariant": "verified plus digest requires released predecessor and distinct active successor lease"
+    },
+    {
+      "id": "checkpoint-resume-not-required",
+      "area": "checkpoint-resume",
+      "source_test": "packages/runsteward-adapter-claude-code/test/adapter.test.mjs",
+      "invariant": "not-required plus null is the only non-verified resumable provider binding"
+    },
+    {
+      "id": "budget-metrics-nonconvertible",
+      "area": "budget-metric",
+      "source_test": "packages/runsteward-core/test/provider-evidence.test.mjs",
+      "invariant": "Claude percentages, burn rates, and Codex tokens preserve typed units and are never converted"
+    },
+    {
+      "id": "unknown-budget-nonauthorizing",
+      "area": "budget-metric",
+      "source_test": "packages/runsteward-core/test/provider-evidence.test.mjs",
+      "invariant": "unknown evidence carries no numeric metric and authorizes no wrap or resume"
+    },
+    {
+      "id": "bounded-redacted-evidence",
+      "area": "raw-evidence",
+      "source_test": "packages/runsteward-core/test/provider-evidence.test.mjs",
+      "invariant": "raw evidence is retained only behind bounded redacted references"
+    },
+    {
+      "id": "cancel-retains-evidence",
+      "area": "failure",
+      "source_test": "packages/runsteward-core/test/invariants.test.mjs",
+      "invariant": "cancelled is terminal with final proof and never hard deletion"
+    }
+  ]
+}

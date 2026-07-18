@@ -1,0 +1,62 @@
+{
+  "schema_version": "runsteward.run/v1",
+  "run_id": "run:atomic-gated-01",
+  "task_id": "task:atomic-gated-01",
+  "created_at": "2026-07-14T00:01:00Z",
+  "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+  "repository": {
+    "repository_id": "runsteward",
+    "canonical_root": "C:\\repos\\runsteward",
+    "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+    "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+    "dirty_state_policy": "clean-required"
+  },
+  "lifecycle_policy": {
+    "autonomy_mode": "standing-local",
+    "approval_mode": "exact-gates",
+    "commit_policy": "standing-isolated",
+    "push_policy": "forbidden",
+    "maximum_runtime_seconds": 36000,
+    "inactivity_timeout_seconds": 3600,
+    "budget_policy_ref": null,
+    "resume_after_stop_policy": "verified-checkpoint-only"
+  },
+  "status": "needs_approval",
+  "lease_ref": null,
+  "state_dir": {
+    "path": "C:\\runsteward\\state\\run-atomic-01",
+    "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "evidence_dir": {
+    "path": "C:\\runsteward\\evidence\\run-atomic-01",
+    "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/scenarios/capability-plan.atomic-gated-01.atomic.json",
+    "digest": "sha256:95f31288ebbe94603b265d5296b7b8d70f41888ba9e76163f2badd5700f68c36"
+  },
+  "latest_checkpoint_ref": {
+    "ref": "contracts/fixtures/scenarios/checkpoint.atomic-gated-01.claude-not-required.json",
+    "digest": "sha256:2dbe2ae6624e3e37e1072ff6a062b6d75a3a23128465e9d6c204b8ef919ecb6a"
+  },
+  "sensor_bindings": [],
+  "owner_gates": [
+    {
+      "gate_id": "gate:resume-local",
+      "owner": "owner:local",
+      "state": "open",
+      "protected_action": "Authorize resume under the new local lease epoch.",
+      "evidence_refs": []
+    }
+  ],
+  "stopped_report_ref": {
+    "ref": "evidence/run-atomic-gated-01/reports/stopped.json",
+    "digest": "sha256:13cf0d205beb6cf10a9854878cf72c3d143f8c9bd6bf5e1f5bf6db1cff2b67ab"
+  },
+  "final_status_report_ref": null,
+  "last_event_id": "event:atomic-gated-01:11",
+  "last_event_sequence": 11,
+  "last_event_digest": "sha256:a3451a909747e2c79aa91ffa172734021045df0adb49cb50d002eb2c30e8b8eb",
+  "run_digest": "sha256:6e9a65c6b351f848cba848b8de454318a389e5f860dc5b1770e2ae197ab602af"
+}

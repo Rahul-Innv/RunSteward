@@ -1,0 +1,51 @@
+{
+  "schema_version": "runsteward.run/v1",
+  "run_id": "run:bundle-running-01",
+  "task_id": "task:bundle-running-01",
+  "created_at": "2026-07-14T00:01:00Z",
+  "objective_digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "objective_summary": "Validate the provider-neutral RunSteward contract core without outward action.",
+  "repository": {
+    "repository_id": "runsteward",
+    "canonical_root": "C:\\repos\\runsteward",
+    "source_head": "a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0",
+    "source_tree": "b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+    "dirty_state_policy": "clean-required"
+  },
+  "lifecycle_policy": {
+    "autonomy_mode": "standing-local",
+    "approval_mode": "exact-gates",
+    "commit_policy": "standing-isolated",
+    "push_policy": "forbidden",
+    "maximum_runtime_seconds": 36000,
+    "inactivity_timeout_seconds": 3600,
+    "budget_policy_ref": null,
+    "resume_after_stop_policy": "verified-checkpoint-only"
+  },
+  "status": "running",
+  "lease_ref": {
+    "ref": "contracts/fixtures/scenarios/lease.bundle-running-01.epoch1.active.json",
+    "digest": "sha256:8b0f85d42ed72ab786290b0af660d9e5d0ca331ff947617d37d2344370f6cb04"
+  },
+  "state_dir": {
+    "path": "C:\\runsteward\\state\\run-atomic-01",
+    "collision_key": "fs:win32:1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "evidence_dir": {
+    "path": "C:\\runsteward\\evidence\\run-atomic-01",
+    "collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/scenarios/capability-plan.bundle-running-01.bundle.json",
+    "digest": "sha256:e62ebeb83eeb43e6eb51ba877c3a84e732d67c262a70758b6ba3fc38c5167dec"
+  },
+  "latest_checkpoint_ref": null,
+  "sensor_bindings": [],
+  "owner_gates": [],
+  "stopped_report_ref": null,
+  "final_status_report_ref": null,
+  "last_event_id": "event:bundle-running-01:5",
+  "last_event_sequence": 5,
+  "last_event_digest": "sha256:02d3e7e55a45aa355f08d16c3ac92730dddb916beb768378b46b93e9cb9661d7",
+  "run_digest": "sha256:6851067c13fe45ff6a39825c7a9031bdf05128e3673292b9911ce43e4d52a0cf"
+}

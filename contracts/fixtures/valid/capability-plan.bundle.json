@@ -1,0 +1,61 @@
+{
+  "schema_version": "runsteward.capability-plan/v1",
+  "capability_plan_id": "plan:bundle-01",
+  "run_id": "run:bundle-01",
+  "bound_at": "2026-07-14T00:02:00Z",
+  "choicegate_receipt": {
+    "schema_id": "choicegate.decision-receipt/v1",
+    "receipt_schema_sha256": "3d32d4bac2cb9ff78d0249741d74e8572326894435e3bab10bf0f2f7ca7c949d",
+    "receipt_version": "choicegate.decision-receipt/v1",
+    "immutable_ref": "contracts/fixtures/choicegate/cg-bundle-01.receipt.json",
+    "native_digest_procedure": "choicegate-native-sorted-compact-json-sha256-v1",
+    "receipt_sha256": "c22dc3d2226789432841239c5978f1e88c6d0924cd8fb0f931d0858ae119efbe",
+    "request_id": "cg3:cg-bundle-01",
+    "request_sha256": "35025f6ddce9073d189b8195927cc9ab70e958cbf158cfb6ee508fc804530cc5",
+    "task_class": "bounded-local-repo-change",
+    "inventory_fingerprint": "e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0",
+    "accepted_lifecycle_authority_commit": "d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0",
+    "choicegate_commit": "c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0",
+    "qualification_ref": {
+      "ref": "contracts/fixtures/choicegate/qualification.json",
+      "digest": "sha256:b4b4de68b2822695233d57f5475939a0a2bed054b0ae24e970ed36e3c4b77082"
+    }
+  },
+  "selected_route": {
+    "route_type": "bundle",
+    "route_id": "repo-change-safe",
+    "version": "0.1.0-fixture",
+    "owner": "lifecycle-authority",
+    "member_ids": [
+      "repo-orientation",
+      "bounded-repair",
+      "output-evidence"
+    ],
+    "executable": true,
+    "original_selection_ref": null
+  },
+  "frozen_preconditions": [
+    {
+      "precondition_id": "allowed_test_commands",
+      "value_digest": "sha256:8c5aaab6e1efdec7f7f9f65cc0de77461c36a46e6b7c9ee7a35299dd6e8449ee"
+    },
+    {
+      "precondition_id": "bounded_paths",
+      "value_digest": "sha256:8c5aaab6e1efdec7f7f9f65cc0de77461c36a46e6b7c9ee7a35299dd6e8449ee"
+    },
+    {
+      "precondition_id": "max_attempts",
+      "value_digest": "sha256:d428e15b36ff064e22b6f8db60bd7a59bcfc07a04ccd0f15d9a96dc060c72e3c"
+    }
+  ],
+  "authorization_state": "not-required",
+  "owner_gates": [],
+  "fallback": {
+    "route_type": "atomic",
+    "route_id": "repo-orientation",
+    "reason": "registered-fallback-missing-candidate-evidence",
+    "eligible": false
+  },
+  "scope_fingerprint": "sha256:2e249230d568d65befa0cf09b180e41f0bc4f8774e4c1c1332b1773b1fc65db8",
+  "plan_digest": "sha256:87e957b57fee31e14e406283525236d9a84e313fa3bc0923207436ce4828d4f6"
+}

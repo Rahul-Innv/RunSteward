@@ -1,0 +1,16 @@
+# GitLab CI — run the zero-dependency test suite across supported Node versions.
+# Mirrors what the README documents: `node --test test/*.test.js` + a config-schema check.
+
+stages:
+  - test
+
+test:
+  stage: test
+  image: node:${NODE_VERSION}
+  parallel:
+    matrix:
+      - NODE_VERSION: ["18", "20", "22"]
+  script:
+    # Zero runtime dependencies — nothing to install.
+    - node --test test/*.test.js
+    - node bin/validate-config.js config.example.json

@@ -1,0 +1,54 @@
+{
+  "schema_version": "runsteward.choicegate-fixture-provenance/v1",
+  "authority": {
+    "choicegate_commit": "c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0",
+    "choicegate_tree": "008206b7302dbb919777d380145d7af97e3bf0b1",
+    "lifecycle_authority_commit": "d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0",
+    "lifecycle_authority_tree": "ad657ab0bd514ef4e04a6df231f3d71ee6212780",
+    "lifecycle_inventory_fingerprint": "e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0e0",
+    "lifecycle_authority_manifest_schema_version": 2,
+    "lifecycle_authority_state_model": "orthogonal-seven-axis-v1",
+    "choicegate_receipt_schema_id": "choicegate.decision-receipt/v1",
+    "choicegate_receipt_schema_ref": "contracts/vendor/choicegate/decision-receipt.schema.json",
+    "choicegate_receipt_schema_sha256": "3d32d4bac2cb9ff78d0249741d74e8572326894435e3bab10bf0f2f7ca7c949d",
+    "choicegate_receipt_schema_source_raw_sha256": "c21949ee1a0fcf80d550d22b541123bbd31c5c424c92f819ee9cfa409827b69f"
+  },
+  "native_digest_procedure": {
+    "consumer_label": "choicegate-native-sorted-compact-json-sha256-v1",
+    "authoritative_name_claimed": false,
+    "steps": [
+      "Remove only receipt_sha256 from the complete receipt object.",
+      "Serialize with Python json.dumps ensure_ascii false, sort_keys true, separators comma-colon, allow_nan false.",
+      "Encode the result as UTF-8 without a BOM.",
+      "Return the lowercase hexadecimal SHA-256 digest without a sha256 prefix."
+    ],
+    "not_rfc8785": true
+  },
+  "generator": {
+    "module": "runsteward-local-contract-fixture",
+    "function": "deterministic-materialization",
+    "profile_source": "contracts/fixtures/choicegate/cg-initial-gated-01.request.json",
+    "inventory_source": "accepted the external lifecycle authority CG1 binding",
+    "network_required": false
+  },
+  "fixtures": [
+    {
+      "case_id": "CG-INITIAL-GATED-01",
+      "path": "contracts/fixtures/choicegate/cg-initial-gated-01.receipt.json",
+      "fixture_class": "deterministic-runsteward-contract-fixture",
+      "production_decision": false,
+      "request_ref": "contracts/fixtures/choicegate/cg-initial-gated-01.request.json",
+      "request_sha256": "f89203d699af3773d0d9c7292f18fa13a428488376e50b99f1b47fc836a82132",
+      "receipt_sha256": "6ab72c077b77cfb267f2d88e007bc2bd958da7d98bda4378e1a00bb07d948b84",
+      "raw_bytes_sha256": "7c0a7f47da33e9d737074d32a288add21022800ecef1609e51210fd607f5003f",
+      "normalized_utf8_lf_sha256": "7c0a7f47da33e9d737074d32a288add21022800ecef1609e51210fd607f5003f"
+    }
+  ],
+  "local_contract_fixture_policy": {
+    "fixture_class": "deterministic-runsteward-contract-fixture",
+    "production_decision": false,
+    "selection_authority_claimed": false,
+    "request_digest_procedure": "sorted-compact-json-sha256-v1",
+    "purpose": "Exercise receipt qualification and owner-gate binding without changing or reranking ChoiceGate."
+  }
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Supervise Run"
+  short_description: "Advance one RunSteward plan through bounded supervision..."
+  default_prompt: "Use $runsteward-supervise-run to advance one accepted RunSteward plan through bounded supervision while preserving gates, leases, and child dependencies."
+policy:
+  allow_implicit_invocation: false

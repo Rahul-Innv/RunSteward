@@ -1,0 +1,4 @@
+{"type":"thread.started","thread_id":"thread_missing_usage_fixture"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"done"}}
+{"type":"turn.completed"}

@@ -1,0 +1,36 @@
+# Generated package and test output
+dist/
+build/
+coverage/
+*.zip
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+
+# Node caches
+node_modules/
+.npm/
+
+# Credentials and machine-local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+*.egg-info/
+__pycache__/
+dist/

@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "runsteward"
+version = "0.1.0"
+description = "Deterministic offline contract verification for the RunSteward execution lifecycle"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Rahul Krishna" }]
+keywords = [
+  "agent-lifecycle",
+  "checkpoint",
+  "resume",
+  "supervision",
+  "worktrees",
+  "contracts",
+  "canonical-json",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Quality Assurance",
+  "Topic :: Utilities",
+]
+dependencies = [
+  "jsonschema>=4.21",
+  "referencing>=0.35",
+]
+
+[project.scripts]
+runsteward-verify-contracts = "runsteward.contract_compat:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

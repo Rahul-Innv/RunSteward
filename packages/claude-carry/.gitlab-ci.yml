@@ -1,0 +1,24 @@
+# CI for Claude Carry.
+#
+# GitLab SaaS shared runners are Linux, so this job runs on Linux `node:20` — the same
+# major Node version the project targets. The full `npm test` suite passes on Linux:
+# every test drives the fake-Claude stub (via the CARRY_CLAUDE env var) and the
+# Windows-only wake / keep-awake helpers are gated behind `process.platform === 'win32'`,
+# so they no-op here. This verifies the cross-platform logic; the Windows-only scheduling
+# paths are still exercised by running `npm test` locally on Windows (the dev/runtime OS).
+#
+# The `node:20` image ships git (the in-folder / parallel / adopt suites spawn real git in
+# temp repos) and there are no npm dependencies to install.
+
+stages:
+  - test
+
+test:
+  stage: test
+  image: node:20
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main"
+  script:
+    - node --version
+    - npm test

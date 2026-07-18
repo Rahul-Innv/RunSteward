@@ -1,0 +1,317 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://runsteward.local/contracts/runsteward/v1/state-event.schema.json",
+  "title": "RunSteward lifecycle state event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_id",
+    "run_id",
+    "sequence",
+    "occurred_at",
+    "event_type",
+    "actor",
+    "from_state",
+    "to_state",
+    "reason_code",
+    "reason_summary",
+    "previous_event_digest",
+    "evidence_refs",
+    "projection",
+    "event_data",
+    "event_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": "runsteward.state-event/v1" },
+    "event_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "run_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "sequence": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "occurred_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "event_type": {
+      "enum": [
+        "run.created",
+        "capability-plan.bound",
+        "run.queued",
+        "lease.acquired",
+        "run.started",
+        "run.resumed",
+        "run.waiting",
+        "run.approval_required",
+        "run.checkpointed",
+        "checkpoint.finalized",
+        "run.stop_requested",
+        "run.stopped",
+        "run.completed",
+        "run.failed",
+        "run.cancelled",
+        "report.finalized",
+        "lease.released"
+      ]
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "actor_id"],
+      "properties": {
+        "kind": { "enum": ["runsteward-core", "provider-adapter", "owner", "test-harness"] },
+        "actor_id": { "$ref": "common.schema.json#/$defs/stableId" }
+      }
+    },
+    "from_state": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/lifecycleState" },
+        { "type": "null" }
+      ]
+    },
+    "to_state": { "$ref": "common.schema.json#/$defs/lifecycleState" },
+    "reason_code": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,63}$" },
+    "reason_summary": { "type": "string", "minLength": 1, "maxLength": 512 },
+    "previous_event_digest": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/runstewardDigest" },
+        { "type": "null" }
+      ]
+    },
+    "evidence_refs": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/evidenceRef" }, "maxItems": 64 },
+    "projection": { "$ref": "#/$defs/postEventProjection" },
+    "event_data": {
+      "oneOf": [
+        { "$ref": "#/$defs/ordinaryEventData" },
+        { "$ref": "#/$defs/queueData" },
+        { "$ref": "#/$defs/waitingData" },
+        { "$ref": "#/$defs/capabilityPlanBoundData" },
+        { "$ref": "#/$defs/leaseAcquiredData" },
+        { "$ref": "#/$defs/resumeData" },
+        { "$ref": "#/$defs/approvalData" },
+        { "$ref": "#/$defs/checkpointFinalizedData" },
+        { "$ref": "#/$defs/reportFinalizedData" },
+        { "$ref": "#/$defs/leaseReleasedData" }
+      ]
+    },
+    "event_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "sequence": { "const": 1 } }, "required": ["sequence"] },
+      "then": {
+        "properties": {
+          "event_type": { "const": "run.created" },
+          "from_state": { "type": "null" },
+          "to_state": { "const": "planned" },
+          "previous_event_digest": { "type": "null" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "sequence": { "minimum": 2 } }, "required": ["sequence"] },
+      "then": {
+        "properties": {
+          "from_state": { "$ref": "common.schema.json#/$defs/lifecycleState" },
+          "previous_event_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "postEventProjection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_id",
+        "created_at",
+        "objective_digest",
+        "objective_summary",
+        "repository",
+        "lifecycle_policy",
+        "status",
+        "lease_ref",
+        "state_dir",
+        "evidence_dir",
+        "capability_plan_ref",
+        "latest_checkpoint_ref",
+        "sensor_bindings",
+        "owner_gates",
+        "stopped_report_ref",
+        "final_status_report_ref"
+      ],
+      "properties": {
+        "task_id": { "$ref": "common.schema.json#/$defs/stableId" },
+        "created_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+        "objective_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" },
+        "objective_summary": { "$ref": "common.schema.json#/$defs/boundedSummary" },
+        "repository": { "$ref": "common.schema.json#/$defs/repositoryBinding" },
+        "lifecycle_policy": { "$ref": "common.schema.json#/$defs/lifecyclePolicy" },
+        "status": { "$ref": "common.schema.json#/$defs/lifecycleState" },
+        "lease_ref": { "oneOf": [{ "$ref": "common.schema.json#/$defs/artifactRef" }, { "type": "null" }] },
+        "state_dir": { "$ref": "common.schema.json#/$defs/pathBinding" },
+        "evidence_dir": { "$ref": "common.schema.json#/$defs/pathBinding" },
+        "capability_plan_ref": { "oneOf": [{ "$ref": "common.schema.json#/$defs/artifactRef" }, { "type": "null" }] },
+        "latest_checkpoint_ref": { "oneOf": [{ "$ref": "common.schema.json#/$defs/artifactRef" }, { "type": "null" }] },
+        "sensor_bindings": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/sensorBinding" }, "maxItems": 16 },
+        "owner_gates": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/ownerGate" }, "maxItems": 64 },
+        "stopped_report_ref": { "oneOf": [{ "$ref": "common.schema.json#/$defs/artifactRef" }, { "type": "null" }] },
+        "final_status_report_ref": { "oneOf": [{ "$ref": "common.schema.json#/$defs/artifactRef" }, { "type": "null" }] }
+      }
+    },
+    "ordinaryEventData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "run.created",
+            "run.started",
+            "run.checkpointed",
+            "run.stop_requested",
+            "run.stopped",
+            "run.completed",
+            "run.failed",
+            "run.cancelled"
+          ]
+        }
+      }
+    },
+    "waitingData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "condition_id", "predicate_digest", "observation_state", "evidence_refs"],
+      "properties": {
+        "kind": { "const": "run.waiting" },
+        "condition_id": { "$ref": "common.schema.json#/$defs/stableId" },
+        "predicate_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" },
+        "observation_state": { "enum": ["pending", "satisfied", "failed"] },
+        "evidence_refs": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/evidenceRef" }, "maxItems": 16 }
+      }
+    },
+    "queueData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "queue_purpose", "resume_from_state", "previous_lease_ref"],
+      "properties": {
+        "kind": { "const": "run.queued" },
+        "queue_purpose": { "enum": ["initial", "resume"] },
+        "resume_from_state": { "oneOf": [{ "enum": ["waiting", "checkpointed", "stopped"] }, { "type": "null" }] },
+        "previous_lease_ref": { "oneOf": [{ "$ref": "common.schema.json#/$defs/artifactRef" }, { "type": "null" }] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "queue_purpose": { "const": "initial" } }, "required": ["queue_purpose"] },
+          "then": { "properties": { "resume_from_state": { "type": "null" }, "previous_lease_ref": { "type": "null" } } }
+        },
+        {
+          "if": { "properties": { "queue_purpose": { "const": "resume" } }, "required": ["queue_purpose"] },
+          "then": { "properties": { "resume_from_state": { "enum": ["waiting", "checkpointed", "stopped"] }, "previous_lease_ref": { "$ref": "common.schema.json#/$defs/artifactRef" } } }
+        }
+      ]
+    },
+    "capabilityPlanBoundData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "capability_plan_ref"],
+      "properties": {
+        "kind": { "const": "capability-plan.bound" },
+        "capability_plan_ref": { "$ref": "common.schema.json#/$defs/artifactRef" }
+      }
+    },
+    "leaseAcquiredData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "lease_ref", "lease_epoch", "lease_purpose", "previous_lease_ref"],
+      "properties": {
+        "kind": { "const": "lease.acquired" },
+        "lease_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+        "lease_epoch": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+        "lease_purpose": { "enum": ["initial", "resume"] },
+        "previous_lease_ref": { "oneOf": [{ "$ref": "common.schema.json#/$defs/artifactRef" }, { "type": "null" }] }
+      }
+    },
+    "resumeData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "checkpoint_ref",
+        "checkpoint_event_id",
+        "checkpoint_event_sequence",
+        "checkpoint_event_digest",
+        "new_lease_ref",
+        "prior_lease_ref",
+        "new_lease_id",
+        "new_lease_epoch",
+        "capability_plan_ref",
+        "repository_id",
+        "original_source_head",
+        "observed_head",
+        "branch_name",
+        "worktree_collision_key",
+        "state_collision_key",
+        "evidence_collision_key",
+        "adapter_id",
+        "identity_reference_digest"
+      ],
+      "properties": {
+        "kind": { "const": "run.resumed" },
+        "checkpoint_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+        "checkpoint_event_id": { "$ref": "common.schema.json#/$defs/stableId" },
+        "checkpoint_event_sequence": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+        "checkpoint_event_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" },
+        "new_lease_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+        "prior_lease_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+        "new_lease_id": { "$ref": "common.schema.json#/$defs/stableId" },
+        "new_lease_epoch": { "type": "integer", "minimum": 2, "maximum": 9007199254740991 },
+        "capability_plan_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+        "repository_id": { "$ref": "common.schema.json#/$defs/stableId" },
+        "original_source_head": { "$ref": "common.schema.json#/$defs/gitCommit" },
+        "observed_head": { "$ref": "common.schema.json#/$defs/gitCommit" },
+        "branch_name": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "worktree_collision_key": { "type": "string", "pattern": "^fs:[a-z0-9-]+:[0-9a-f]{64}$" },
+        "state_collision_key": { "type": "string", "pattern": "^fs:[a-z0-9-]+:[0-9a-f]{64}$" },
+        "evidence_collision_key": { "type": "string", "pattern": "^fs:[a-z0-9-]+:[0-9a-f]{64}$" },
+        "adapter_id": { "$ref": "common.schema.json#/$defs/stableId" },
+        "identity_reference_digest": { "oneOf": [{ "$ref": "common.schema.json#/$defs/runstewardDigest" }, { "type": "null" }] }
+      }
+    },
+    "approvalData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "owner_gate_ids", "capability_plan_ref"],
+      "properties": {
+        "kind": { "const": "run.approval_required" },
+        "owner_gate_ids": { "type": "array", "minItems": 1, "items": { "$ref": "common.schema.json#/$defs/stableId" }, "uniqueItems": true },
+        "capability_plan_ref": { "$ref": "common.schema.json#/$defs/artifactRef" }
+      }
+    },
+    "checkpointFinalizedData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "checkpoint_ref", "checkpoint_event_ref"],
+      "properties": {
+        "kind": { "const": "checkpoint.finalized" },
+        "checkpoint_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+        "checkpoint_event_ref": { "$ref": "common.schema.json#/$defs/artifactRef" }
+      }
+    },
+    "reportFinalizedData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "report_ref", "terminal_event_ref"],
+      "properties": {
+        "kind": { "const": "report.finalized" },
+        "report_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+        "terminal_event_ref": { "$ref": "common.schema.json#/$defs/artifactRef" }
+      }
+    },
+    "leaseReleasedData": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "active_lease_ref", "released_lease_ref"],
+      "properties": {
+        "kind": { "const": "lease.released" },
+        "active_lease_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+        "released_lease_ref": { "$ref": "common.schema.json#/$defs/artifactRef" }
+      }
+    }
+  }
+}

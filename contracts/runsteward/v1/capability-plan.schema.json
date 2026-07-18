@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://runsteward.local/contracts/runsteward/v1/capability-plan.schema.json",
+  "title": "RunSteward frozen ChoiceGate capability plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "capability_plan_id",
+    "run_id",
+    "bound_at",
+    "choicegate_receipt",
+    "selected_route",
+    "frozen_preconditions",
+    "authorization_state",
+    "owner_gates",
+    "fallback",
+    "scope_fingerprint",
+    "plan_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": "runsteward.capability-plan/v1" },
+    "capability_plan_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "run_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "bound_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "choicegate_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "receipt_schema_sha256",
+        "receipt_version",
+        "immutable_ref",
+        "native_digest_procedure",
+        "receipt_sha256",
+        "request_id",
+        "request_sha256",
+        "task_class",
+        "inventory_fingerprint",
+        "accepted_lifecycle_authority_commit",
+        "choicegate_commit",
+        "qualification_ref"
+      ],
+      "properties": {
+        "schema_id": { "const": "choicegate.decision-receipt/v1" },
+        "receipt_schema_sha256": { "const": "3d32d4bac2cb9ff78d0249741d74e8572326894435e3bab10bf0f2f7ca7c949d" },
+        "receipt_version": { "const": "choicegate.decision-receipt/v1" },
+        "immutable_ref": { "$ref": "common.schema.json#/$defs/relativeRef" },
+        "native_digest_procedure": { "const": "choicegate-native-sorted-compact-json-sha256-v1" },
+        "receipt_sha256": { "$ref": "common.schema.json#/$defs/bareSha256" },
+        "request_id": { "$ref": "common.schema.json#/$defs/choicegateStableId" },
+        "request_sha256": { "$ref": "common.schema.json#/$defs/bareSha256" },
+        "task_class": { "$ref": "common.schema.json#/$defs/choicegateStableId" },
+        "inventory_fingerprint": { "$ref": "common.schema.json#/$defs/bareSha256" },
+        "accepted_lifecycle_authority_commit": { "$ref": "common.schema.json#/$defs/gitCommit" },
+        "choicegate_commit": { "$ref": "common.schema.json#/$defs/gitCommit" },
+        "qualification_ref": { "$ref": "common.schema.json#/$defs/artifactRef" }
+      }
+    },
+    "selected_route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["route_type", "route_id", "version", "owner", "member_ids", "executable", "original_selection_ref"],
+      "properties": {
+        "route_type": { "enum": ["atomic", "bundle", "requires-setup-approval", "browser-manual", "no-safe-route", "handoff"] },
+        "route_id": { "$ref": "common.schema.json#/$defs/choicegateStableId" },
+        "version": {
+          "oneOf": [
+            { "type": "string", "minLength": 1, "maxLength": 128 },
+            { "type": "null" }
+          ]
+        },
+        "owner": {
+          "oneOf": [
+            { "$ref": "common.schema.json#/$defs/choicegateStableId" },
+            { "type": "null" }
+          ]
+        },
+        "member_ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/choicegateStableId" }, "uniqueItems": true, "maxItems": 12 },
+        "executable": { "type": "boolean" },
+        "original_selection_ref": {
+          "oneOf": [
+            { "$ref": "common.schema.json#/$defs/artifactRef" },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "frozen_preconditions": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["precondition_id", "value_digest"],
+        "properties": {
+          "precondition_id": { "$ref": "common.schema.json#/$defs/choicegateStableId" },
+          "value_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+        }
+      }
+    },
+    "authorization_state": { "enum": ["not-required", "verified", "requires-owner", "denied", "unknown"] },
+    "owner_gates": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/choicegateStableId" }, "uniqueItems": true, "maxItems": 64 },
+    "fallback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["route_type", "route_id", "reason", "eligible"],
+      "properties": {
+        "route_type": { "enum": ["atomic", "bundle", "browser-manual", "no-safe-route"] },
+        "route_id": { "$ref": "common.schema.json#/$defs/choicegateStableId" },
+        "reason": { "$ref": "common.schema.json#/$defs/choicegateStableId" },
+        "eligible": { "type": "boolean" }
+      }
+    },
+    "scope_fingerprint": { "$ref": "common.schema.json#/$defs/runstewardDigest" },
+    "plan_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "selected_route": {
+            "type": "object",
+            "properties": { "route_type": { "const": "bundle" } },
+            "required": ["route_type"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "selected_route": {
+            "type": "object",
+            "properties": { "member_ids": { "minItems": 1 } },
+            "required": ["member_ids"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "selected_route": {
+            "type": "object",
+            "properties": { "route_type": { "const": "atomic" } },
+            "required": ["route_type"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "selected_route": {
+            "type": "object",
+            "properties": { "member_ids": { "maxItems": 0 } },
+            "required": ["member_ids"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "selected_route": {
+            "type": "object",
+            "properties": { "route_type": { "not": { "const": "bundle" } } },
+            "required": ["route_type"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "selected_route": {
+            "type": "object",
+            "properties": { "member_ids": { "maxItems": 0 } },
+            "required": ["member_ids"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "selected_route": {
+            "type": "object",
+            "properties": { "route_type": { "const": "handoff" } },
+            "required": ["route_type"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "selected_route": {
+            "type": "object",
+            "properties": { "original_selection_ref": { "$ref": "common.schema.json#/$defs/artifactRef" } },
+            "required": ["original_selection_ref"]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Sense Claude Limits"
+  short_description: "Emit one typed Claude limit-evidence envelope with bounded re..."
+  default_prompt: "Use $runsteward-sense-claude-limits to emit one typed Claude limit-evidence envelope with bounded redacted references."
+policy:
+  allow_implicit_invocation: false

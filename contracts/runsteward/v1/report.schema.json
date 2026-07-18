@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://runsteward.local/contracts/runsteward/v1/report.schema.json",
+  "title": "RunSteward run report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "report_id",
+    "report_kind",
+    "run_id",
+    "created_at",
+    "status",
+    "terminal_event_ref",
+    "capability_plan_ref",
+    "lease_history_refs",
+    "checkpoint_refs",
+    "handoff_ref",
+    "outcome",
+    "blocker",
+    "budget_summary",
+    "validation_results",
+    "changed_paths_summary",
+    "failed_commands_summary",
+    "owner_gate_summary",
+    "evidence_index",
+    "redactions",
+    "evidence_dir_collision_key",
+    "report_ref",
+    "final_status_marker",
+    "report_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": "runsteward.report/v1" },
+    "report_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "report_kind": { "enum": ["interim", "final"] },
+    "run_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "created_at": { "$ref": "common.schema.json#/$defs/utcTimestamp" },
+    "status": { "$ref": "common.schema.json#/$defs/lifecycleState" },
+    "terminal_event_ref": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/artifactRef" },
+        { "type": "null" }
+      ]
+    },
+    "capability_plan_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+    "lease_history_refs": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/artifactRef" }, "maxItems": 256 },
+    "checkpoint_refs": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/artifactRef" }, "maxItems": 256 },
+    "handoff_ref": {
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/artifactRef" },
+        { "type": "null" }
+      ]
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "objective_satisfied"],
+      "properties": {
+        "summary": { "$ref": "common.schema.json#/$defs/boundedSummary" },
+        "objective_satisfied": { "type": "boolean" }
+      }
+    },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "reason", "safe_next_action"],
+      "properties": {
+        "type": { "enum": ["none", "approval", "dependency", "validation", "runtime", "unknown"] },
+        "reason": {
+          "oneOf": [
+            { "$ref": "common.schema.json#/$defs/boundedSummary" },
+            { "type": "null" }
+          ]
+        },
+        "safe_next_action": { "$ref": "common.schema.json#/$defs/boundedSummary" }
+      }
+    },
+    "budget_summary": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric", "value", "unit", "source_adapter", "confidence", "raw_evidence_ref"],
+        "properties": {
+          "metric": { "$ref": "common.schema.json#/$defs/stableId" },
+          "value": { "type": "string", "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$" },
+          "unit": { "$ref": "common.schema.json#/$defs/stableId" },
+          "source_adapter": { "$ref": "common.schema.json#/$defs/stableId" },
+          "confidence": { "enum": ["verified", "estimated", "unknown"] },
+          "raw_evidence_ref": { "$ref": "common.schema.json#/$defs/evidenceRef" }
+        }
+      }
+    },
+    "validation_results": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/validationResult" }, "maxItems": 128 },
+    "changed_paths_summary": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/changedPath" }, "maxItems": 512 },
+    "failed_commands_summary": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/failedCommandSummary" }, "maxItems": 64 },
+    "owner_gate_summary": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/ownerGate" }, "maxItems": 64 },
+    "evidence_index": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/evidenceRef" }, "maxItems": 512 },
+    "redactions": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/redaction" }, "maxItems": 128 },
+    "evidence_dir_collision_key": { "type": "string", "pattern": "^fs:[a-z0-9-]+:[0-9a-f]{64}$" },
+    "report_ref": { "$ref": "common.schema.json#/$defs/relativeRef" },
+    "final_status_marker": {
+      "oneOf": [
+        { "const": "RUNSTEWARD_FINAL_STATUS" },
+        { "type": "null" }
+      ]
+    },
+    "report_digest": { "$ref": "common.schema.json#/$defs/runstewardDigest" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "report_kind": { "const": "final" } }, "required": ["report_kind"] },
+      "then": {
+        "properties": {
+          "status": { "enum": ["stopped", "completed", "failed", "cancelled"] },
+          "terminal_event_ref": { "$ref": "common.schema.json#/$defs/artifactRef" },
+          "final_status_marker": { "const": "RUNSTEWARD_FINAL_STATUS" }
+        }
+      },
+      "else": { "properties": { "terminal_event_ref": { "type": "null" }, "final_status_marker": { "type": "null" } } }
+    },
+    {
+      "if": { "properties": { "status": { "const": "completed" } }, "required": ["status"] },
+      "then": { "properties": { "outcome": { "properties": { "objective_satisfied": { "const": true } }, "required": ["objective_satisfied"] } } }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["stopped", "failed", "cancelled"] } }, "required": ["status"] },
+      "then": { "properties": { "outcome": { "properties": { "objective_satisfied": { "const": false } }, "required": ["objective_satisfied"] } } }
+    }
+  ]
+}

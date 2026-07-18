@@ -1,0 +1,36 @@
+{
+  "schema_version": "runsteward.handoff/v1",
+  "handoff_id": "handoff:atomic-01:1",
+  "run_id": "run:atomic-01",
+  "created_at": "2026-07-14T00:11:00Z",
+  "checkpoint_ref": {
+    "ref": "contracts/fixtures/valid/checkpoint.complete.json",
+    "digest": "sha256:14de4a9c0c7bd6c6ec26f0d9439106945c02f3cfeb82ab2320d130b1a8aba4ad"
+  },
+  "status": "checkpointed",
+  "outcome_summary": "The contract checkpoint is complete and contains no provider credentials or raw transcripts.",
+  "completed_items": [
+    "Schemas and frozen authority bindings were validated locally."
+  ],
+  "remaining_items": [
+    "Run imported-package regressions."
+  ],
+  "blockers": [],
+  "decisions_required": [],
+  "approvals_required": [],
+  "validation_summary": [],
+  "changed_paths_summary": [],
+  "failed_commands_summary": [],
+  "safe_resume": {
+    "eligible": true,
+    "preconditions": [
+      "Use the same run ID and a new verified lease epoch."
+    ],
+    "adapter_id": "local-contract-harness",
+    "identity_reference_digest": null,
+    "invocation_template": "npm.cmd test --prefix packages/runsteward-core"
+  },
+  "redactions": [],
+  "raw_evidence_refs": [],
+  "handoff_digest": "sha256:27feb0f0fb9b8159fefbedab60fa531e3842adf6bf52e7f40fdf496cd288c7a0"
+}

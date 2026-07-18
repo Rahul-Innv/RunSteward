@@ -1,0 +1,28 @@
+# runtime state (queue, run logs, per-task logs) — never committed
+state/
+
+# logs
+*.log
+
+# node
+node_modules/
+
+# local-only overrides
+.claude/settings.local.json
+
+# OS noise
+Thumbs.db
+Desktop.ini
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+.env.local
+.env.backup
+*.pem
+*.key
+
+# local-only working dirs — kept in the folder, never committed
+sandbox/
+local-notes/

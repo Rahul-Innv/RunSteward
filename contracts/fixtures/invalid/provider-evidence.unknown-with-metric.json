@@ -1,0 +1,29 @@
+{
+  "schema_version": "runsteward.provider-evidence/v1",
+  "adapter_id": "runsteward.sensor.codex-usage",
+  "observed_at": "2026-07-15T12:00:00Z",
+  "source_status": "unknown",
+  "reason_code": "codex-usage-missing",
+  "metrics": [
+    {
+      "metric": "runsteward.codex.input-tokens",
+      "value": "0",
+      "unit": "tokens",
+      "source_adapter": "runsteward.sensor.codex-usage",
+      "confidence": "estimated",
+      "raw_evidence_ref": {
+        "ref": "evidence/raw/codex-events.redacted.jsonl",
+        "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "media_type": "application/x-ndjson"
+      }
+    }
+  ],
+  "raw_evidence_refs": [
+    {
+      "ref": "evidence/raw/codex-events.redacted.jsonl",
+      "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "media_type": "application/x-ndjson"
+    }
+  ],
+  "evidence_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+}

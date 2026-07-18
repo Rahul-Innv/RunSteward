@@ -1,0 +1,30 @@
+{
+  "name": "runsteward",
+  "version": "0.1.0",
+  "description": "Inactive candidate plugin for atomic RunSteward execution-lifecycle skills.",
+  "author": {
+    "name": "Rahul Krishna"
+  },
+  "license": "MIT",
+  "keywords": [
+    "agent-lifecycle",
+    "checkpoint",
+    "resume",
+    "supervision",
+    "worktrees"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "RunSteward",
+    "shortDescription": "Atomic execution-lifecycle skills for bounded runs.",
+    "longDescription": "RunSteward provides inactive candidate skills for queueing, supervision, typed evidence, checkpointing, stopping, resuming, reporting, and readiness. The external lifecycle authority governs capability state.",
+    "developerName": "Rahul Krishna",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Inspect an existing RunSteward run without changing it.",
+      "Create a complete checkpoint for an existing RunSteward run.",
+      "Check local RunSteward readiness without making changes."
+    ]
+  }
+}

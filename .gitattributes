@@ -1,0 +1,12 @@
+/.gitattributes text eol=lf
+/.codex-plugin/plugin.json text eol=lf
+/README.md text eol=lf
+/docs/architecture.md text eol=lf
+/evals/runsteward/** text eol=lf
+/packages/runsteward-cli/** text eol=lf
+/packages/runsteward-core/scripts/run-all-tests.mjs text eol=lf
+/packages/runsteward-core/src/adapter-manifest.mjs text eol=lf
+/skills/** text eol=lf
+/tests/contract-compat/adapter_fixture_manifest.json text eol=lf
+/tests/fixtures/git-status-porcelain-v1-z.json text eol=lf
+/tests/runsteward-atomic-family.test.mjs text eol=lf

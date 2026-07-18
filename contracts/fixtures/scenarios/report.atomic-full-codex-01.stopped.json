@@ -1,0 +1,52 @@
+{
+  "schema_version": "runsteward.report/v1",
+  "report_id": "report:atomic-full-codex-01:stopped",
+  "report_kind": "final",
+  "run_id": "run:atomic-full-codex-01",
+  "created_at": "2026-07-14T00:15:00Z",
+  "status": "stopped",
+  "terminal_event_ref": {
+    "ref": "evidence/events/event-atomic-full-codex-01-8.json",
+    "digest": "sha256:de0e76dfa0f2edf4f955167e01d445db719f5c1b0076551fcf9fc1e59f4c33ae"
+  },
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/scenarios/capability-plan.atomic-full-codex-01.atomic.json",
+    "digest": "sha256:f788dbecd9f0ca60ecdfe5f46028fcb72fd0e7774d404964819c8b61f988b854"
+  },
+  "lease_history_refs": [
+    {
+      "ref": "contracts/fixtures/scenarios/lease.atomic-full-codex-01.epoch1.released.json",
+      "digest": "sha256:035605464035a4633aa3eb851a2b569ea1f9303a5527663a4e57c9429c3fc88d"
+    }
+  ],
+  "checkpoint_refs": [
+    {
+      "ref": "contracts/fixtures/scenarios/checkpoint.atomic-full-codex-01.codex-verified.json",
+      "digest": "sha256:c47e826309f0e3d0df2dc3c3e8d0efbbdc631b6d7cbb5a82038976ccc30d377f"
+    }
+  ],
+  "handoff_ref": {
+    "ref": "contracts/fixtures/scenarios/handoff.atomic-full-codex-01.redacted.json",
+    "digest": "sha256:c8e5afdb39440ae0a64747243a770f02860244bae6e81d666ab76122ba004950"
+  },
+  "outcome": {
+    "summary": "The execution attempt stopped cleanly with a complete checkpoint; the objective is not claimed complete.",
+    "objective_satisfied": false
+  },
+  "blocker": {
+    "type": "none",
+    "reason": null,
+    "safe_next_action": "Resume only from the verified checkpoint under a new lease epoch."
+  },
+  "budget_summary": [],
+  "validation_results": [],
+  "changed_paths_summary": [],
+  "failed_commands_summary": [],
+  "owner_gate_summary": [],
+  "evidence_index": [],
+  "redactions": [],
+  "evidence_dir_collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222",
+  "report_ref": "evidence/run-atomic-full-codex-01/reports/stopped.json",
+  "final_status_marker": "RUNSTEWARD_FINAL_STATUS",
+  "report_digest": "sha256:bc107b566a50f64af5caf1b034bfc6252556839650493b177d8d90391b7c078c"
+}

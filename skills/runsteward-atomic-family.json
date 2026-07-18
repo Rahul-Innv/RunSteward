@@ -1,0 +1,789 @@
+{
+  "schema": "runsteward-atomic-family-candidate/v1",
+  "family": "runsteward",
+  "candidate_status": "inactive-precritic-candidate",
+  "lifecycle_authority": "external-lifecycle-authority",
+  "selection_authority": "ChoiceGate",
+  "lifecycle_statement": "The sixteen leaves and runsteward plugin/CLI identities are proposed and inactive. Legacy names remain explicit-only compatibility identities until a separately authorized the external lifecycle authority cutover.",
+  "source_authority": {
+    "base_commit": "97e6df4c198eae80e21eea8d4d7ebca6a08fc668",
+    "base_tree": "bca9f33ecfe6161d1365bc6b9e3aa3ec18133702",
+    "accepted_r2_receipt_sha256": "f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0",
+    "postacceptance_integrity_sha256": "f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1",
+    "source_bindings": "skills/runsteward-source-bindings.json"
+  },
+  "identity_surfaces": {
+    "plugin": {
+      "id": "runsteward",
+      "manifest": ".codex-plugin/plugin.json",
+      "skills_path": "./skills/",
+      "state": "candidate-inactive"
+    },
+    "cli": {
+      "id": "runsteward",
+      "package": "@runsteward/cli",
+      "path": "packages/runsteward-cli",
+      "state": "candidate-inactive-route-only-no-live-execution"
+    },
+    "packages": [
+      "@runsteward/core",
+      "@runsteward/cli",
+      "@runsteward/adapter-claude-code",
+      "@runsteward/adapter-codex",
+      "@runsteward/sensor-claude-limits",
+      "@runsteward/sensor-codex-usage"
+    ]
+  },
+  "public_skills": [
+    {
+      "id": "runsteward-queue-task",
+      "trigger_key": "queue-new-task",
+      "outcome": "Produce one validated queue-task request for a new task identity.",
+      "source_refs": [
+        "rw.carry-cli",
+        "rw.live-carry-queue"
+      ],
+      "dependencies": [],
+      "command_keys": [
+        "carry.add"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-reorder-queue",
+      "trigger_key": "reorder-pending-task",
+      "outcome": "Produce one validated reorder request for an existing pending task.",
+      "source_refs": [
+        "rw.carry-cli"
+      ],
+      "dependencies": [],
+      "command_keys": [
+        "carry.move"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-set-dispatch-state",
+      "trigger_key": "pause-unpause-dispatch",
+      "outcome": "Produce one validated dispatcher pause or unpause request.",
+      "source_refs": [
+        "rw.carry-cli"
+      ],
+      "dependencies": [],
+      "command_keys": [
+        "carry.pause",
+        "carry.unpause"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-cancel-run",
+      "trigger_key": "terminal-cancel-retain-evidence",
+      "outcome": "Produce one terminal cancelled transition with retained evidence for an identified run.",
+      "source_refs": [
+        "rw.carry-cli",
+        "rw.invariants"
+      ],
+      "dependencies": [
+        "runsteward-core-contract-validation",
+        "runsteward-core-event-fold"
+      ],
+      "command_keys": [
+        "carry.rm"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-adopt-session",
+      "trigger_key": "adopt-current-non-runsteward-session",
+      "outcome": "Produce one adoption record for the current live session that is not already a RunSteward run.",
+      "source_refs": [
+        "rw.carry-cli",
+        "rw.live-continue-reset"
+      ],
+      "dependencies": [],
+      "command_keys": [
+        "carry.adopt"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-supervise-run",
+      "trigger_key": "supervise-accepted-run",
+      "outcome": "Advance one accepted RunSteward plan through bounded supervision while preserving gates, leases, and child dependencies.",
+      "source_refs": [
+        "rw.carry-cli",
+        "rw.nightwatch",
+        "rw.scheduler",
+        "rw.child-join"
+      ],
+      "dependencies": [
+        "runsteward-core-allocation-reservation",
+        "runsteward-core-child-dependency-evaluation",
+        "runsteward-core-scheduler-cas"
+      ],
+      "command_keys": [
+        "carry.run",
+        "nightwatch.init",
+        "nightwatch.run",
+        "nightwatch.supervise"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-inspect-runs",
+      "trigger_key": "read-only-run-inspection",
+      "outcome": "Return one bounded read-only inspection of existing queue or run evidence.",
+      "source_refs": [
+        "rw.carry-cli",
+        "rw.nightwatch",
+        "rw.limit-status",
+        "rw.live-landing"
+      ],
+      "dependencies": [],
+      "command_keys": [
+        "carry.list",
+        "carry.ls",
+        "carry.status",
+        "carry.show",
+        "carry.parked",
+        "carry.plan",
+        "carry.logs",
+        "carry.guardrails",
+        "carry.budget",
+        "limit.status"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-approve-action",
+      "trigger_key": "bind-exact-approval",
+      "outcome": "Bind one exact approval to one pending RunSteward action and scope.",
+      "source_refs": [
+        "rw.carry-cli",
+        "rw.live-landing"
+      ],
+      "dependencies": [
+        "runsteward-core-contract-validation"
+      ],
+      "command_keys": [
+        "carry.approve"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-sense-claude-limits",
+      "trigger_key": "typed-claude-limit-evidence",
+      "outcome": "Emit one typed Claude limit-evidence envelope with bounded redacted references.",
+      "source_refs": [
+        "rw.limit-burnrate",
+        "rw.limit-oauth",
+        "rw.limit-statusline"
+      ],
+      "dependencies": [
+        "runsteward-core-contract-validation"
+      ],
+      "command_keys": [
+        "limit.burnrate",
+        "limit.refresh-oauth",
+        "limit.statusline"
+      ],
+      "command_dispositions": {
+        "limit.burnrate": "internal-component",
+        "limit.refresh-oauth": "internal-component",
+        "limit.statusline": "internal-component"
+      },
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-sense-codex-usage",
+      "trigger_key": "typed-codex-usage-evidence",
+      "outcome": "Emit one typed Codex usage-evidence envelope with bounded redacted references.",
+      "source_refs": [
+        "rw.nightwatch"
+      ],
+      "dependencies": [
+        "runsteward-core-contract-validation"
+      ],
+      "command_keys": [
+        "nightwatch.analyze",
+        "nightwatch.record"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-checkpoint-run",
+      "trigger_key": "complete-resumable-checkpoint",
+      "outcome": "Create one digest-bound complete checkpoint that preserves exact run, plan, repository, lease, and provider identity.",
+      "source_refs": [
+        "rw.nightwatch",
+        "rw.wrap-skill",
+        "rw.invariants"
+      ],
+      "dependencies": [
+        "runsteward-core-contract-validation",
+        "runsteward-core-atomic-write"
+      ],
+      "command_keys": [],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-wrap-run",
+      "trigger_key": "explicit-graceful-wrap-coordinator",
+      "outcome": "Produce one coordinator plan that delegates exactly checkpoint, report, and resumable stop outcomes.",
+      "source_refs": [
+        "rw.wrap-skill",
+        "rw.nightwatch"
+      ],
+      "dependencies": [
+        "runsteward-checkpoint-run",
+        "runsteward-report-run",
+        "runsteward-stop-run"
+      ],
+      "command_keys": [
+        "limit.wrapping-up"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-stop-run",
+      "trigger_key": "resumable-attempt-stop",
+      "outcome": "Produce one evidence-bound stopped transition that remains eligible only for a separately checked resume.",
+      "source_refs": [
+        "rw.carry-cli",
+        "rw.nightwatch",
+        "rw.invariants"
+      ],
+      "dependencies": [
+        "runsteward-core-contract-validation",
+        "runsteward-core-event-fold",
+        "runsteward-core-lease-release"
+      ],
+      "command_keys": [
+        "carry.stop",
+        "nightwatch.stop-decision"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-resume-run",
+      "trigger_key": "verified-checkpoint-resume",
+      "outcome": "Authorize one resumed attempt only after checkpoint, identity, predecessor release, and successor lease all validate.",
+      "source_refs": [
+        "rw.carry-cli",
+        "rw.nightwatch",
+        "rw.scheduler",
+        "rw.invariants"
+      ],
+      "dependencies": [
+        "runsteward-core-contract-validation",
+        "runsteward-core-successor-lease",
+        "runsteward-core-event-fold"
+      ],
+      "command_keys": [
+        "nightwatch.resume-command",
+        "nightwatch.resume-run"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-report-run",
+      "trigger_key": "bounded-attempt-final-report",
+      "outcome": "Produce one bounded report or handoff whose final form carries the literal RUNSTEWARD_FINAL_STATUS marker.",
+      "source_refs": [
+        "rw.carry-cli",
+        "rw.nightwatch",
+        "rw.invariants"
+      ],
+      "dependencies": [
+        "runsteward-core-contract-validation",
+        "runsteward-core-canonical-json"
+      ],
+      "command_keys": [
+        "carry.report",
+        "carry.handoff",
+        "nightwatch.report"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    },
+    {
+      "id": "runsteward-check-readiness",
+      "trigger_key": "read-only-readiness-diagnosis",
+      "outcome": "Return one read-only readiness verdict with exact missing, drifted, or blocked prerequisites.",
+      "source_refs": [
+        "rw.carry-cli",
+        "rw.nightwatch",
+        "rw.limit-validate"
+      ],
+      "dependencies": [
+        "runsteward-core-contract-validation"
+      ],
+      "command_keys": [
+        "carry.wake-test",
+        "carry.doctor",
+        "nightwatch.doctor",
+        "limit.validate-config"
+      ],
+      "trigger_state": "proposed-inactive-pending-lifecycle-authority-cutover"
+    }
+  ],
+  "internal_capabilities": [
+    {
+      "id": "runsteward-core-canonical-json",
+      "source_refs": [
+        "rw.canonical-json"
+      ],
+      "implementation_paths": [
+        "packages/runsteward-core/src/canonical-json.mjs"
+      ],
+      "command_keys": [],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-core-contract-validation",
+      "source_refs": [
+        "rw.contract-loader",
+        "rw.invariants"
+      ],
+      "implementation_paths": [
+        "packages/runsteward-core/src/contract-loader.mjs",
+        "packages/runsteward-core/src/invariants.mjs"
+      ],
+      "command_keys": [],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-core-adapter-manifest",
+      "source_refs": [
+        "rw.adapter-manifest"
+      ],
+      "implementation_paths": [
+        "packages/runsteward-core/src/adapter-manifest.mjs"
+      ],
+      "command_keys": [],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-core-event-fold",
+      "source_refs": [
+        "rw.event-fold"
+      ],
+      "implementation_paths": [
+        "packages/runsteward-core/src/event-fold.mjs"
+      ],
+      "command_keys": [],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-core-atomic-write",
+      "source_refs": [
+        "rw.atomic-write"
+      ],
+      "implementation_paths": [
+        "packages/runsteward-core/src/atomic-write.mjs"
+      ],
+      "command_keys": [],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-core-path-identity",
+      "source_refs": [
+        "rw.path-identity"
+      ],
+      "implementation_paths": [
+        "packages/runsteward-core/src/path-identity.mjs"
+      ],
+      "command_keys": [],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-core-allocation-reservation",
+      "source_refs": [
+        "rw.scheduler",
+        "rw.path-identity"
+      ],
+      "implementation_paths": [
+        "packages/runsteward-core/src/scheduler.mjs",
+        "packages/runsteward-core/src/path-identity.mjs"
+      ],
+      "command_keys": [],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-core-lease-release",
+      "source_refs": [
+        "rw.scheduler"
+      ],
+      "implementation_paths": [
+        "packages/runsteward-core/src/scheduler.mjs"
+      ],
+      "command_keys": [],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-core-successor-lease",
+      "source_refs": [
+        "rw.scheduler"
+      ],
+      "implementation_paths": [
+        "packages/runsteward-core/src/scheduler.mjs"
+      ],
+      "command_keys": [],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-core-scheduler-cas",
+      "source_refs": [
+        "rw.scheduler",
+        "rw.atomic-write"
+      ],
+      "implementation_paths": [
+        "packages/runsteward-core/src/scheduler.mjs",
+        "packages/runsteward-core/src/atomic-write.mjs"
+      ],
+      "command_keys": [],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-core-child-dependency-evaluation",
+      "source_refs": [
+        "rw.child-join",
+        "rw.invariants"
+      ],
+      "implementation_paths": [
+        "packages/runsteward-core/src/child-join.mjs",
+        "packages/runsteward-core/src/invariants.mjs"
+      ],
+      "command_keys": [],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-adapter-wake-scheduling",
+      "source_refs": [
+        "rw.carry-cli"
+      ],
+      "implementation_paths": [
+        "packages/claude-carry/lib/wake.mjs"
+      ],
+      "command_keys": [
+        "carry.unwake"
+      ],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-adapter-editor-installation",
+      "source_refs": [
+        "rw.carry-cli"
+      ],
+      "implementation_paths": [
+        "packages/claude-carry/lib/vscode.mjs"
+      ],
+      "command_keys": [
+        "carry.install-vscode"
+      ],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-adapter-decision-demo",
+      "source_refs": [
+        "rw.limit-demo"
+      ],
+      "implementation_paths": [
+        "packages/limit-aware-wrapup/bin/demo.js"
+      ],
+      "command_keys": [
+        "limit.demo"
+      ],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-adapter-claude-hook",
+      "source_refs": [
+        "rw.limit-check",
+        "rw.limit-notify"
+      ],
+      "implementation_paths": [
+        "packages/limit-aware-wrapup/trigger/check.js",
+        "packages/limit-aware-wrapup/trigger/notify.js"
+      ],
+      "command_keys": [
+        "limit.notify",
+        "limit.check"
+      ],
+      "public_skill": false
+    },
+    {
+      "id": "runsteward-adapter-claude-limit-policy",
+      "source_refs": [
+        "rw.limit-decide"
+      ],
+      "implementation_paths": [
+        "packages/limit-aware-wrapup/trigger/decide.js"
+      ],
+      "command_keys": [
+        "limit.decide"
+      ],
+      "public_skill": false
+    }
+  ],
+  "legacy_package_migrations": [
+    {
+      "legacy_id": "claude-carry",
+      "successor": "@runsteward/adapter-claude-code",
+      "source_bytes": "immutable"
+    },
+    {
+      "legacy_id": "codex-nightwatch",
+      "successor": "@runsteward/adapter-codex",
+      "source_bytes": "immutable"
+    },
+    {
+      "legacy_id": "limit-aware-wrapup",
+      "successor": "@runsteward/adapter-claude-code",
+      "source_bytes": "immutable"
+    }
+  ],
+  "legacy_plugin_aliases": [
+    {
+      "legacy_id": "codex-nightwatch",
+      "successor": "runsteward",
+      "eligibility": "explicit-only; pending separate live lifecycle approval",
+      "natural_language_eligible": false
+    }
+  ],
+  "legacy_cli_aliases": [
+    {
+      "legacy_id": "carry",
+      "successor": "runsteward",
+      "priority": "temporary compatibility",
+      "natural_language_eligible": false
+    },
+    {
+      "legacy_id": "nq",
+      "successor": "runsteward",
+      "priority": "lower-priority temporary compatibility",
+      "natural_language_eligible": false
+    },
+    {
+      "legacy_id": "limit-wrapup-status",
+      "successor": "runsteward",
+      "kind": "typed sensor and inspect adapter",
+      "natural_language_eligible": false
+    },
+    {
+      "legacy_id": "limit-wrapup-validate-config",
+      "successor": "runsteward",
+      "kind": "readiness adapter",
+      "natural_language_eligible": false
+    }
+  ],
+  "legacy_skill_aliases": [
+    {
+      "legacy_id": "carry-queue",
+      "successor": "runsteward-queue-task",
+      "natural_language_eligible": false
+    },
+    {
+      "legacy_id": "continue-after-reset",
+      "successor": "runsteward-adopt-session",
+      "natural_language_eligible": false
+    },
+    {
+      "legacy_id": "wrapping-up",
+      "successor": "runsteward-wrap-run",
+      "note": "legacy automatic Git add/commit does not migrate",
+      "natural_language_eligible": false
+    },
+    {
+      "legacy_id": "landing-carry-work",
+      "successor": [
+        "runsteward-inspect-runs",
+        "runsteward-approve-action"
+      ],
+      "ambiguity_policy": "explicit intent; merge and branch deletion use ReleaseBench or target-repository authority",
+      "natural_language_eligible": false
+    },
+    {
+      "legacy_id": "codex-nightwatch",
+      "successor": [
+        "runsteward-supervise-run",
+        "runsteward-sense-codex-usage",
+        "runsteward-inspect-runs",
+        "runsteward-checkpoint-run",
+        "runsteward-stop-run",
+        "runsteward-resume-run",
+        "runsteward-report-run",
+        "runsteward-check-readiness"
+      ],
+      "ambiguity_policy": "ChoiceGate selects one matching leaf; no silent default",
+      "natural_language_eligible": false
+    },
+    {
+      "legacy_id": "[limit-wrapup] WRAPUP",
+      "successor": "runsteward-wrap-run",
+      "kind": "exact directive compatibility trigger",
+      "natural_language_eligible": false
+    }
+  ],
+  "multi_owner_source_splits": [
+    {
+      "path": "packages/claude-carry/bin/carry.mjs",
+      "byte_owner": "@runsteward/adapter-claude-code",
+      "behavior_mapping": "command_map"
+    },
+    {
+      "path": "packages/codex-nightwatch/scripts/nightwatch.py",
+      "byte_owner": "@runsteward/adapter-codex",
+      "behavior_mapping": "command_map"
+    },
+    {
+      "path": "packages/codex-nightwatch/skills/codex-nightwatch/SKILL.md",
+      "byte_owner": "@runsteward/adapter-codex",
+      "behavior_owners": [
+        "runsteward-supervise-run",
+        "runsteward-sense-codex-usage",
+        "runsteward-inspect-runs",
+        "runsteward-checkpoint-run",
+        "runsteward-stop-run",
+        "runsteward-resume-run",
+        "runsteward-report-run",
+        "runsteward-check-readiness"
+      ]
+    },
+    {
+      "path": "snapshot-source/live-claude-skills/landing-carry-work/SKILL.md",
+      "byte_owner": "@runsteward/adapter-claude-code",
+      "behavior_owners": [
+        "runsteward-inspect-runs",
+        "runsteward-approve-action"
+      ],
+      "excluded_behaviors": [
+        "merge",
+        "branch deletion"
+      ]
+    },
+    {
+      "path": "packages/runsteward-adapter-claude-code/src/index.mjs",
+      "byte_owner": "@runsteward/adapter-claude-code",
+      "behavior_owners": [
+        "runsteward-sense-claude-limits",
+        "runsteward-checkpoint-run",
+        "runsteward-wrap-run",
+        "runsteward-resume-run",
+        "runsteward-report-run"
+      ]
+    },
+    {
+      "path": "packages/runsteward-adapter-codex/src/index.mjs",
+      "byte_owner": "@runsteward/adapter-codex",
+      "behavior_owners": [
+        "runsteward-sense-codex-usage",
+        "runsteward-checkpoint-run",
+        "runsteward-wrap-run",
+        "runsteward-stop-run",
+        "runsteward-resume-run",
+        "runsteward-report-run"
+      ]
+    }
+  ],
+  "closed_exclusions": [
+    {
+      "id": "runsteward.legacy-hard-queue-deletion",
+      "owner": "runsteward-cancel-run",
+      "mode": "legacy rm semantics are translated to terminal cancelled with retained evidence",
+      "state": "CLOSED_LEGACY_SEMANTICS_REPLACED"
+    },
+    {
+      "id": "runsteward.destructive-cleanup",
+      "owner": "future-owner-gated-runsteward-maintenance",
+      "mode": "worktree queue archive or evidence deletion and destructive cleanup",
+      "state": "CLOSED_WITHOUT_NEW_EXACT_APPROVAL"
+    },
+    {
+      "id": "runsteward.automatic-git-add-or-commit",
+      "owner": "runsteward-wrap-run",
+      "mode": "legacy wrapping-up automatic Git add or commit",
+      "state": "CLOSED_NOT_MIGRATED"
+    },
+    {
+      "id": "runsteward.landing-merge-or-branch-deletion",
+      "owner": "releasebench-or-target-repository-authority",
+      "mode": "local merge or branch deletion formerly bundled in landing-carry-work",
+      "state": "CLOSED_OUTSIDE_RUNSTEWARD_OWNERSHIP"
+    },
+    {
+      "id": "runsteward.live-editor-installation-or-configuration",
+      "owner": "runsteward-adapter-editor-installation",
+      "mode": "VS Code task installation or live editor configuration",
+      "state": "CLOSED_WITHOUT_NEW_EXACT_APPROVAL"
+    },
+    {
+      "id": "runsteward.live-wake-scheduler-mutation",
+      "owner": "runsteward-adapter-wake-scheduling",
+      "mode": "Windows wake task creation removal or live scheduler mutation",
+      "state": "CLOSED_WITHOUT_NEW_EXACT_APPROVAL"
+    },
+    {
+      "id": "runsteward.provider-auth-network-or-execution",
+      "owner": "provider-specific-runtime-authority",
+      "mode": "provider calls OAuth refresh authentication network access or live execution",
+      "state": "CLOSED_WITHOUT_NEW_EXACT_APPROVAL"
+    },
+    {
+      "id": "runsteward.imported-package-mutation",
+      "owner": "claude-carry-codex-nightwatch-limit-aware-product-owners",
+      "mode": "editing imported package prefix bytes or product-owned histories",
+      "state": "CLOSED_BY_RW3_POLICY"
+    },
+    {
+      "id": "runsteward.remote-publication-or-public-exposure",
+      "owner": "releasebench-and-owner-gated-product-authority",
+      "mode": "fetch pull push tags releases publication visibility or other external writes",
+      "state": "CLOSED_WITHOUT_NEW_EXACT_APPROVAL"
+    }
+  ],
+  "source_assignment_authority": {
+    "path": "RunSteward-V2-Source-Owner-Inventory-Rebaseline-2026-07-15-r2/runsteward-v2-source-owner-map.json",
+    "sha256": "f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2f2",
+    "count": 66,
+    "policy": "checksum-bound; not duplicated as a second authority"
+  },
+  "command_map_authority": {
+    "path": "RunSteward-V2-Source-Owner-Inventory-Rebaseline-2026-07-15-r2/runsteward-v2-command-owner-map.json",
+    "sha256": "f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3",
+    "count": 45,
+    "tuple_contract": "source_command_key<TAB>disposition<TAB>owner rows sorted by Unicode code-point ordinal, LF-joined, UTF-8 without BOM or final LF",
+    "tuple_sha256": "1ee379ac1718065364b4ffe25fa015b70e61670f8de993a1e2df844da3bd7b25"
+  },
+  "wrap_policy": {
+    "coordinator": "runsteward-wrap-run",
+    "delegates": [
+      "runsteward-checkpoint-run",
+      "runsteward-report-run",
+      "runsteward-stop-run"
+    ],
+    "duplicates_procedures": false
+  },
+  "sensor_policy": {
+    "owners": [
+      "runsteward-sense-claude-limits",
+      "runsteward-sense-codex-usage"
+    ],
+    "output": "typed evidence only",
+    "forbidden": [
+      "continue decision",
+      "checkpoint decision",
+      "stop decision",
+      "budget policy",
+      "metric conversion"
+    ]
+  },
+  "actions_not_performed": [
+    "live skill install enable expose activate promote supersede archive or delete",
+    "provider authentication network or execution",
+    "remote fetch pull push tags releases publication or public exposure",
+    "imported package edits",
+    "destructive cleanup",
+    "RW4 ChoiceGate ingestion"
+  ]
+}

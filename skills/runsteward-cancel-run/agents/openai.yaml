@@ -1,0 +1,6 @@
+interface:
+  display_name: "RunSteward Cancel Run"
+  short_description: "Produce one terminal cancelled transition with retained evide..."
+  default_prompt: "Use $runsteward-cancel-run to produce one terminal cancelled transition with retained evidence for an identified run."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "captured": "2026-07-05T17:05:06.910Z",
+    "claude_code_version": "2.1.201",
+    "how": "sensor state.json sample from a real interactive TUI session (spawned console window, haiku, one-turn prompt); verbatim rate_limits from statusline stdin",
+    "notes": [
+      "Matches docs-pinned schema exactly: used_percentage 0-100, resets_at epoch SECONDS.",
+      "used_percentage arrived as INTEGERS (1, 43) across all samples in this capture — docs example shows decimals (23.5); values may be server-rounded. Burn-rate math must tolerate >=1% quantization steps.",
+      "resets_at values land on exact hour boundaries (22:00:00Z, 21:00:00Z)."
+    ]
+  },
+  "ts": 1783271106910,
+  "rate_limits": {
+    "five_hour": { "used_percentage": 1, "resets_at": 1783288800 },
+    "seven_day": { "used_percentage": 43, "resets_at": 1783803600 }
+  }
+}

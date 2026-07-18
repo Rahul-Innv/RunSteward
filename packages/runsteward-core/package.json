@@ -1,0 +1,16 @@
+{
+  "name": "@runsteward/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Provider-neutral RunSteward lifecycle contracts and invariant checks",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "qualify:physical": "node scripts/qualify-physical-worktrees.mjs",
+    "qualify:rw5": "node scripts/qualify-rw5-failure-concurrency.mjs",
+    "validate": "node scripts/validate-fixtures.mjs",
+    "test": "node scripts/run-all-tests.mjs"
+  }
+}

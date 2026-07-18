@@ -1,0 +1,39 @@
+{
+  "schema_version": "runsteward.report/v1",
+  "report_id": "report:null-lease-cancelled-01:final",
+  "report_kind": "final",
+  "run_id": "run:null-lease-cancelled-01",
+  "created_at": "2026-07-14T00:22:00Z",
+  "status": "cancelled",
+  "terminal_event_ref": {
+    "ref": "evidence/events/event-null-lease-cancelled-01.json",
+    "digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666"
+  },
+  "capability_plan_ref": {
+    "ref": "contracts/fixtures/scenarios/capability-plan.atomic-initial-gated-01.atomic.json",
+    "digest": "sha256:4659422e29c2e4e3e3128c48d5b3ffd8b9741cf044bf011ec56ef3eea8132c82"
+  },
+  "lease_history_refs": [],
+  "checkpoint_refs": [],
+  "handoff_ref": null,
+  "outcome": {
+    "summary": "The owner-gated attempt was cancelled before any local execution lease was acquired.",
+    "objective_satisfied": false
+  },
+  "blocker": {
+    "type": "approval",
+    "reason": "The initial owner gate did not authorize execution.",
+    "safe_next_action": "Preserve the cancelled final report without inventing lease evidence."
+  },
+  "budget_summary": [],
+  "validation_results": [],
+  "changed_paths_summary": [],
+  "failed_commands_summary": [],
+  "owner_gate_summary": [],
+  "evidence_index": [],
+  "redactions": [],
+  "evidence_dir_collision_key": "fs:win32:2222222222222222222222222222222222222222222222222222222222222222",
+  "report_ref": "evidence/run-null-lease-cancelled-01/reports/cancelled.json",
+  "final_status_marker": "RUNSTEWARD_FINAL_STATUS",
+  "report_digest": "sha256:50ef59bd86eb05a0e9d73c04be5c5de634772fcec929c7a791e6f773885df327"
+}
