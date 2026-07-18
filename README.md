@@ -4,6 +4,9 @@
 
 # RunSteward
 
+[![pipeline status](https://gitlab.com/krahul02004/RunSteward/badges/main/pipeline.svg)](https://gitlab.com/krahul02004/RunSteward/-/commits/main)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 RunSteward is an integration repository for long-running agent operations across sessions and
 isolated worktrees. It owns the shared execution lifecycle: queueing, budgets, checkpoints, stop
 rules, resume, and handoff. Capability policy, capability selection, cross-agent transport, release
@@ -42,17 +45,34 @@ exact authority, request, scope, precondition, and owner-gate checks.
 
 Each bundled product keeps its own documentation, tests, and backlog.
 
-## Python package
+## Install
 
 The repository root builds as the Python distribution `runsteward`. It packages the deterministic
 contract-verification surface (`runsteward.contract_compat`): the restricted canonical-JSON digest,
-the strict fixture loaders, and the offline schema/fixture/receipt verifier. After installation the
-`runsteward-verify-contracts` console script replays the full offline contract verification against
-a repository checkout.
+the strict fixture loaders, and the offline schema/fixture/receipt verifier. The distribution is
+not yet published on PyPI; install it from a clone:
+
+```
+git clone https://gitlab.com/krahul02004/RunSteward.git
+cd RunSteward
+pip install .
+runsteward-verify-contracts --root .
+```
+
+The installed `runsteward-verify-contracts` console script replays the full offline contract
+verification against a repository checkout. The distribution also builds offline:
 
 ```
 python -m build --no-isolation
 python -m twine check dist/*
+```
+
+The route-only Node CLI surface (`@runsteward/cli`) is a private workspace package, not published
+to npm. It runs directly from the checkout and emits membership and dispatch receipts without
+executing any lifecycle or outward action:
+
+```
+node packages/runsteward-cli/bin/runsteward.mjs list-skills
 ```
 
 ## Validation
