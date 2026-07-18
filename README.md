@@ -8,11 +8,17 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 RunSteward is for developers who hand Claude Code (or OpenAI's Codex CLI) work that takes longer
-than one sitting — big refactors, migrations, overnight builds — and can't sit there watching it.
+than one sitting (big refactors, migrations, overnight builds) and can't sit there watching it.
 It bundles the tools that keep that work moving unattended: queue tasks with a spending cap,
 checkpoint progress, resume automatically when a usage limit resets, and read a reviewable summary
 of what happened in the morning. Without it, hitting a usage limit mid-task means coming back to a
 stopped session with half-applied edits and no record of what was done or what to do next.
+
+## Getting started
+
+- **Prerequisites:** Node 18 or newer. Claude Carry, the bundled overnight runner, runs straight on Node with no extra dependencies. On Windows, clone to a short path and turn on long paths first, because a few fixture filenames are long (exact command in the [Windows note](#install) below).
+- **Install:** RunSteward is not on npm or PyPI, so you run it from a clone. Run `git clone https://gitlab.com/krahul02004/RunSteward.git` and `cd RunSteward`. The Node surfaces, including Claude Carry, run straight from the checkout with no `npm install`. Fuller setup (and the optional Python contract verifier) is under [Install](#install).
+- **Check it works:** from the checkout, run `node packages/claude-carry/bin/carry.mjs doctor`. It prints one line per check and finishes with `All 7 checks passed.`
 
 ## 30-second demo
 
@@ -55,13 +61,13 @@ Each product keeps its own README, tests, changelog, and backlog.
 
 ### The shared core
 
-The `@runsteward/*` packages are the provider-neutral engine being extracted from those products —
+The `@runsteward/*` packages are the provider-neutral engine being extracted from those products:
 implemented and fully tested, but not yet switched on as the runtime that drives them
 (see [Status](#status)).
 
 | Package | What it's for |
 |---|---|
-| `@runsteward/core` (`packages/runsteward-core/`) | Defines how a run is recorded, scheduled, checkpointed, resumed, and proven finished — the contracts and invariants everything else consumes |
+| `@runsteward/core` (`packages/runsteward-core/`) | Defines how a run is recorded, scheduled, checkpointed, resumed, and proven finished: the contracts and invariants everything else consumes |
 | `@runsteward/cli` (`packages/runsteward-cli/`) | Lists and describes the sixteen planned run-management skills (queue, adopt, checkpoint, wrap, resume, report, …); it routes and describes but executes nothing yet |
 | `@runsteward/sensor-claude-limits` (`packages/runsteward-sensor-claude-limits/`) | Turns Claude usage-window percentages into typed evidence the core can consume |
 | `@runsteward/sensor-codex-usage` (`packages/runsteward-sensor-codex-usage/`) | Turns Codex token usage into typed evidence the core can consume |
@@ -77,15 +83,15 @@ lives outside this repository; that boundary is documented in
 Three ideas carry most of the engineering:
 
 - **Runs are digest-linked event chains.** Every lifecycle fact (queued, running, checkpointed,
-  stopped, …) is an ordered JSON event carrying a deterministic digest — a hash of the exact
-  canonical bytes — linked to the previous event's digest. A run's current state is only accepted
+  stopped, …) is an ordered JSON event carrying a deterministic digest (a hash of the exact
+  canonical bytes) linked to the previous event's digest. A run's current state is only accepted
   if it is the replay of one complete, unbroken chain, so any machine can verify what happened.
 - **Resume requires a checkpoint and a lease.** A checkpoint captures everything needed to pick a
   run back up (branch, worktree, session identity); a lease is an exclusive, epoch-numbered claim
   on that run's branch and worktree. Two runners can never grab the same task, and a crashed run
   can be resumed without guessing.
 - **Everything fails closed.** When evidence is missing, stale, or ambiguous, the core refuses to
-  act rather than act on a guess — an unattended runner that guesses can destroy work while you
+  act rather than act on a guess: an unattended runner that guesses can destroy work while you
   sleep. The same rule shows up product-side as Claude Carry's guardrails and Limit-Aware Wrapup's
   do-nothing-if-unsure sensor.
 
@@ -106,12 +112,12 @@ runsteward-verify-contracts --root .
 ```
 
 > **Windows note:** some fixture filenames are over 100 characters, so a deep clone destination
-> can push full paths past Windows' default 260-character limit — which breaks the clone
+> can push full paths past Windows' default 260-character limit, which breaks the clone
 > ("Filename too long") and, later, the verifier. Clone to a short path (e.g. `C:\src\rs`) and
 > enable long paths: `git clone -c core.longpaths=true https://gitlab.com/krahul02004/RunSteward.git`.
 
-`runsteward-verify-contracts` replays the full contract verification — every schema, frozen
-fixture, and digest vector under `contracts/` — against the checkout, entirely offline. The
+`runsteward-verify-contracts` replays the full contract verification (every schema, frozen
+fixture, and digest vector under `contracts/`) against the checkout, entirely offline. The
 distribution also builds offline (`python -m build --no-isolation`, then `python -m twine check dist/*`).
 
 The Node surfaces run straight from the checkout, with no npm install:
@@ -139,7 +145,7 @@ package-level Node test suite. The second validates the sixteen-skill definition
 ## Status
 
 The three bundled products are working, tested tools; the shared core underneath them is
-implemented and fully tested, but not yet switched on as the engine that drives them — the precise
+implemented and fully tested, but not yet switched on as the engine that drives them. The precise
 integration state and the gates before activation are in [STATUS.md](STATUS.md).
 
 ## License

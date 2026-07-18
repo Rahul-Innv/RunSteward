@@ -6,12 +6,12 @@ and tested but deliberately inactive.
 
 ## What is live and what is not
 
-- **Live:** the bundled products — [Claude Carry](packages/claude-carry/),
+- **Live:** the bundled products ([Claude Carry](packages/claude-carry/),
   [Limit-Aware Wrapup](packages/limit-aware-wrapup/), and
-  [Codex Nightwatch](packages/codex-nightwatch/) — are usable tools with their own tests,
+  [Codex Nightwatch](packages/codex-nightwatch/)) are usable tools with their own tests,
   documentation, and backlogs.
 - **Inactive:** the root `@runsteward/*` packages and the sixteen skill definitions under
-  `skills/` are packaged in a *candidate* state — prepared, verified, and awaiting an explicit
+  `skills/` are packaged in a *candidate* state: prepared, verified, and awaiting an explicit
   activation decision. The plugin and CLI surfaces route and describe; they do not execute a
   provider, install a skill, or perform any outward action (no network call, no remote write, no
   publication).
@@ -38,7 +38,7 @@ repository:
 - **Capability inventory and lifecycle policy** belong to an external lifecycle authority.
   RunSteward consumes the capability state that authority declares; it never invents capability
   state or acts as a second registry.
-- **Capability selection** belongs to ChoiceGate. ChoiceGate emits a decision *receipt* — a
+- **Capability selection** belongs to ChoiceGate. ChoiceGate emits a decision *receipt*: a
   hash-bound, immutable record of which capability was selected and under what conditions.
   RunSteward validates and freezes that receipt and may dispatch only the original selection,
   after exact checks of authority, request, scope, preconditions, and owner gates (an
