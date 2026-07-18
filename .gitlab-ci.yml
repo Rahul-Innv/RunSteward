@@ -9,5 +9,6 @@ offline-validation:
     PYTHONHASHSEED: "0"
     PYTHON: "python3"
   script:
+    - python3 -m pip install --quiet jsonschema
     - node packages/runsteward-core/scripts/run-all-tests.mjs
     - node --test tests/runsteward-atomic-family.test.mjs
