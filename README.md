@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/assets/logo.png" alt="RunSteward logo" width="180">
+</p>
+
 # RunSteward
 
 RunSteward is an integration repository for long-running agent operations across sessions and
