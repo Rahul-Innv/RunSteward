@@ -18,6 +18,7 @@
 /packages/runsteward-core/src/path-identity.mjs text eol=lf
 /packages/runsteward-core/src/provider-evidence.mjs text eol=lf
 /packages/runsteward-core/src/scheduler.mjs text eol=lf
+/packages/runsteward-core/src/wrap-orchestration.mjs text eol=lf
 /packages/runsteward-sensor-claude-limits/src/index.mjs text eol=lf
 /packages/runsteward-sensor-codex-usage/src/index.mjs text eol=lf
 /skills/** text eol=lf

@@ -218,7 +218,7 @@
     },
     {
       "path": "packages/runsteward-core/src/wrap-orchestration.mjs",
-      "sha256": "55c7423e95b3a11228bc90e8d884c8fbd04ec8da65a5ecba16330ed139dfc759",
+      "sha256": "ce1b309ead55dc96a1cac3e297d1ba0a8f5541de336d259fb144f03a60ff4aea",
       "state": "accepted-runsteward-owned-source"
     }
   ]
