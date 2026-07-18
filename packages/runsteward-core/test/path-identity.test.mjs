@@ -5,7 +5,7 @@ import path from "node:path";
 import test from "node:test";
 import { PathIdentityUncertainError, makePathCollisionKey, resolvePathBinding } from "../src/path-identity.mjs";
 
-test("Windows path identity case-folds and normalizes equivalent absolute paths", { skip: process.platform !== "win32" }, async () => {
+test("Windows path identity case-folds and normalizes equivalent absolute paths", { skip: process.platform !== "win32" && "win32-only filesystem identity layer; fails closed by design elsewhere" }, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-path-"));
   try {
     await mkdir(path.join(root, "State"));
@@ -18,7 +18,7 @@ test("Windows path identity case-folds and normalizes equivalent absolute paths"
   }
 });
 
-test("path identity rejects junction and reparse boundaries", { skip: process.platform !== "win32" }, async () => {
+test("path identity rejects junction and reparse boundaries", { skip: process.platform !== "win32" && "win32-only filesystem identity layer; fails closed by design elsewhere" }, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-junction-"));
   try {
     const target = path.join(root, "target");

@@ -21,6 +21,15 @@ import { appendScenarioEvent, buildFullLifecycleScenario, buildInitialOwnerGated
 
 const SOURCE = "5".repeat(40);
 const REPEATABILITY_ROUNDS = 5;
+// These tests exercise the physical filesystem-identity layer
+// (resolvePathBinding), which supports only win32 and refuses every other
+// platform by throwing PathIdentityUncertainError. Skip them elsewhere with
+// node:test's skip option; on win32 they run fully.
+const WIN32_ONLY_IDENTITY = {
+  skip: process.platform === "win32"
+    ? false
+    : "win32-only filesystem identity layer; fails closed by design elsewhere",
+};
 const OWNER = {
   executor_id: "executor:rw5-test",
   process_session_ref: `sha256:${"8".repeat(64)}`,
@@ -153,7 +162,7 @@ function runWorker({ cwd, taskId, output, mode }) {
   });
 }
 
-test("RW5 allocation identities and collisions are deterministic across repeated rounds", async () => {
+test("RW5 allocation identities and collisions are deterministic across repeated rounds", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-rw5-collision-"));
   try {
     for (let round = 0; round < REPEATABILITY_ROUNDS; round += 1) {
@@ -174,7 +183,7 @@ test("RW5 allocation identities and collisions are deterministic across repeated
   }
 });
 
-test("RW5 stale leases and physical contention remain evidence and never authorize takeover", async () => {
+test("RW5 stale leases and physical contention remain evidence and never authorize takeover", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-rw5-stale-"));
   try {
     const proposed = await proposeInitialLease(leaseInput(root, "task:rw5-stale"));
@@ -196,7 +205,7 @@ test("RW5 stale leases and physical contention remain evidence and never authori
   }
 });
 
-test("RW5 coordination lock and prior digest deterministically prevent concurrent lost updates", async () => {
+test("RW5 coordination lock and prior digest deterministically prevent concurrent lost updates", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-rw5-cas-"));
   try {
     const stateFile = path.join(root, "scheduler", "state.json");
@@ -242,7 +251,7 @@ test("RW5 coordination lock and prior digest deterministically prevent concurren
   }
 });
 
-test("RW5 one blocked reservation cannot prevent an independent lane from completing and recovering", async () => {
+test("RW5 one blocked reservation cannot prevent an independent lane from completing and recovering", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-rw5-independent-"));
   try {
     const blocked = await proposeInitialLease(leaseInput(root, "task:rw5-blocked"));
@@ -379,7 +388,9 @@ test("RW5 interrupted, identity-mismatched, missing, stopped, and cancelled chil
   }
 });
 
-test("RW5 physical worker probes isolate blocked, crashed, completing, and recovered lanes", async () => {
+// The worker probe binds its worktree via resolvePathBinding, so it fails
+// closed (exit 1) on non-win32 platforms instead of reaching its probe codes.
+test("RW5 physical worker probes isolate blocked, crashed, completing, and recovered lanes", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-rw5-workers-"));
   const worktreeA = path.join(root, "worktree-a");
   const worktreeB = path.join(root, "worktree-b");

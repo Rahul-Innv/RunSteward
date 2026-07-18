@@ -89,9 +89,16 @@ test("vendored ChoiceGate schema normalized hash survives CRLF materialization",
 });
 
 test("contract path resolver rejects absolute and parent-directory escapes", () => {
-  assert.throws(() => resolveContractPath("C:\\outside\\artifact.json"), /repository-relative/);
+  // The resolver delegates absoluteness to the host path API: POSIX-style
+  // absolute paths are absolute on every platform (win32 included), while
+  // drive-letter paths are only absolute where the host API says so (win32).
+  assert.throws(() => resolveContractPath("/outside/artifact.json"), /repository-relative/);
+  if (process.platform === "win32") {
+    assert.throws(() => resolveContractPath("C:\\outside\\artifact.json"), /repository-relative/);
+  }
   assert.throws(() => resolveContractPath("contracts/../outside.json"), /repository-relative/);
   assert.throws(() => resolveContractPath("..\\outside.json"), /repository-relative/);
+  assert.throws(() => resolveContractPath("../outside.json"), /repository-relative/);
 });
 
 test("handoff resolves exact qualified original bytes, rejects a fabricated original object, and remains non-dispatchable", async () => {

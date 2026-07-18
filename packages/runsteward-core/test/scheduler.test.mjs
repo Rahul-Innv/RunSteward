@@ -16,6 +16,16 @@ const OWNER = {
   host_fingerprint: `sha256:${"9".repeat(64)}`
 };
 const SOURCE = "d".repeat(40);
+// These tests exercise the physical filesystem-identity layer
+// (resolvePathBinding via proposeInitialLease/reserveLease), which supports
+// only win32 and refuses every other platform by throwing
+// PathIdentityUncertainError. Skip them elsewhere with node:test's skip
+// option; on win32 they run fully.
+const WIN32_ONLY_IDENTITY = {
+  skip: process.platform === "win32"
+    ? false
+    : "win32-only filesystem identity layer; fails closed by design elsewhere",
+};
 
 function input(root, taskId = "task:rw2-one", acquiredAt = "2026-07-15T05:00:00Z") {
   return {
@@ -37,7 +47,7 @@ function inventory(overrides = {}) {
   return { branches: [], worktrees: [], leases: [], ...overrides };
 }
 
-test("allocator is deterministic per task and unique across task identities", async () => {
+test("allocator is deterministic per task and unique across task identities", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-allocator-"));
   try {
     const first = await proposeInitialLease(input(root));
@@ -55,7 +65,7 @@ test("allocator is deterministic per task and unique across task identities", as
   }
 });
 
-test("allocator fails closed on omitted or partial physical inventory and detects fixture Git collisions", async () => {
+test("allocator fails closed on omitted or partial physical inventory and detects fixture Git collisions", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-inventory-"));
   try {
     const lease = await proposeInitialLease(input(root));
@@ -77,7 +87,7 @@ test("allocator fails closed on omitted or partial physical inventory and detect
   }
 });
 
-test("allocator rejects branch, worktree, run, state, evidence, lock, and stale-lease collisions", async () => {
+test("allocator rejects branch, worktree, run, state, evidence, lock, and stale-lease collisions", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-collisions-"));
   try {
     const lease = await proposeInitialLease(input(root));
@@ -120,7 +130,7 @@ test("allocator rejects branch, worktree, run, state, evidence, lock, and stale-
   }
 });
 
-test("successor lease requires explicit release and binds the next epoch and predecessor digest", async () => {
+test("successor lease requires explicit release and binds the next epoch and predecessor digest", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-successor-"));
   try {
     const proposed = await proposeInitialLease(input(root));
@@ -169,7 +179,7 @@ test("successor lease requires explicit release and binds the next epoch and pre
   }
 });
 
-test("physical lock acquisition and scheduler state replacement are exclusive and failure-clean", async () => {
+test("physical lock acquisition and scheduler state replacement are exclusive and failure-clean", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-reserve-"));
   try {
     const first = await proposeInitialLease(input(root));
@@ -225,7 +235,7 @@ test("physical lock acquisition and scheduler state replacement are exclusive an
   }
 });
 
-test("failed reservation reports failed lease-lock cleanup and preserves residual evidence", async () => {
+test("failed reservation reports failed lease-lock cleanup and preserves residual evidence", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-reserve-cleanup-"));
   try {
     const lease = await proposeInitialLease(input(root));
@@ -253,7 +263,7 @@ test("failed reservation reports failed lease-lock cleanup and preserves residua
   }
 });
 
-test("committed reservation reports coordinator cleanup failure without claiming clean success", async () => {
+test("committed reservation reports coordinator cleanup failure without claiming clean success", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-coordinate-cleanup-"));
   try {
     const lease = await proposeInitialLease(input(root));
@@ -278,7 +288,7 @@ test("committed reservation reports coordinator cleanup failure without claiming
   }
 });
 
-test("committed release reports physical lease-lock cleanup failure and preserves released state", async () => {
+test("committed release reports physical lease-lock cleanup failure and preserves released state", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-release-cleanup-"));
   try {
     const proposed = await proposeInitialLease(input(root));
@@ -308,7 +318,7 @@ test("committed release reports physical lease-lock cleanup failure and preserve
   }
 });
 
-test("committed release reports residual coordinator lock after physical lease cleanup", async () => {
+test("committed release reports residual coordinator lock after physical lease cleanup", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-release-coordinate-cleanup-"));
   try {
     const proposed = await proposeInitialLease(input(root));
@@ -338,7 +348,7 @@ test("committed release reports residual coordinator lock after physical lease c
   }
 });
 
-test("scheduler coordination lock and prior-state digest prevent concurrent lost updates", async () => {
+test("scheduler coordination lock and prior-state digest prevent concurrent lost updates", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-concurrent-reserve-"));
   try {
     const stateFile = path.join(root, "scheduler", "state.json");
@@ -375,7 +385,7 @@ test("scheduler coordination lock and prior-state digest prevent concurrent lost
   }
 });
 
-test("scheduler state digest and lease invariants reject tampering", async () => {
+test("scheduler state digest and lease invariants reject tampering", WIN32_ONLY_IDENTITY, async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "runsteward-state-"));
   try {
     const lease = await proposeInitialLease(input(root));
