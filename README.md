@@ -24,10 +24,10 @@ stopped session with half-applied edits and no record of what was done or what t
 ## 30-second demo
 
 Queue a task for [Claude Carry](packages/claude-carry/), the overnight runner bundled in this repo.
-From your project folder, in a checkout:
+From the RunSteward checkout, replace `X:\my-app` with the absolute path to your project:
 
 ```
-node packages/claude-carry/bin/carry.mjs add "refactor the auth module into smaller files" --goal "npm test passes" --budget 5
+node packages/claude-carry/bin/carry.mjs add "refactor the auth module into smaller files" --goal "npm test passes" --budget 5 --cwd "X:\my-app"
 ```
 
 ```
