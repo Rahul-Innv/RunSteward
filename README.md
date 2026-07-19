@@ -5,6 +5,7 @@
 # RunSteward
 
 [![pipeline status](https://gitlab.com/krahul02004/RunSteward/badges/main/pipeline.svg)](https://gitlab.com/krahul02004/RunSteward/-/commits/main)
+[![PyPI version](https://img.shields.io/pypi/v/runsteward)](https://pypi.org/project/runsteward/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 RunSteward is for developers who hand Claude Code (or OpenAI's Codex CLI) work that takes longer
@@ -17,7 +18,7 @@ stopped session with half-applied edits and no record of what was done or what t
 ## Getting started
 
 - **Prerequisites:** Node 18 or newer. Claude Carry, the bundled overnight runner, runs straight on Node with no extra dependencies. On Windows, clone to a short path and turn on long paths first, because a few fixture filenames are long (exact command in the [Windows note](#install) below).
-- **Install:** RunSteward is not on npm or PyPI, so you run it from a clone. Run `git clone https://gitlab.com/krahul02004/RunSteward.git` and `cd RunSteward`. The Node surfaces, including Claude Carry, run straight from the checkout with no `npm install`. Fuller setup (and the optional Python contract verifier) is under [Install](#install).
+- **Install:** the Node surfaces, including Claude Carry, run straight from a clone with no `npm install`: `git clone https://gitlab.com/krahul02004/RunSteward.git` and `cd RunSteward`. The Python contract verifier is published separately as `pip install runsteward`. Fuller setup is under [Install](#install).
 - **Check it works:** from the checkout, run `node packages/claude-carry/bin/carry.mjs doctor`. It prints one line per check and finishes with `All 7 checks passed.`
 
 ## 30-second demo
@@ -102,14 +103,15 @@ Deeper reading: [`docs/architecture.md`](docs/architecture.md) (layer and bounda
 ## Install
 
 The repository root builds as the Python distribution `runsteward`, which packages the offline
-contract verifier. It is not yet on PyPI; install from a clone:
+contract verifier and is published on PyPI:
 
 ```
-git clone https://gitlab.com/krahul02004/RunSteward.git
-cd RunSteward
-pip install .
-runsteward-verify-contracts --root .
+pip install runsteward
+runsteward-verify-contracts --root <path-to-a-runsteward-checkout>
 ```
+
+Or run it straight from a clone (`git clone https://gitlab.com/krahul02004/RunSteward.git`,
+`cd RunSteward`, `pip install .`, then `runsteward-verify-contracts --root .`).
 
 > **Windows note:** some fixture filenames are over 100 characters, so a deep clone destination
 > can push full paths past Windows' default 260-character limit, which breaks the clone
