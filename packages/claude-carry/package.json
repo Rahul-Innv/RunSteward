@@ -9,7 +9,7 @@
     "nq": "./bin/carry.mjs"
   },
   "scripts": {
-    "test": "node test/cli-help-test.mjs && node test/sentinel-test.mjs && node test/crash-store.mjs && node test/report-test.mjs && node test/runner-test.mjs && node test/infolder-test.mjs && node test/parallel-test.mjs && node test/handoff-test.mjs && node test/adopt-test.mjs"
+    "test": "node test/cli-help-test.mjs && node test/guardrails-test.mjs && node test/sentinel-test.mjs && node test/crash-store.mjs && node test/report-test.mjs && node test/runner-test.mjs && node test/infolder-test.mjs && node test/parallel-test.mjs && node test/handoff-test.mjs && node test/adopt-test.mjs"
   },
   "engines": {
     "node": ">=18"

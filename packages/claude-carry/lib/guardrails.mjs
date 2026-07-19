@@ -24,14 +24,12 @@ const bothShells = (r) => [bash(r), pwsh(r)];
 // Tool rules are shell-agnostic (built-in Read/Edit/Write tools).
 const TOOL_ALLOW = ['Read', 'Edit', 'Write'];
 
-// Safe to run unattended: tests/builds, node, dir creation, non-destructive git.
+// Safe to run unattended: directory creation and non-destructive git operations
+// that do not invoke a general interpreter. Node and npm commands are omitted:
+// project scripts and package lifecycle hooks can execute arbitrary code, read
+// secrets, or use the network, so they must park for explicit approval.
 // Read-only shell commands (ls, cat, grep, ...) already run without prompt.
 const CMD_ALLOW = [
-  'npm run *',
-  'npm test *',
-  'npm test',
-  'npm ci',
-  'node *',
   'mkdir *',
   'git add *',
   'git commit *',
@@ -71,9 +69,9 @@ export const DEFAULT_ALLOW = [
   ...PWSH_READONLY_ALLOW.map(pwsh),
 ];
 
-// Never, regardless of anything else. Outbound/irreversible actions + secret
-// exfiltration. Denying curl/wget/Invoke-WebRequest closes the easiest
-// exfiltration path; WebFetch isn't allowlisted so dontAsk already blocks it.
+// Never, regardless of anything else. Outbound/irreversible actions and direct
+// download commands stay hard-denied. General interpreters and package scripts
+// are not allowlisted, so dontAsk parks them for explicit approval.
 const CMD_DENY = [
   'git push *',
   'git push',
