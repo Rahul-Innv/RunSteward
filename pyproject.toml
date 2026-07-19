@@ -31,10 +31,16 @@ classifiers = [
   "Topic :: Software Development :: Quality Assurance",
   "Topic :: Utilities",
 ]
+
 dependencies = [
   "jsonschema>=4.21",
   "referencing>=0.35",
 ]
+
+[project.urls]
+Repository = "https://gitlab.com/krahul02004/RunSteward"
+Issues = "https://gitlab.com/krahul02004/RunSteward/-/work_items"
+Changelog = "https://gitlab.com/krahul02004/RunSteward/-/blob/main/CHANGELOG.md"
 
 [project.scripts]
 runsteward-verify-contracts = "runsteward.contract_compat:main"
