@@ -103,8 +103,12 @@ flowchart LR
 carry doctor
 ```
 
-**Requirements:** Windows 11, Node 18+, git, a Claude Max subscription. There are **no npm
-dependencies** to install. If `git`/`node` aren't found, prepend
+**Requirements:** Windows 11, Node 18+, git, a Claude Max subscription, the standalone Claude
+Code CLI 2.1.139+, and at least one skill folder under `~/.claude/skills`. `carry doctor` also
+checks wake timers and, on Modern Standby laptops, lid-close and AC sleep settings. Its check
+count is dynamic: a ready Modern Standby Windows host currently runs seven checks, while other
+platforms or a missing CLI run fewer. There are **no npm dependencies** to install. If
+`git`/`node` aren't found, prepend
 `C:\Program Files\Git\cmd;C:\Program Files\nodejs;` to your PATH.
 
 ## Contributing & security
