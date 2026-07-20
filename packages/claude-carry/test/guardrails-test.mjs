@@ -6,6 +6,12 @@ const unsafeDefaults = [
   'npm test *',
   'npm test',
   'npm ci',
+  'git add *',
+  'git commit *',
+  'git stash *',
+  'git checkout *',
+  'git restore *',
+  'git branch *',
 ].flatMap((rule) => [`Bash(${rule})`, `PowerShell(${rule})`]);
 
 const leaked = unsafeDefaults.filter((rule) => DEFAULT_ALLOW.includes(rule));
@@ -21,4 +27,4 @@ if (!args.includes(approved)) {
   process.exit(1);
 }
 
-console.log('guardrail defaults park general Node/npm execution for approval');
+console.log('guardrail defaults park general Node/npm and mutating Git execution for approval');

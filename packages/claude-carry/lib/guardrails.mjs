@@ -24,22 +24,17 @@ const bothShells = (r) => [bash(r), pwsh(r)];
 // Tool rules are shell-agnostic (built-in Read/Edit/Write tools).
 const TOOL_ALLOW = ['Read', 'Edit', 'Write'];
 
-// Safe to run unattended: directory creation and non-destructive git operations
-// that do not invoke a general interpreter. Node and npm commands are omitted:
-// project scripts and package lifecycle hooks can execute arbitrary code, read
-// secrets, or use the network, so they must park for explicit approval.
+// Safe to run unattended: directory creation and read-only git inspection.
+// Node/npm commands and mutating git commands are omitted: project scripts,
+// package lifecycle hooks, git hooks, and clean/smudge filters can execute
+// arbitrary code, read secrets, or use the network, so they must park for
+// explicit approval.
 // Read-only shell commands (ls, cat, grep, ...) already run without prompt.
 const CMD_ALLOW = [
   'mkdir *',
-  'git add *',
-  'git commit *',
   'git status *',
   'git diff *',
   'git log *',
-  'git stash *',
-  'git checkout *',
-  'git restore *',
-  'git branch *',
   'git check-ignore *', // read-only: verify what .gitignore would skip
 ];
 
