@@ -1,7 +1,7 @@
 {
   "name": "runsteward",
   "displayName": "RunSteward",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Packages RunSteward's sixteen inactive atomic execution-lifecycle skills.",
   "author": {
     "name": "Rahul Krishna"
