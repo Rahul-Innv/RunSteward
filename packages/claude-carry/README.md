@@ -41,6 +41,8 @@ reviewed the next morning. The author was asleep the whole time.
   machine-readable rate-limit events, and wakes the PC at the exact reset time.
 - **Guardrails** — `dontAsk` permission mode + an allow/deny set: hard-deny for never-allowed actions
   (`git push`, reading `.env`/secrets), and "park for your approval" for anything off the allowlist.
+  General Node/npm execution and mutating Git commands also park because project scripts, lifecycle
+  hooks, Git hooks, and content filters can execute arbitrary code beneath an otherwise familiar command.
 - **VS Code integration** — Command Palette tasks, plus three Claude Code skills (below). Work lands on
   a `carry/<id>` branch in your project's own checkout, so the run and its session are natively visible
   in Source Control and the Claude panel.
@@ -103,8 +105,12 @@ flowchart LR
 carry doctor
 ```
 
-**Requirements:** Windows 11, Node 18+, git, a Claude Max subscription. There are **no npm
-dependencies** to install. If `git`/`node` aren't found, prepend
+**Requirements:** Windows 11, Node 18+, git, a Claude Max subscription, the standalone Claude
+Code CLI 2.1.139+, and at least one skill folder under `~/.claude/skills`. `carry doctor` also
+checks wake timers and, on Modern Standby laptops, lid-close and AC sleep settings. Its check
+count is dynamic: a ready Modern Standby Windows host currently runs seven checks, while other
+platforms or a missing CLI run fewer. There are **no npm dependencies** to install. If
+`git`/`node` aren't found, prepend
 `C:\Program Files\Git\cmd;C:\Program Files\nodejs;` to your PATH.
 
 ## Contributing & security

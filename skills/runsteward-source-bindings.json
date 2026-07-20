@@ -40,7 +40,7 @@
     {
       "id": "rw.carry-cli",
       "path": "packages/claude-carry/bin/carry.mjs",
-      "sha256": "2a5f53a160b1effa70de97ee1074b24fe6fd1077d9b9a5c210f8741a84237246",
+      "sha256": "e3cbbb7c6198bf85b3cedb237766cbdefedc0df8d5c89c46d75b7b6098dae74c",
       "state": "immutable-import",
       "verify_local": true
     },

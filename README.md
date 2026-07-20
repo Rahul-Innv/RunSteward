@@ -17,17 +17,17 @@ stopped session with half-applied edits and no record of what was done or what t
 
 ## Getting started
 
-- **Prerequisites:** Node 18 or newer. Claude Carry, the bundled overnight runner, runs straight on Node with no extra dependencies. On Windows, clone to a short path and turn on long paths first, because a few fixture filenames are long (exact command in the [Windows note](#install) below).
+- **Prerequisites:** Node 18 or newer and Git. The full Claude Carry doctor also requires the standalone Claude Code CLI 2.1.139 or newer and at least one folder under `~/.claude/skills`. On Windows it additionally checks wake timers and, on Modern Standby laptops, lid-close and AC sleep settings. The Node surfaces have no npm dependencies. Clone to a short path and turn on long paths first because a few fixture filenames are long (exact command in the [Windows note](#install) below).
 - **Install:** the Node surfaces, including Claude Carry, run straight from a clone with no `npm install`: `git clone https://gitlab.com/krahul02004/RunSteward.git` and `cd RunSteward`. The Python contract verifier is published separately as `pip install runsteward`. Fuller setup is under [Install](#install).
-- **Check it works:** from the checkout, run `node packages/claude-carry/bin/carry.mjs doctor`. It prints one line per check and finishes with `All 7 checks passed.`
+- **Check it works:** from the checkout, run `node packages/claude-carry/bin/carry.mjs doctor`. It prints one line per applicable check and finishes with `All N checks passed.` A ready Modern Standby Windows host currently runs seven checks; other platforms and a missing Claude CLI produce a different count, and every failed prerequisite is named.
 
 ## 30-second demo
 
 Queue a task for [Claude Carry](packages/claude-carry/), the overnight runner bundled in this repo.
-From your project folder, in a checkout:
+From the RunSteward checkout, replace `X:\my-app` with the absolute path to your project:
 
 ```
-node packages/claude-carry/bin/carry.mjs add "refactor the auth module into smaller files" --goal "npm test passes" --budget 5
+node packages/claude-carry/bin/carry.mjs add "refactor the auth module into smaller files" --goal "npm test passes" --budget 5 --cwd "X:\my-app"
 ```
 
 ```

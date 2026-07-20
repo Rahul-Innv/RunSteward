@@ -405,6 +405,8 @@ try {
       const ok = await doctor({ smoke: args.includes('--smoke') });
       process.exit(ok ? 0 : 1);
     }
+    case '--help':
+    case '-h':
     case 'help':
     case undefined:
       console.log(HELP);
