@@ -153,3 +153,9 @@ integration state and the gates before activation are in [STATUS.md](STATUS.md).
 ## License
 
 MIT. See [`LICENSE`](LICENSE).
+
+## Contributors
+
+- [Rahul Krishna](https://github.com/Rahul-Innv) - creator and contributor.
+- Claude Code - AI development assistance.
+- Codex - AI development assistance.
